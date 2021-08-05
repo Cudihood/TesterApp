@@ -39,18 +39,17 @@ namespace TesterAppUI
             this.SetButton = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.ReadRadioButton = new System.Windows.Forms.RadioButton();
-            this.WriteRadioButton = new System.Windows.Forms.RadioButton();
             this.label4 = new System.Windows.Forms.Label();
             this.NumberOfPointsTextBox = new System.Windows.Forms.TextBox();
-            this.AddressLabel = new System.Windows.Forms.Label();
-            this.ValueTextBox = new System.Windows.Forms.TextBox();
+            this.GetTextBox = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.SetTextBox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // PortsComboBox
             // 
             this.PortsComboBox.FormattingEnabled = true;
-            this.PortsComboBox.Location = new System.Drawing.Point(170, 90);
+            this.PortsComboBox.Location = new System.Drawing.Point(145, 110);
             this.PortsComboBox.Name = "PortsComboBox";
             this.PortsComboBox.Size = new System.Drawing.Size(121, 33);
             this.PortsComboBox.TabIndex = 0;
@@ -59,7 +58,7 @@ namespace TesterAppUI
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(97, 93);
+            this.label1.Location = new System.Drawing.Point(72, 113);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(67, 25);
             this.label1.TabIndex = 1;
@@ -67,7 +66,7 @@ namespace TesterAppUI
             // 
             // SlaveAddressTextBox
             // 
-            this.SlaveAddressTextBox.Location = new System.Drawing.Point(271, 153);
+            this.SlaveAddressTextBox.Location = new System.Drawing.Point(275, 156);
             this.SlaveAddressTextBox.Name = "SlaveAddressTextBox";
             this.SlaveAddressTextBox.Size = new System.Drawing.Size(100, 31);
             this.SlaveAddressTextBox.TabIndex = 2;
@@ -75,7 +74,7 @@ namespace TesterAppUI
             // 
             // StartAddresTextBox
             // 
-            this.StartAddresTextBox.Location = new System.Drawing.Point(271, 212);
+            this.StartAddresTextBox.Location = new System.Drawing.Point(252, 209);
             this.StartAddresTextBox.Name = "StartAddresTextBox";
             this.StartAddresTextBox.Size = new System.Drawing.Size(100, 31);
             this.StartAddresTextBox.TabIndex = 3;
@@ -93,16 +92,18 @@ namespace TesterAppUI
             // 
             // CloseButton
             // 
+            this.CloseButton.Enabled = false;
             this.CloseButton.Location = new System.Drawing.Point(271, 320);
             this.CloseButton.Name = "CloseButton";
             this.CloseButton.Size = new System.Drawing.Size(164, 51);
             this.CloseButton.TabIndex = 5;
             this.CloseButton.Text = "Закрыть порт";
             this.CloseButton.UseVisualStyleBackColor = true;
+            this.CloseButton.Click += new System.EventHandler(this.CloseButton_Click);
             // 
             // GetButton
             // 
-            this.GetButton.Location = new System.Drawing.Point(71, 566);
+            this.GetButton.Location = new System.Drawing.Point(71, 526);
             this.GetButton.Name = "GetButton";
             this.GetButton.Size = new System.Drawing.Size(129, 67);
             this.GetButton.TabIndex = 6;
@@ -112,17 +113,18 @@ namespace TesterAppUI
             // 
             // SetButton
             // 
-            this.SetButton.Location = new System.Drawing.Point(71, 690);
+            this.SetButton.Location = new System.Drawing.Point(306, 526);
             this.SetButton.Name = "SetButton";
-            this.SetButton.Size = new System.Drawing.Size(129, 84);
+            this.SetButton.Size = new System.Drawing.Size(129, 67);
             this.SetButton.TabIndex = 7;
             this.SetButton.Text = "Записать данные";
             this.SetButton.UseVisualStyleBackColor = true;
+            this.SetButton.Click += new System.EventHandler(this.SetButton_Click);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(68, 156);
+            this.label2.Location = new System.Drawing.Point(72, 159);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(197, 25);
             this.label2.TabIndex = 8;
@@ -137,28 +139,6 @@ namespace TesterAppUI
             this.label3.TabIndex = 9;
             this.label3.Text = "Адрес регистра:";
             // 
-            // ReadRadioButton
-            // 
-            this.ReadRadioButton.AutoSize = true;
-            this.ReadRadioButton.Location = new System.Drawing.Point(71, 420);
-            this.ReadRadioButton.Name = "ReadRadioButton";
-            this.ReadRadioButton.Size = new System.Drawing.Size(195, 29);
-            this.ReadRadioButton.TabIndex = 10;
-            this.ReadRadioButton.TabStop = true;
-            this.ReadRadioButton.Text = "Чтение данных";
-            this.ReadRadioButton.UseVisualStyleBackColor = true;
-            // 
-            // WriteRadioButton
-            // 
-            this.WriteRadioButton.AutoSize = true;
-            this.WriteRadioButton.Location = new System.Drawing.Point(71, 474);
-            this.WriteRadioButton.Name = "WriteRadioButton";
-            this.WriteRadioButton.Size = new System.Drawing.Size(194, 29);
-            this.WriteRadioButton.TabIndex = 11;
-            this.WriteRadioButton.TabStop = true;
-            this.WriteRadioButton.Text = "Запись данных";
-            this.WriteRadioButton.UseVisualStyleBackColor = true;
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -170,39 +150,45 @@ namespace TesterAppUI
             // 
             // NumberOfPointsTextBox
             // 
-            this.NumberOfPointsTextBox.Location = new System.Drawing.Point(320, 266);
+            this.NumberOfPointsTextBox.Location = new System.Drawing.Point(319, 263);
             this.NumberOfPointsTextBox.Name = "NumberOfPointsTextBox";
             this.NumberOfPointsTextBox.Size = new System.Drawing.Size(100, 31);
             this.NumberOfPointsTextBox.TabIndex = 13;
             this.NumberOfPointsTextBox.Text = "1";
             // 
-            // AddressLabel
+            // GetTextBox
             // 
-            this.AddressLabel.AutoSize = true;
-            this.AddressLabel.Location = new System.Drawing.Point(220, 580);
-            this.AddressLabel.Name = "AddressLabel";
-            this.AddressLabel.Size = new System.Drawing.Size(97, 25);
-            this.AddressLabel.TabIndex = 14;
-            this.AddressLabel.Text = "Address:";
+            this.GetTextBox.Location = new System.Drawing.Point(71, 459);
+            this.GetTextBox.Name = "GetTextBox";
+            this.GetTextBox.Size = new System.Drawing.Size(129, 31);
+            this.GetTextBox.TabIndex = 15;
             // 
-            // ValueTextBox
+            // label5
             // 
-            this.ValueTextBox.Location = new System.Drawing.Point(323, 577);
-            this.ValueTextBox.Name = "ValueTextBox";
-            this.ValueTextBox.Size = new System.Drawing.Size(100, 31);
-            this.ValueTextBox.TabIndex = 15;
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(359, 212);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(61, 25);
+            this.label5.TabIndex = 16;
+            this.label5.Text = "(hex)";
+            // 
+            // SetTextBox
+            // 
+            this.SetTextBox.Location = new System.Drawing.Point(306, 458);
+            this.SetTextBox.Name = "SetTextBox";
+            this.SetTextBox.Size = new System.Drawing.Size(129, 31);
+            this.SetTextBox.TabIndex = 17;
             // 
             // TestAppForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1162, 872);
-            this.Controls.Add(this.ValueTextBox);
-            this.Controls.Add(this.AddressLabel);
+            this.Controls.Add(this.SetTextBox);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.GetTextBox);
             this.Controls.Add(this.NumberOfPointsTextBox);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.WriteRadioButton);
-            this.Controls.Add(this.ReadRadioButton);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.SetButton);
@@ -233,12 +219,11 @@ namespace TesterAppUI
         private System.Windows.Forms.Button SetButton;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.RadioButton ReadRadioButton;
-        private System.Windows.Forms.RadioButton WriteRadioButton;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox NumberOfPointsTextBox;
-        private System.Windows.Forms.Label AddressLabel;
-        private System.Windows.Forms.TextBox ValueTextBox;
+        private System.Windows.Forms.TextBox GetTextBox;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox SetTextBox;
     }
 }
 
