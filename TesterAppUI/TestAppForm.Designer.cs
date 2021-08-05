@@ -44,6 +44,7 @@ namespace TesterAppUI
             this.GetTextBox = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.SetTextBox = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // PortsComboBox
@@ -179,11 +180,21 @@ namespace TesterAppUI
             this.SetTextBox.Size = new System.Drawing.Size(129, 31);
             this.SetTextBox.TabIndex = 17;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(683, 294);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(91, 51);
+            this.button1.TabIndex = 18;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
             // TestAppForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1162, 872);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.SetTextBox);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.GetTextBox);
@@ -224,6 +235,7 @@ namespace TesterAppUI
         private System.Windows.Forms.TextBox GetTextBox;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox SetTextBox;
+        private System.Windows.Forms.Button button1;
     }
 }
 
