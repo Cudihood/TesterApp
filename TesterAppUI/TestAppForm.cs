@@ -74,12 +74,14 @@ namespace TesterAppUI
         {
             try
             {
+                startAddress = Convert.ToUInt16(StartAddresTextBox.Text, 16);
                 ushort[] result = masrerRTU.ReadHoldingRegisters(slaveAddress, startAddress, numberOfPoints);
                 GetTextBox.Text = string.Empty;
                 foreach (ushort item in result)
                 {
                     GetTextBox.Text += item.ToString();
                 }
+                
             }
             catch (Exception ex)
             {
@@ -120,6 +122,7 @@ namespace TesterAppUI
         {
             try
             {
+                startAddress = Convert.ToUInt16(StartAddresTextBox.Text, 16);
                 ushort value = Convert.ToUInt16(SetTextBox.Text);
                 masrerRTU.WriteSingleRegister(slaveAddress, startAddress, value);
             }
