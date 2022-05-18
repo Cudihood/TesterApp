@@ -14,19 +14,15 @@ using Modbus.Utility;
 
 namespace TesterAppUI
 {
-    public partial class TestAppForm : Form
+    public partial class SettingForm : Form
     {
-        //private ModbusRTUProtocol objModbusRtuProtocol = new ModbusRTUProtocol();
+        
  
-        private SerialPort port;
-        private IModbusMaster masrerRTU;
-        private byte slaveAddress;
-        private ushort startAddress;
-        private ushort numberOfPoints;
-
-        public TestAppForm()
+        private SerialPort _port;
+        public SettingForm()
         {
-            InitializeComponent();
+            InitializeComponent();        
+            _port = new SerialPort();
         }
 
         private void TesterAppForm_Load(object sender, EventArgs e)
@@ -52,6 +48,7 @@ namespace TesterAppUI
             StopBitsСomboBox.SelectedIndex = 0;
         }
 
+        /*
         /// <summary>
         /// Возвращает и задает адрес устройства
         /// </summary>
@@ -79,7 +76,8 @@ namespace TesterAppUI
                 }
             }
         }
-
+        */
+        /*
         /// <summary>
         /// Возвращает и задет адрес регистра
         /// </summary>
@@ -106,7 +104,8 @@ namespace TesterAppUI
                 }
             }
         }
-
+        */
+        /*
         /// <summary>
         /// Возвращает и задает количество регистров 
         /// </summary>
@@ -135,6 +134,21 @@ namespace TesterAppUI
                 }
             }
         }
+        */
+
+        public SerialPort Port
+        {
+            get { return _port;}
+
+            set
+            {
+                _port = value;
+                if (_port == null)
+                {
+                    return;
+                }
+            }
+        }
         
         /// <summary>
         /// Открывет порт
@@ -143,52 +157,37 @@ namespace TesterAppUI
         /// <param name="e"></param>
         private void OpenButton_Click(object sender, EventArgs e)
         {
-            /*
-            objModbusRtuProtocol.Port = port;
-            objModbusRtuProtocol.SlaveAddress = Convert.ToByte(SlaveAddressTextBox.Text);
-            objModbusRtuProtocol.StartAddress = Convert.ToUInt16(StartAddresTextBox.Text, 16); 
-            objModbusRtuProtocol.NumberOfPoints = Convert.ToUInt32(NumberOfPointsTextBox.Text);
-            objModbusRtuProtocol.Port.Open();
-            */
             try
             {
-                port = new SerialPort();
-                port.PortName = PortsComboBox.Text;
-                port.BaudRate = Convert.ToInt32(BaudRateComboBox.Text);
+                
+                _port.PortName = PortsComboBox.Text;
+                _port.BaudRate = Convert.ToInt32(BaudRateComboBox.Text);
 
                 if (ParityComboBox.Text.Substring(0, 1) == "0")
                 {
-                    port.Parity = Parity.None;
+                    _port.Parity = Parity.None;
                 }
                 else if (ParityComboBox.Text.Substring(0, 1) == "1")
                 {
-                    port.Parity = Parity.Odd;
+                    _port.Parity = Parity.Odd;
                 }
                 else if (ParityComboBox.Text.Substring(0, 1) == "2")
                 {
-                    port.Parity = Parity.Even;
+                    _port.Parity = Parity.Even;
                 }
 
                 if (StopBitsСomboBox.Text == "0")
                 {
-                    port.StopBits = StopBits.One;
+                    _port.StopBits = StopBits.One;
                 }
                 else if(StopBitsСomboBox.Text == "1")
                 {
-                    port.StopBits = StopBits.Two;
+                    _port.StopBits = StopBits.Two;
                 }
-                
-                port.Open();
 
-                SlaveAddress = Convert.ToByte(SlaveAddressTextBox.Text);
-                StartAddress = Convert.ToUInt16(StartAddressTextBox.Text, 16);
-                NumberOfPoints = Convert.ToUInt16(NumberOfPointsTextBox.Text);
+                DialogResult = DialogResult.OK;
+                Close();
 
-                masrerRTU = ModbusSerialMaster.CreateRtu(port); 
-
-                OpenButton.Enabled = false;
-                CloseButton.Enabled = true;
-                
             }
             catch (ArgumentException exception)
             {
@@ -208,6 +207,7 @@ namespace TesterAppUI
 
         }
 
+        /*
         /// <summary>
         /// Получение данных с регистра
         /// </summary>
@@ -228,44 +228,25 @@ namespace TesterAppUI
             }
             catch (Exception ex)
             {
-                MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(this,ex.Message,"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             
-            /* 
-             try
-             {
-                 if (ReadRadioButton.Checked == true)
-                 {
-                     objModbusRtuProtocol.Function = 3;
-                 } 
-                 AddressLabel.DataBindings.Add("Text", objModbusRtuProtocol.Registers[0], "Address", 
-                     true, DataSourceUpdateMode.OnPropertyChanged);
-
-                 ValueTextBox.DataBindings.Add("Text", objModbusRtuProtocol.Registers[0], "Value",
-                     true, DataSourceUpdateMode.OnPropertyChanged);
-
-                 objModbusRtuProtocol.Start();
-             }
-             catch (Exception ex)
-             {
-                 MessageBox.Show(ex.Message);
-             }
-            */
+           
         }
-
+        */
+        
         /// <summary>
-        /// Закрывает порт
+        /// Отмена настроик
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender"></paОтмена настроик// <param name="e"></param>
         private void CloseButton_Click(object sender, EventArgs e)
         {
-            //objModbusRtuProtocol.Port.Close();
-            port.Close();
-            OpenButton.Enabled = true;
-            CloseButton.Enabled = false;
+            DialogResult = DialogResult.Cancel;
+            Close();
         }
 
+
+        /*
         /// <summary>
         /// Запись данных в регистр 
         /// </summary>
@@ -285,6 +266,7 @@ namespace TesterAppUI
             }
         }
 
+
         /// <summary>
         /// Проверка на ввод адреса устройства
         /// </summary>
@@ -303,7 +285,7 @@ namespace TesterAppUI
             }
             
         }
-
+        
         private void StartAddresTextBox_TextChanged(object sender, EventArgs e)
         {
             try
@@ -329,5 +311,6 @@ namespace TesterAppUI
                 NumberOfPointsTextBox.BackColor = Color.LightPink;
             }
         }
+        */
     }
 }

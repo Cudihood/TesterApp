@@ -16,7 +16,7 @@ namespace TesterAppUI
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new TestAppForm());
+            Application.Run(new MainForm());
         }
     }
 }
