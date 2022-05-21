@@ -19,26 +19,52 @@ namespace TesterAppUI
             InitializeComponent();
         }
 
-        public DateTime _date1 = new DateTime(0, 0);
-        public DateTime _date2;
+        /// <summary>
+        /// Переменная хранящая время тестирования
+        /// </summary>
+        public DateTime _timeTest = new DateTime(0, 0);
+
+        /// <summary>
+        /// Переменная хранящая оставщееся время
+        /// </summary>
+        public DateTime _timeRemeining;
+
+        /// <summary>
+        /// Массив хранящий данные параметра контроллера
+        /// </summary>
         public string[] _controllerParameters;
         
 
         private void TestingForm_Load(object sender, EventArgs e)
         {
-            
-            VoltageFrequency();
+
+            ChartSetting();
             timer1.Enabled = true;
+            
         }
 
+        /// <summary>
+        /// Запуск таймера 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void timer1_Tick(object sender, EventArgs e)
         {
             ControllerParameters();
-            _date1 = _date1.AddSeconds(1);
-            TimeTestTextBox.Text = _date1.ToString("HH:mm:ss");
-            
 
-            VoltageFrequencyChart.Series[0].Points.AddXY(_date1, _controllerParameters[0]);
+            _timeTest = _timeTest.AddSeconds(1);
+            TimeTestTextBox.Text = _timeTest.ToString("HH:mm:ss");
+
+            _timeRemeining = _timeRemeining.AddSeconds(-1);
+
+                RemainingTimeTextBox.Text = _timeRemeining.ToString("HH:mm:ss");
+            if (_timeRemeining.Hour == 0 && _timeRemeining.Minute == 0 && _timeRemeining.Second == 0)
+            {
+                timer1.Enabled = false;
+                MessageBox.Show("Испытание завершенно", "Внимание", MessageBoxButtons.OKCancel);
+            }
+
+            ChartParameters();
         }
 
         /// <summary>
@@ -51,46 +77,90 @@ namespace TesterAppUI
                 switch (i)
                 {
                     case 0:
-                        textBox7.Text = string.Empty;
-                        textBox7.Text = _controllerParameters[i];
+                        FrequencyVoltageTextBox.Text = string.Empty;
+                        FrequencyVoltageTextBox.Text = _controllerParameters[i];
                         break;
                     case 1:
-                        textBox6.Text = string.Empty;
-                        textBox6.Text = _controllerParameters[i];
+                        VoltageEntranceTextBox.Text = string.Empty;
+                        VoltageEntranceTextBox.Text = _controllerParameters[i];
                         break;
                     case 2:
-                        textBox5.Text = string.Empty;
-                        textBox5.Text = _controllerParameters[i];
+                        VoltageOutputTextBox.Text = string.Empty;
+                        VoltageOutputTextBox.Text = _controllerParameters[i];
                         break;
                     case 3:
-                        textBox8.Text = string.Empty;
-                        textBox8.Text = _controllerParameters[i];
+                        CurrentOutputTextBox.Text = string.Empty;
+                        CurrentOutputTextBox.Text = _controllerParameters[i];
                         break;
                     case 4:
-                        textBox9.Text = string.Empty;
-                        textBox9.Text = _controllerParameters[i];
+                        PowerOutputTextBox.Text = string.Empty;
+                        PowerOutputTextBox.Text = _controllerParameters[i];
                         break;
                 }
             }
         }
+
+        
         private void button1_Click(object sender, EventArgs e)
         {
             
         }
 
-        private void VoltageFrequency()
+        private void ChartSetting()
         {
-            VoltageFrequencyChart.ChartAreas[0].AxisY.Maximum = 6000;
-            VoltageFrequencyChart.ChartAreas[0].AxisY.Minimum = 0;
+            FrequencyVoltageChart.ChartAreas[0].AxisY.Maximum = 6000;
+            FrequencyVoltageChart.ChartAreas[0].AxisY.Minimum = 0;
+            FrequencyVoltageChart.ChartAreas[0].AxisX.LabelStyle.Format = "HH:mm:ss";
+            FrequencyVoltageChart.Series[0].XValueType = ChartValueType.DateTime;
+            FrequencyVoltageChart.ChartAreas[0].AxisX.Minimum = _timeTest.ToOADate();
+            FrequencyVoltageChart.ChartAreas[0].AxisX.Maximum = _timeRemeining.ToOADate();
+            FrequencyVoltageChart.ChartAreas[0].AxisX.IntervalType = DateTimeIntervalType.Minutes;
+            FrequencyVoltageChart.ChartAreas[0].AxisX.Interval = 1;
 
-            VoltageFrequencyChart.ChartAreas[0].AxisX.LabelStyle.Format = "HH:mm:ss";
-            VoltageFrequencyChart.Series[0].XValueType = ChartValueType.DateTime;
+            VoltageEntranceChart.ChartAreas[0].AxisY.Maximum = 6000;
+            VoltageEntranceChart.ChartAreas[0].AxisY.Minimum = 0;
+            VoltageEntranceChart.ChartAreas[0].AxisX.LabelStyle.Format = "HH:mm:ss";
+            VoltageEntranceChart.Series[0].XValueType = ChartValueType.DateTime;
+            VoltageEntranceChart.ChartAreas[0].AxisX.Minimum = _timeTest.ToOADate();
+            VoltageEntranceChart.ChartAreas[0].AxisX.Maximum = _timeRemeining.ToOADate();
+            VoltageEntranceChart.ChartAreas[0].AxisX.IntervalType = DateTimeIntervalType.Minutes;
+            VoltageEntranceChart.ChartAreas[0].AxisX.Interval = 1;
 
-            VoltageFrequencyChart.ChartAreas[0].AxisX.Minimum = _date1.ToOADate();
-            VoltageFrequencyChart.ChartAreas[0].AxisX.Maximum = _date2.ToOADate();
+            VoltageOutputChart.ChartAreas[0].AxisY.Maximum = 6000;
+            VoltageOutputChart.ChartAreas[0].AxisY.Minimum = 0;
+            VoltageOutputChart.ChartAreas[0].AxisX.LabelStyle.Format = "HH:mm:ss";
+            VoltageOutputChart.Series[0].XValueType = ChartValueType.DateTime;
+            VoltageOutputChart.ChartAreas[0].AxisX.Minimum = _timeTest.ToOADate();
+            VoltageOutputChart.ChartAreas[0].AxisX.Maximum = _timeRemeining.ToOADate();
+            VoltageOutputChart.ChartAreas[0].AxisX.IntervalType = DateTimeIntervalType.Minutes;
+            VoltageOutputChart.ChartAreas[0].AxisX.Interval = 1;
 
-            VoltageFrequencyChart.ChartAreas[0].AxisX.IntervalType = DateTimeIntervalType.Minutes;
-            VoltageFrequencyChart.ChartAreas[0].AxisX.Interval = 10;
+            CurrentOutputChart.ChartAreas[0].AxisY.Maximum = 6000;
+            CurrentOutputChart.ChartAreas[0].AxisY.Minimum = 0;
+            CurrentOutputChart.ChartAreas[0].AxisX.LabelStyle.Format = "HH:mm:ss";
+            CurrentOutputChart.Series[0].XValueType = ChartValueType.DateTime;
+            CurrentOutputChart.ChartAreas[0].AxisX.Minimum = _timeTest.ToOADate();
+            CurrentOutputChart.ChartAreas[0].AxisX.Maximum = _timeRemeining.ToOADate();
+            CurrentOutputChart.ChartAreas[0].AxisX.IntervalType = DateTimeIntervalType.Minutes;
+            CurrentOutputChart.ChartAreas[0].AxisX.Interval = 1;
+
+            PowerOutputChart.ChartAreas[0].AxisY.Maximum = 6000;
+            PowerOutputChart.ChartAreas[0].AxisY.Minimum = 0;
+            PowerOutputChart.ChartAreas[0].AxisX.LabelStyle.Format = "HH:mm:ss";
+            PowerOutputChart.Series[0].XValueType = ChartValueType.DateTime;
+            PowerOutputChart.ChartAreas[0].AxisX.Minimum = _timeTest.ToOADate();
+            PowerOutputChart.ChartAreas[0].AxisX.Maximum = _timeRemeining.ToOADate();
+            PowerOutputChart.ChartAreas[0].AxisX.IntervalType = DateTimeIntervalType.Minutes;
+            PowerOutputChart.ChartAreas[0].AxisX.Interval = 1;
+        }
+
+        private void ChartParameters()
+        {
+            FrequencyVoltageChart.Series[0].Points.AddXY(_timeTest, _controllerParameters[0]);
+            VoltageEntranceChart.Series[0].Points.AddXY(_timeTest, _controllerParameters[1]);
+            VoltageOutputChart.Series[0].Points.AddXY(_timeTest, _controllerParameters[2]);
+            CurrentOutputChart.Series[0].Points.AddXY(_timeTest, _controllerParameters[3]);
+            PowerOutputChart.Series[0].Points.AddXY(_timeTest, _controllerParameters[4]);
         }
     }
 }

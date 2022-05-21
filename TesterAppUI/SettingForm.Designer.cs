@@ -49,7 +49,7 @@ namespace TesterAppUI
             // 
             this.PortsComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.PortsComboBox.FormattingEnabled = true;
-            this.PortsComboBox.Location = new System.Drawing.Point(118, 19);
+            this.PortsComboBox.Location = new System.Drawing.Point(147, 19);
             this.PortsComboBox.Name = "PortsComboBox";
             this.PortsComboBox.Size = new System.Drawing.Size(92, 21);
             this.PortsComboBox.TabIndex = 0;
@@ -58,7 +58,7 @@ namespace TesterAppUI
             // 
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(5, 22);
-            this.label1.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.label1.Margin = new System.Windows.Forms.Padding(3);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(35, 13);
             this.label1.TabIndex = 1;
@@ -68,7 +68,7 @@ namespace TesterAppUI
             // 
             this.OpenButton.Location = new System.Drawing.Point(5, 169);
             this.OpenButton.Name = "OpenButton";
-            this.OpenButton.Size = new System.Drawing.Size(86, 27);
+            this.OpenButton.Size = new System.Drawing.Size(112, 27);
             this.OpenButton.TabIndex = 4;
             this.OpenButton.Text = "Применить";
             this.OpenButton.UseVisualStyleBackColor = true;
@@ -90,8 +90,8 @@ namespace TesterAppUI
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.groupBox1.Size = new System.Drawing.Size(215, 201);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
+            this.groupBox1.Size = new System.Drawing.Size(244, 201);
             this.groupBox1.TabIndex = 18;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Настройки порта";
@@ -103,7 +103,7 @@ namespace TesterAppUI
             this.DataBitsComboBox.Items.AddRange(new object[] {
             "7",
             "8"});
-            this.DataBitsComboBox.Location = new System.Drawing.Point(118, 73);
+            this.DataBitsComboBox.Location = new System.Drawing.Point(147, 73);
             this.DataBitsComboBox.Name = "DataBitsComboBox";
             this.DataBitsComboBox.Size = new System.Drawing.Size(92, 21);
             this.DataBitsComboBox.TabIndex = 15;
@@ -115,7 +115,7 @@ namespace TesterAppUI
             this.StopBitsСomboBox.Items.AddRange(new object[] {
             "1",
             "2"});
-            this.StopBitsСomboBox.Location = new System.Drawing.Point(118, 127);
+            this.StopBitsСomboBox.Location = new System.Drawing.Point(147, 127);
             this.StopBitsСomboBox.Name = "StopBitsСomboBox";
             this.StopBitsСomboBox.Size = new System.Drawing.Size(92, 21);
             this.StopBitsСomboBox.TabIndex = 13;
@@ -124,7 +124,7 @@ namespace TesterAppUI
             // 
             this.label8.AutoSize = true;
             this.label8.Location = new System.Drawing.Point(5, 130);
-            this.label8.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.label8.Margin = new System.Windows.Forms.Padding(3);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(66, 13);
             this.label8.TabIndex = 12;
@@ -143,7 +143,7 @@ namespace TesterAppUI
             "38400",
             "57600",
             "115200"});
-            this.BaudRateComboBox.Location = new System.Drawing.Point(118, 46);
+            this.BaudRateComboBox.Location = new System.Drawing.Point(147, 46);
             this.BaudRateComboBox.Name = "BaudRateComboBox";
             this.BaudRateComboBox.Size = new System.Drawing.Size(92, 21);
             this.BaudRateComboBox.TabIndex = 11;
@@ -152,7 +152,7 @@ namespace TesterAppUI
             // 
             this.label9.AutoSize = true;
             this.label9.Location = new System.Drawing.Point(5, 76);
-            this.label9.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.label9.Margin = new System.Windows.Forms.Padding(3);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(89, 13);
             this.label9.TabIndex = 14;
@@ -162,7 +162,7 @@ namespace TesterAppUI
             // 
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(5, 49);
-            this.label6.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.label6.Margin = new System.Windows.Forms.Padding(3);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(108, 13);
             this.label6.TabIndex = 7;
@@ -170,9 +170,9 @@ namespace TesterAppUI
             // 
             // CloseButton
             // 
-            this.CloseButton.Location = new System.Drawing.Point(118, 169);
+            this.CloseButton.Location = new System.Drawing.Point(127, 169);
             this.CloseButton.Name = "CloseButton";
-            this.CloseButton.Size = new System.Drawing.Size(92, 27);
+            this.CloseButton.Size = new System.Drawing.Size(112, 27);
             this.CloseButton.TabIndex = 5;
             this.CloseButton.Text = "Отмена";
             this.CloseButton.UseVisualStyleBackColor = true;
@@ -186,7 +186,7 @@ namespace TesterAppUI
             "0-None Parity",
             "1-Odd Parity",
             "2-Even Parity"});
-            this.ParityComboBox.Location = new System.Drawing.Point(118, 100);
+            this.ParityComboBox.Location = new System.Drawing.Point(147, 100);
             this.ParityComboBox.Name = "ParityComboBox";
             this.ParityComboBox.Size = new System.Drawing.Size(92, 21);
             this.ParityComboBox.TabIndex = 10;
@@ -195,7 +195,7 @@ namespace TesterAppUI
             // 
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(5, 103);
-            this.label7.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.label7.Margin = new System.Windows.Forms.Padding(3);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(106, 13);
             this.label7.TabIndex = 8;
@@ -205,9 +205,9 @@ namespace TesterAppUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(237, 223);
+            this.ClientSize = new System.Drawing.Size(268, 224);
             this.Controls.Add(this.groupBox1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "SettingForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Настройка подклюения";

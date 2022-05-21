@@ -16,8 +16,9 @@ namespace TesterAppUI
 {
     public partial class SettingForm : Form
     {
-        
- 
+        /// <summary>
+        /// Переменная хранящая данные порта
+        /// </summary>
         private SerialPort _port;
         public SettingForm()
         {
@@ -48,94 +49,9 @@ namespace TesterAppUI
             StopBitsСomboBox.SelectedIndex = 0;
         }
 
-        /*
         /// <summary>
-        /// Возвращает и задает адрес устройства
+        /// Возвращает и задает порт
         /// </summary>
-        public byte SlaveAddress
-        {
-            get
-            {
-                return slaveAddress;
-            }
-
-            set
-            {
-                if (value == null)
-                {
-                    throw new ArgumentException("Пустая строка");
-                }
-
-                if (value < 0 || value > 255) 
-                {
-                    throw new ArgumentException("Адрес устройства может принимать значение от 0 до 255"); 
-                }
-                else
-                {
-                    slaveAddress = value;
-                }
-            }
-        }
-        */
-        /*
-        /// <summary>
-        /// Возвращает и задет адрес регистра
-        /// </summary>
-        public ushort StartAddress
-        {
-            get
-            {
-                return startAddress;
-            }
-            set
-            {
-                if (value == null)
-                {
-                    throw new ArgumentException("Пустая строка");
-                }
-
-                if (value < 0 || value > 0xFFFF) 
-                {
-                    throw new ArgumentException("Адрес регистра может принимать значение от 0 до FFFF");
-                }
-                else
-                {
-                    startAddress = value;
-                }
-            }
-        }
-        */
-        /*
-        /// <summary>
-        /// Возвращает и задает количество регистров 
-        /// </summary>
-        public ushort NumberOfPoints
-        {
-            get
-            {
-                return numberOfPoints;
-            }
-
-            set
-            {
-                if (value == null)
-                {
-                    throw new ArgumentException("Пустая строка");
-                }
-
-                if (value > 9999 || value < 1) 
-                {
-                    throw new ArgumentException("Неверное количество регистров.\nМаксимальное количество: 9999.");
-                }
-                
-                else
-                {
-                    numberOfPoints = value;
-                }
-            }
-        }
-        */
-
         public SerialPort Port
         {
             get { return _port;}
@@ -159,7 +75,6 @@ namespace TesterAppUI
         {
             try
             {
-                
                 _port.PortName = PortsComboBox.Text;
                 _port.BaudRate = Convert.ToInt32(BaudRateComboBox.Text);
 
@@ -207,6 +122,18 @@ namespace TesterAppUI
 
         }
 
+        
+        
+        /// <summary>
+        /// Отмена настроик
+        /// </summary>
+        /// <param name="sender"></paОтмена настроик// <param name="e"></param>
+        private void CloseButton_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.Cancel;
+            Close();
+        }
+
         /*
         /// <summary>
         /// Получение данных с регистра
@@ -234,17 +161,6 @@ namespace TesterAppUI
            
         }
         */
-        
-        /// <summary>
-        /// Отмена настроик
-        /// </summary>
-        /// <param name="sender"></paОтмена настроик// <param name="e"></param>
-        private void CloseButton_Click(object sender, EventArgs e)
-        {
-            DialogResult = DialogResult.Cancel;
-            Close();
-        }
-
 
         /*
         /// <summary>

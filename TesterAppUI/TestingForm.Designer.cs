@@ -45,7 +45,7 @@ namespace TesterAppUI
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.Title title5 = new System.Windows.Forms.DataVisualization.Charting.Title();
-            this.VoltageFrequencyChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.FrequencyVoltageChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.label1 = new System.Windows.Forms.Label();
             this.TimeTestTextBox = new System.Windows.Forms.TextBox();
             this.RemainingTimeTextBox = new System.Windows.Forms.TextBox();
@@ -54,53 +54,54 @@ namespace TesterAppUI
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.button1 = new System.Windows.Forms.Button();
             this.label15 = new System.Windows.Forms.Label();
-            this.textBox9 = new System.Windows.Forms.TextBox();
+            this.PowerOutputTextBox = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
-            this.textBox8 = new System.Windows.Forms.TextBox();
+            this.CurrentOutputTextBox = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.VoltageOutputTextBox = new System.Windows.Forms.TextBox();
+            this.VoltageEntranceTextBox = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.chart2 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.chart3 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.chart4 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            ((System.ComponentModel.ISupportInitialize)(this.VoltageFrequencyChart)).BeginInit();
+            this.FrequencyVoltageTextBox = new System.Windows.Forms.TextBox();
+            this.PowerOutputChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.CurrentOutputChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.VoltageEntranceChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.VoltageOutputChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            ((System.ComponentModel.ISupportInitialize)(this.FrequencyVoltageChart)).BeginInit();
             this.groupBox4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chart2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chart3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chart4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PowerOutputChart)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CurrentOutputChart)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.VoltageEntranceChart)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.VoltageOutputChart)).BeginInit();
             this.SuspendLayout();
             // 
-            // VoltageFrequencyChart
+            // FrequencyVoltageChart
             // 
-            this.VoltageFrequencyChart.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.FrequencyVoltageChart.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             chartArea1.Name = "ChartArea1";
-            this.VoltageFrequencyChart.ChartAreas.Add(chartArea1);
-            this.VoltageFrequencyChart.Location = new System.Drawing.Point(12, 191);
-            this.VoltageFrequencyChart.Name = "VoltageFrequencyChart";
+            this.FrequencyVoltageChart.ChartAreas.Add(chartArea1);
+            this.FrequencyVoltageChart.Location = new System.Drawing.Point(12, 191);
+            this.FrequencyVoltageChart.Name = "FrequencyVoltageChart";
             series1.BorderWidth = 2;
             series1.ChartArea = "ChartArea1";
             series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
             series1.Color = System.Drawing.Color.Red;
             series1.Name = "Частота ";
-            this.VoltageFrequencyChart.Series.Add(series1);
-            this.VoltageFrequencyChart.Size = new System.Drawing.Size(472, 197);
-            this.VoltageFrequencyChart.TabIndex = 1;
-            this.VoltageFrequencyChart.Text = "chart2";
+            series1.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.DateTime;
+            this.FrequencyVoltageChart.Series.Add(series1);
+            this.FrequencyVoltageChart.Size = new System.Drawing.Size(472, 197);
+            this.FrequencyVoltageChart.TabIndex = 1;
+            this.FrequencyVoltageChart.Text = "Частота напряжения";
             title1.Name = "Title1";
             title1.Text = "График частоты напряжения на выходе ПЧ";
-            this.VoltageFrequencyChart.Titles.Add(title1);
+            this.FrequencyVoltageChart.Titles.Add(title1);
             // 
             // label1
             // 
@@ -144,20 +145,20 @@ namespace TesterAppUI
             this.groupBox4.BackColor = System.Drawing.Color.LightSalmon;
             this.groupBox4.Controls.Add(this.button1);
             this.groupBox4.Controls.Add(this.label15);
-            this.groupBox4.Controls.Add(this.textBox9);
+            this.groupBox4.Controls.Add(this.PowerOutputTextBox);
             this.groupBox4.Controls.Add(this.label16);
             this.groupBox4.Controls.Add(this.label13);
-            this.groupBox4.Controls.Add(this.textBox8);
+            this.groupBox4.Controls.Add(this.CurrentOutputTextBox);
             this.groupBox4.Controls.Add(this.label14);
             this.groupBox4.Controls.Add(this.label7);
             this.groupBox4.Controls.Add(this.label8);
             this.groupBox4.Controls.Add(this.label9);
-            this.groupBox4.Controls.Add(this.textBox5);
-            this.groupBox4.Controls.Add(this.textBox6);
+            this.groupBox4.Controls.Add(this.VoltageOutputTextBox);
+            this.groupBox4.Controls.Add(this.VoltageEntranceTextBox);
             this.groupBox4.Controls.Add(this.label10);
             this.groupBox4.Controls.Add(this.label11);
             this.groupBox4.Controls.Add(this.label12);
-            this.groupBox4.Controls.Add(this.textBox7);
+            this.groupBox4.Controls.Add(this.FrequencyVoltageTextBox);
             this.groupBox4.Location = new System.Drawing.Point(15, 32);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Padding = new System.Windows.Forms.Padding(2);
@@ -168,7 +169,7 @@ namespace TesterAppUI
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(172, 70);
+            this.button1.Location = new System.Drawing.Point(167, 91);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 12;
@@ -186,15 +187,15 @@ namespace TesterAppUI
             this.label15.TabIndex = 23;
             this.label15.Text = "Вт";
             // 
-            // textBox9
+            // PowerOutputTextBox
             // 
-            this.textBox9.Location = new System.Drawing.Point(264, 119);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.ReadOnly = true;
-            this.textBox9.Size = new System.Drawing.Size(52, 20);
-            this.textBox9.TabIndex = 22;
-            this.textBox9.Text = "0";
-            this.textBox9.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.PowerOutputTextBox.Location = new System.Drawing.Point(264, 119);
+            this.PowerOutputTextBox.Name = "PowerOutputTextBox";
+            this.PowerOutputTextBox.ReadOnly = true;
+            this.PowerOutputTextBox.Size = new System.Drawing.Size(52, 20);
+            this.PowerOutputTextBox.TabIndex = 22;
+            this.PowerOutputTextBox.Text = "0";
+            this.PowerOutputTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label16
             // 
@@ -216,15 +217,15 @@ namespace TesterAppUI
             this.label13.TabIndex = 20;
             this.label13.Text = "А";
             // 
-            // textBox8
+            // CurrentOutputTextBox
             // 
-            this.textBox8.Location = new System.Drawing.Point(264, 93);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.ReadOnly = true;
-            this.textBox8.Size = new System.Drawing.Size(52, 20);
-            this.textBox8.TabIndex = 19;
-            this.textBox8.Text = "0";
-            this.textBox8.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.CurrentOutputTextBox.Location = new System.Drawing.Point(264, 93);
+            this.CurrentOutputTextBox.Name = "CurrentOutputTextBox";
+            this.CurrentOutputTextBox.ReadOnly = true;
+            this.CurrentOutputTextBox.Size = new System.Drawing.Size(52, 20);
+            this.CurrentOutputTextBox.TabIndex = 19;
+            this.CurrentOutputTextBox.Text = "0";
+            this.CurrentOutputTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label14
             // 
@@ -266,25 +267,25 @@ namespace TesterAppUI
             this.label9.TabIndex = 15;
             this.label9.Text = "Гц";
             // 
-            // textBox5
+            // VoltageOutputTextBox
             // 
-            this.textBox5.Location = new System.Drawing.Point(264, 67);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.ReadOnly = true;
-            this.textBox5.Size = new System.Drawing.Size(52, 20);
-            this.textBox5.TabIndex = 14;
-            this.textBox5.Text = "0";
-            this.textBox5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.VoltageOutputTextBox.Location = new System.Drawing.Point(264, 67);
+            this.VoltageOutputTextBox.Name = "VoltageOutputTextBox";
+            this.VoltageOutputTextBox.ReadOnly = true;
+            this.VoltageOutputTextBox.Size = new System.Drawing.Size(52, 20);
+            this.VoltageOutputTextBox.TabIndex = 14;
+            this.VoltageOutputTextBox.Text = "0";
+            this.VoltageOutputTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // textBox6
+            // VoltageEntranceTextBox
             // 
-            this.textBox6.Location = new System.Drawing.Point(264, 41);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.ReadOnly = true;
-            this.textBox6.Size = new System.Drawing.Size(52, 20);
-            this.textBox6.TabIndex = 13;
-            this.textBox6.Text = "0";
-            this.textBox6.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.VoltageEntranceTextBox.Location = new System.Drawing.Point(264, 41);
+            this.VoltageEntranceTextBox.Name = "VoltageEntranceTextBox";
+            this.VoltageEntranceTextBox.ReadOnly = true;
+            this.VoltageEntranceTextBox.Size = new System.Drawing.Size(52, 20);
+            this.VoltageEntranceTextBox.TabIndex = 13;
+            this.VoltageEntranceTextBox.Text = "0";
+            this.VoltageEntranceTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label10
             // 
@@ -316,103 +317,107 @@ namespace TesterAppUI
             this.label12.TabIndex = 10;
             this.label12.Text = "Частота напряжения на выходе ПЧ:";
             // 
-            // textBox7
+            // FrequencyVoltageTextBox
             // 
-            this.textBox7.Location = new System.Drawing.Point(264, 15);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.ReadOnly = true;
-            this.textBox7.Size = new System.Drawing.Size(52, 20);
-            this.textBox7.TabIndex = 9;
-            this.textBox7.Text = "0";
-            this.textBox7.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.FrequencyVoltageTextBox.Location = new System.Drawing.Point(264, 15);
+            this.FrequencyVoltageTextBox.Name = "FrequencyVoltageTextBox";
+            this.FrequencyVoltageTextBox.ReadOnly = true;
+            this.FrequencyVoltageTextBox.Size = new System.Drawing.Size(52, 20);
+            this.FrequencyVoltageTextBox.TabIndex = 9;
+            this.FrequencyVoltageTextBox.Text = "0";
+            this.FrequencyVoltageTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // chart1
+            // PowerOutputChart
             // 
-            this.chart1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.PowerOutputChart.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             chartArea2.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea2);
-            this.chart1.Location = new System.Drawing.Point(372, 9);
-            this.chart1.Name = "chart1";
+            this.PowerOutputChart.ChartAreas.Add(chartArea2);
+            this.PowerOutputChart.Location = new System.Drawing.Point(372, 9);
+            this.PowerOutputChart.Name = "PowerOutputChart";
             series2.BorderWidth = 2;
             series2.ChartArea = "ChartArea1";
             series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
             series2.Color = System.Drawing.Color.Red;
             series2.Name = "Частота ";
-            this.chart1.Series.Add(series2);
-            this.chart1.Size = new System.Drawing.Size(614, 176);
-            this.chart1.TabIndex = 12;
-            this.chart1.Text = "chart2";
+            series2.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.DateTime;
+            this.PowerOutputChart.Series.Add(series2);
+            this.PowerOutputChart.Size = new System.Drawing.Size(614, 176);
+            this.PowerOutputChart.TabIndex = 12;
+            this.PowerOutputChart.Text = "chart2";
             title2.Name = "Title1";
-            title2.Text = "График частоты напряжения на выходе ПЧ";
-            this.chart1.Titles.Add(title2);
+            title2.Text = "График мощности на выходе БИРН";
+            this.PowerOutputChart.Titles.Add(title2);
             // 
-            // chart2
+            // CurrentOutputChart
             // 
-            this.chart2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.CurrentOutputChart.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             chartArea3.Name = "ChartArea1";
-            this.chart2.ChartAreas.Add(chartArea3);
-            this.chart2.Location = new System.Drawing.Point(490, 191);
-            this.chart2.Name = "chart2";
+            this.CurrentOutputChart.ChartAreas.Add(chartArea3);
+            this.CurrentOutputChart.Location = new System.Drawing.Point(490, 191);
+            this.CurrentOutputChart.Name = "CurrentOutputChart";
             series3.BorderWidth = 2;
             series3.ChartArea = "ChartArea1";
             series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
             series3.Color = System.Drawing.Color.Red;
             series3.Name = "Частота ";
-            this.chart2.Series.Add(series3);
-            this.chart2.Size = new System.Drawing.Size(496, 190);
-            this.chart2.TabIndex = 13;
-            this.chart2.Text = "chart2";
+            series3.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.DateTime;
+            this.CurrentOutputChart.Series.Add(series3);
+            this.CurrentOutputChart.Size = new System.Drawing.Size(496, 197);
+            this.CurrentOutputChart.TabIndex = 13;
+            this.CurrentOutputChart.Text = "chart2";
             title3.Name = "Title1";
-            title3.Text = "График частоты напряжения на выходе ПЧ";
-            this.chart2.Titles.Add(title3);
+            title3.Text = "График тока на выходе БИРН";
+            this.CurrentOutputChart.Titles.Add(title3);
             // 
-            // chart3
+            // VoltageEntranceChart
             // 
-            this.chart3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.VoltageEntranceChart.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             chartArea4.Name = "ChartArea1";
-            this.chart3.ChartAreas.Add(chartArea4);
-            this.chart3.Location = new System.Drawing.Point(490, 387);
-            this.chart3.Name = "chart3";
+            this.VoltageEntranceChart.ChartAreas.Add(chartArea4);
+            this.VoltageEntranceChart.Location = new System.Drawing.Point(490, 394);
+            this.VoltageEntranceChart.Name = "VoltageEntranceChart";
             series4.BorderWidth = 2;
             series4.ChartArea = "ChartArea1";
             series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
             series4.Color = System.Drawing.Color.Red;
             series4.Name = "Частота ";
-            this.chart3.Series.Add(series4);
-            this.chart3.Size = new System.Drawing.Size(496, 197);
-            this.chart3.TabIndex = 14;
-            this.chart3.Text = "chart2";
+            series4.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.DateTime;
+            this.VoltageEntranceChart.Series.Add(series4);
+            this.VoltageEntranceChart.Size = new System.Drawing.Size(496, 190);
+            this.VoltageEntranceChart.TabIndex = 14;
+            this.VoltageEntranceChart.Text = "Напряжение на входе";
             title4.Name = "Title1";
-            title4.Text = "График частоты напряжения на выходе ПЧ";
-            this.chart3.Titles.Add(title4);
+            title4.Text = "График напряжения на входе БИРН";
+            this.VoltageEntranceChart.Titles.Add(title4);
             // 
-            // chart4
+            // VoltageOutputChart
             // 
-            this.chart4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.VoltageOutputChart.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             chartArea5.Name = "ChartArea1";
-            this.chart4.ChartAreas.Add(chartArea5);
-            this.chart4.Location = new System.Drawing.Point(12, 394);
-            this.chart4.Name = "chart4";
+            this.VoltageOutputChart.ChartAreas.Add(chartArea5);
+            this.VoltageOutputChart.Location = new System.Drawing.Point(12, 394);
+            this.VoltageOutputChart.Name = "VoltageOutputChart";
             series5.BorderWidth = 2;
             series5.ChartArea = "ChartArea1";
             series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
             series5.Color = System.Drawing.Color.Red;
             series5.Name = "Частота ";
-            this.chart4.Series.Add(series5);
-            this.chart4.Size = new System.Drawing.Size(472, 190);
-            this.chart4.TabIndex = 15;
-            this.chart4.Text = "chart2";
+            series5.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.DateTime;
+            this.VoltageOutputChart.Series.Add(series5);
+            this.VoltageOutputChart.Size = new System.Drawing.Size(472, 190);
+            this.VoltageOutputChart.TabIndex = 15;
+            this.VoltageOutputChart.Text = "Напряжение на выходе";
             title5.Name = "Title1";
-            title5.Text = "График частоты напряжения на выходе ПЧ";
-            this.chart4.Titles.Add(title5);
+            title5.Text = "График напряжения на выходе БИРН";
+            this.VoltageOutputChart.Titles.Add(title5);
             // 
             // TestingForm
             // 
@@ -420,34 +425,34 @@ namespace TesterAppUI
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.PeachPuff;
             this.ClientSize = new System.Drawing.Size(998, 596);
-            this.Controls.Add(this.chart4);
-            this.Controls.Add(this.chart3);
-            this.Controls.Add(this.chart2);
-            this.Controls.Add(this.chart1);
+            this.Controls.Add(this.VoltageOutputChart);
+            this.Controls.Add(this.VoltageEntranceChart);
+            this.Controls.Add(this.CurrentOutputChart);
+            this.Controls.Add(this.PowerOutputChart);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.RemainingTimeTextBox);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.TimeTestTextBox);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.VoltageFrequencyChart);
+            this.Controls.Add(this.FrequencyVoltageChart);
             this.Name = "TestingForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "TestingForm";
+            this.Text = "Испытательный процесс";
             this.Load += new System.EventHandler(this.TestingForm_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.VoltageFrequencyChart)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.FrequencyVoltageChart)).EndInit();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chart2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chart3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chart4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PowerOutputChart)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CurrentOutputChart)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.VoltageEntranceChart)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.VoltageOutputChart)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.DataVisualization.Charting.Chart VoltageFrequencyChart;
+        private System.Windows.Forms.DataVisualization.Charting.Chart FrequencyVoltageChart;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox TimeTestTextBox;
         private System.Windows.Forms.TextBox RemainingTimeTextBox;
@@ -455,24 +460,24 @@ namespace TesterAppUI
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.TextBox textBox9;
+        private System.Windows.Forms.TextBox PowerOutputTextBox;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.TextBox textBox8;
+        private System.Windows.Forms.TextBox CurrentOutputTextBox;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.TextBox VoltageOutputTextBox;
+        private System.Windows.Forms.TextBox VoltageEntranceTextBox;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.TextBox textBox7;
+        private System.Windows.Forms.TextBox FrequencyVoltageTextBox;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart2;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart3;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart4;
+        private System.Windows.Forms.DataVisualization.Charting.Chart PowerOutputChart;
+        private System.Windows.Forms.DataVisualization.Charting.Chart CurrentOutputChart;
+        private System.Windows.Forms.DataVisualization.Charting.Chart VoltageEntranceChart;
+        private System.Windows.Forms.DataVisualization.Charting.Chart VoltageOutputChart;
     }
 }
