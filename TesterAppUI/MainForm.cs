@@ -100,12 +100,13 @@ namespace TesterAppUI
             {
                 _port.Open();
             }
-            catch(Exception ex)
+            catch(NullReferenceException ex)
             {
-                MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Не указаны настройки порта", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     //("Проверьте настройки подключения", "Ошибка", MessageBoxButtons.OK);
                 return;
             }
+            
             _masrerRTU = ModbusSerialMaster.CreateRtu(_port);
 
             ConnectButton.Enabled = false;
@@ -127,6 +128,7 @@ namespace TesterAppUI
         {
             try
             {
+                StartStopController(false);
                 _port.Close();
             }
             catch (NullReferenceException)
@@ -134,9 +136,17 @@ namespace TesterAppUI
                 MessageBox.Show("Не выбранны настройки подключения", "Ошибка", MessageBoxButtons.OK);
                 return;
             }
+            catch (Exception exception)
+            {
+                MessageBox.Show(this, exception.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //("Проверьте настройки подключения", "Ошибка", MessageBoxButtons.OK);
+                return;
+            }
             ConnectButton.Enabled = true;
             DisableButton.Enabled = false;
             StartButton.Enabled = false;
+            StopButton.Enabled = false;
+            ResetButton.Enabled = false;
             ParametersTestGroupBox.Enabled = false;
         }
 
@@ -441,7 +451,7 @@ namespace TesterAppUI
         {
             try
             {
-                TimeTestCheck();
+                CheckData();
             }
             catch (ArgumentException exception)
             {
@@ -472,8 +482,13 @@ namespace TesterAppUI
         /// <summary>
         /// Проверяет указанно ли время работы установки
         /// </summary>
-        private void TimeTestCheck()
+        private void CheckData()
         {
+            if (TypeInstallationComboBox.SelectedIndex == -1)
+            {
+                throw new ArgumentException("Не выбран тип установки");
+                return;
+            }
             if (TypeTestComboBox.SelectedIndex == -1)
             {
                 throw new ArgumentException("Не выбран тип испытания");
@@ -529,6 +544,7 @@ namespace TesterAppUI
         private void Testing()
         {
             TimerStart.Enabled = true;
+            StartStopController(true);
             switch (TypeTestComboBox.SelectedIndex)
             {
                 case 0:
@@ -590,6 +606,61 @@ namespace TesterAppUI
         {
             _timeStop.AddSeconds(-1);
         }
+
+        private void TimePeriodicOnNumericUpDown_MouseClick(object sender, MouseEventArgs e)
+        {
+            TimePeriodicOnNumericUpDown.Select(0,TimePeriodicOnNumericUpDown.Value.ToString().Length);
+        }
+
+        private void TimePeriodicOffNumericUpDown_MouseClick(object sender, MouseEventArgs e)
+        {
+            TimePeriodicOffNumericUpDown.Select(0, TimePeriodicOffNumericUpDown.Value.ToString().Length);
+        }
+
+        private void TimeResourceOnNumericUpDown_MouseClick(object sender, MouseEventArgs e)
+        {
+            TimeResourceOnNumericUpDown.Select(0, TimeResourceOnNumericUpDown.Value.ToString().Length);
+        }
+
+        private void TimeResourceOffNumericUpDown_MouseClick(object sender, MouseEventArgs e)
+        {
+            TimeResourceOffNumericUpDown.Select(0, TimeResourceOffNumericUpDown.Value.ToString().Length);
+        }
+
+        private void CurrentNumericUpDown_MouseClick(object sender, MouseEventArgs e)
+        {
+            CurrentNumericUpDown.Select(0, CurrentNumericUpDown.Value.ToString().Length);
+        }
+
+        private void VoltageNumericUpDown_MouseClick(object sender, MouseEventArgs e)
+        {
+            VoltageNumericUpDown.Select(0, VoltageNumericUpDown.Value.ToString().Length);
+        }
+
+        private void PowerNumericUpDown_MouseClick(object sender, MouseEventArgs e)
+        {
+            PowerNumericUpDown.Select(0, PowerNumericUpDown.Value.ToString().Length);
+        }
+
+        private void TypeInstallationComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (TypeInstallationComboBox.SelectedIndex)
+            {
+                case 0:
+                    CurrentNumericUpDown.Maximum = 300;
+                    PowerNumericUpDown.Maximum = 15000;
+                    break;
+                case 1:
+                    CurrentNumericUpDown.Maximum = 500;
+                    PowerNumericUpDown.Maximum = 25000;
+                    break;
+                case 2:
+                    CurrentNumericUpDown.Maximum = 600;
+                    PowerNumericUpDown.Maximum = 30000;
+                    break;
+            }
+        }
     }
+
 
 }

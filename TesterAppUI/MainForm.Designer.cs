@@ -86,7 +86,7 @@ namespace TesterAppUI
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.ParametersTestGroupBox = new System.Windows.Forms.GroupBox();
             this.label41 = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.TypeInstallationComboBox = new System.Windows.Forms.ComboBox();
             this.PeriodicTestsGroupBox = new System.Windows.Forms.GroupBox();
             this.NumberPeriodsNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.TimePeriodicOffNumericUpDown = new System.Windows.Forms.NumericUpDown();
@@ -210,12 +210,13 @@ namespace TesterAppUI
             this.PowerNumericUpDown.Size = new System.Drawing.Size(60, 20);
             this.PowerNumericUpDown.TabIndex = 39;
             this.PowerNumericUpDown.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.PowerNumericUpDown.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PowerNumericUpDown_MouseClick);
             // 
             // VoltageNumericUpDown
             // 
             this.VoltageNumericUpDown.Location = new System.Drawing.Point(200, 44);
             this.VoltageNumericUpDown.Maximum = new decimal(new int[] {
-            1440,
+            500,
             0,
             0,
             0});
@@ -223,6 +224,7 @@ namespace TesterAppUI
             this.VoltageNumericUpDown.Size = new System.Drawing.Size(60, 20);
             this.VoltageNumericUpDown.TabIndex = 38;
             this.VoltageNumericUpDown.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.VoltageNumericUpDown.MouseClick += new System.Windows.Forms.MouseEventHandler(this.VoltageNumericUpDown_MouseClick);
             // 
             // CurrentNumericUpDown
             // 
@@ -236,6 +238,7 @@ namespace TesterAppUI
             this.CurrentNumericUpDown.Size = new System.Drawing.Size(60, 20);
             this.CurrentNumericUpDown.TabIndex = 37;
             this.CurrentNumericUpDown.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.CurrentNumericUpDown.MouseClick += new System.Windows.Forms.MouseEventHandler(this.CurrentNumericUpDown_MouseClick);
             // 
             // WriteRegisterButton
             // 
@@ -727,7 +730,7 @@ namespace TesterAppUI
             // 
             this.ParametersTestGroupBox.BackColor = System.Drawing.Color.PaleTurquoise;
             this.ParametersTestGroupBox.Controls.Add(this.label41);
-            this.ParametersTestGroupBox.Controls.Add(this.comboBox2);
+            this.ParametersTestGroupBox.Controls.Add(this.TypeInstallationComboBox);
             this.ParametersTestGroupBox.Controls.Add(this.PeriodicTestsGroupBox);
             this.ParametersTestGroupBox.Controls.Add(this.LaunchButton);
             this.ParametersTestGroupBox.Controls.Add(this.ResourceTestsGroupBox);
@@ -753,18 +756,19 @@ namespace TesterAppUI
             this.label41.TabIndex = 24;
             this.label41.Text = "Тип установки:";
             // 
-            // comboBox2
+            // TypeInstallationComboBox
             // 
-            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
+            this.TypeInstallationComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.TypeInstallationComboBox.FormattingEnabled = true;
+            this.TypeInstallationComboBox.Items.AddRange(new object[] {
             "IHM-15",
             "IHM-25",
             "IHM-30"});
-            this.comboBox2.Location = new System.Drawing.Point(96, 46);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(210, 21);
-            this.comboBox2.TabIndex = 23;
+            this.TypeInstallationComboBox.Location = new System.Drawing.Point(96, 46);
+            this.TypeInstallationComboBox.Name = "TypeInstallationComboBox";
+            this.TypeInstallationComboBox.Size = new System.Drawing.Size(210, 21);
+            this.TypeInstallationComboBox.TabIndex = 23;
+            this.TypeInstallationComboBox.SelectedIndexChanged += new System.EventHandler(this.TypeInstallationComboBox_SelectedIndexChanged);
             // 
             // PeriodicTestsGroupBox
             // 
@@ -805,6 +809,7 @@ namespace TesterAppUI
             this.TimePeriodicOffNumericUpDown.Size = new System.Drawing.Size(60, 20);
             this.TimePeriodicOffNumericUpDown.TabIndex = 35;
             this.TimePeriodicOffNumericUpDown.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.TimePeriodicOffNumericUpDown.MouseClick += new System.Windows.Forms.MouseEventHandler(this.TimePeriodicOffNumericUpDown_MouseClick);
             // 
             // TimePeriodicOnNumericUpDown
             // 
@@ -818,6 +823,7 @@ namespace TesterAppUI
             this.TimePeriodicOnNumericUpDown.Size = new System.Drawing.Size(60, 20);
             this.TimePeriodicOnNumericUpDown.TabIndex = 34;
             this.TimePeriodicOnNumericUpDown.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.TimePeriodicOnNumericUpDown.MouseClick += new System.Windows.Forms.MouseEventHandler(this.TimePeriodicOnNumericUpDown_MouseClick);
             // 
             // label28
             // 
@@ -909,6 +915,7 @@ namespace TesterAppUI
             this.TimeResourceOffNumericUpDown.Size = new System.Drawing.Size(60, 20);
             this.TimeResourceOffNumericUpDown.TabIndex = 31;
             this.TimeResourceOffNumericUpDown.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.TimeResourceOffNumericUpDown.MouseClick += new System.Windows.Forms.MouseEventHandler(this.TimeResourceOffNumericUpDown_MouseClick);
             // 
             // TimeResourceOnNumericUpDown
             // 
@@ -922,6 +929,7 @@ namespace TesterAppUI
             this.TimeResourceOnNumericUpDown.Size = new System.Drawing.Size(60, 20);
             this.TimeResourceOnNumericUpDown.TabIndex = 30;
             this.TimeResourceOnNumericUpDown.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.TimeResourceOnNumericUpDown.MouseClick += new System.Windows.Forms.MouseEventHandler(this.TimeResourceOnNumericUpDown_MouseClick);
             // 
             // label31
             // 
@@ -1152,7 +1160,7 @@ namespace TesterAppUI
         private System.Windows.Forms.Label label31;
         private System.Windows.Forms.Label label32;
         private System.Windows.Forms.Label label41;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox TypeInstallationComboBox;
         private System.Windows.Forms.NumericUpDown TimeResourceOnNumericUpDown;
         private System.Windows.Forms.NumericUpDown TimePeriodicOffNumericUpDown;
         private System.Windows.Forms.NumericUpDown TimePeriodicOnNumericUpDown;

@@ -100,12 +100,6 @@ namespace TesterAppUI
             }
         }
 
-        
-        private void button1_Click(object sender, EventArgs e)
-        {
-            
-        }
-
         private void ChartSetting()
         {
             FrequencyVoltageChart.ChartAreas[0].AxisY.Maximum = 6000;
