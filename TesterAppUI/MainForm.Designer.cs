@@ -84,31 +84,7 @@ namespace TesterAppUI
             this.ConnectButton = new System.Windows.Forms.Button();
             this.DisableButton = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.ParametersTestGroupBox = new System.Windows.Forms.GroupBox();
-            this.label41 = new System.Windows.Forms.Label();
-            this.TypeInstallationComboBox = new System.Windows.Forms.ComboBox();
-            this.PeriodicTestsGroupBox = new System.Windows.Forms.GroupBox();
-            this.NumberPeriodsNumericUpDown = new System.Windows.Forms.NumericUpDown();
-            this.TimePeriodicOffNumericUpDown = new System.Windows.Forms.NumericUpDown();
-            this.TimePeriodicOnNumericUpDown = new System.Windows.Forms.NumericUpDown();
-            this.label28 = new System.Windows.Forms.Label();
-            this.label33 = new System.Windows.Forms.Label();
-            this.label36 = new System.Windows.Forms.Label();
-            this.label38 = new System.Windows.Forms.Label();
-            this.label40 = new System.Windows.Forms.Label();
             this.LaunchButton = new System.Windows.Forms.Button();
-            this.ResourceTestsGroupBox = new System.Windows.Forms.GroupBox();
-            this.TimeResourceOffNumericUpDown = new System.Windows.Forms.NumericUpDown();
-            this.TimeResourceOnNumericUpDown = new System.Windows.Forms.NumericUpDown();
-            this.label31 = new System.Windows.Forms.Label();
-            this.label32 = new System.Windows.Forms.Label();
-            this.label29 = new System.Windows.Forms.Label();
-            this.label30 = new System.Windows.Forms.Label();
-            this.ThermometerGroupBox = new System.Windows.Forms.GroupBox();
-            this.ThermometerOnRadioButton = new System.Windows.Forms.RadioButton();
-            this.ThermometerOffRadioButton = new System.Windows.Forms.RadioButton();
-            this.label27 = new System.Windows.Forms.Label();
-            this.TypeTestComboBox = new System.Windows.Forms.ComboBox();
             this.TimerStart = new System.Windows.Forms.Timer(this.components);
             this.TimerStop = new System.Windows.Forms.Timer(this.components);
             this.menuStrip1.SuspendLayout();
@@ -120,15 +96,6 @@ namespace TesterAppUI
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox5.SuspendLayout();
-            this.ParametersTestGroupBox.SuspendLayout();
-            this.PeriodicTestsGroupBox.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.NumberPeriodsNumericUpDown)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TimePeriodicOffNumericUpDown)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TimePeriodicOnNumericUpDown)).BeginInit();
-            this.ResourceTestsGroupBox.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.TimeResourceOffNumericUpDown)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TimeResourceOnNumericUpDown)).BeginInit();
-            this.ThermometerGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -140,7 +107,7 @@ namespace TesterAppUI
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(3, 1, 0, 1);
-            this.menuStrip1.Size = new System.Drawing.Size(752, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1002, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -195,7 +162,7 @@ namespace TesterAppUI
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Location = new System.Drawing.Point(6, 298);
+            this.groupBox1.Location = new System.Drawing.Point(428, 338);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox1.Size = new System.Drawing.Size(300, 134);
@@ -726,308 +693,16 @@ namespace TesterAppUI
             this.timer1.Interval = 500;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // ParametersTestGroupBox
-            // 
-            this.ParametersTestGroupBox.BackColor = System.Drawing.Color.PaleTurquoise;
-            this.ParametersTestGroupBox.Controls.Add(this.label41);
-            this.ParametersTestGroupBox.Controls.Add(this.TypeInstallationComboBox);
-            this.ParametersTestGroupBox.Controls.Add(this.PeriodicTestsGroupBox);
-            this.ParametersTestGroupBox.Controls.Add(this.LaunchButton);
-            this.ParametersTestGroupBox.Controls.Add(this.ResourceTestsGroupBox);
-            this.ParametersTestGroupBox.Controls.Add(this.ThermometerGroupBox);
-            this.ParametersTestGroupBox.Controls.Add(this.label27);
-            this.ParametersTestGroupBox.Controls.Add(this.TypeTestComboBox);
-            this.ParametersTestGroupBox.Controls.Add(this.groupBox1);
-            this.ParametersTestGroupBox.Enabled = false;
-            this.ParametersTestGroupBox.Location = new System.Drawing.Point(428, 32);
-            this.ParametersTestGroupBox.Name = "ParametersTestGroupBox";
-            this.ParametersTestGroupBox.Size = new System.Drawing.Size(312, 464);
-            this.ParametersTestGroupBox.TabIndex = 22;
-            this.ParametersTestGroupBox.TabStop = false;
-            this.ParametersTestGroupBox.Text = "Параметры испытания:";
-            // 
-            // label41
-            // 
-            this.label41.AutoSize = true;
-            this.label41.Location = new System.Drawing.Point(6, 49);
-            this.label41.Margin = new System.Windows.Forms.Padding(3);
-            this.label41.Name = "label41";
-            this.label41.Size = new System.Drawing.Size(84, 13);
-            this.label41.TabIndex = 24;
-            this.label41.Text = "Тип установки:";
-            // 
-            // TypeInstallationComboBox
-            // 
-            this.TypeInstallationComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.TypeInstallationComboBox.FormattingEnabled = true;
-            this.TypeInstallationComboBox.Items.AddRange(new object[] {
-            "IHM-15",
-            "IHM-25",
-            "IHM-30"});
-            this.TypeInstallationComboBox.Location = new System.Drawing.Point(96, 46);
-            this.TypeInstallationComboBox.Name = "TypeInstallationComboBox";
-            this.TypeInstallationComboBox.Size = new System.Drawing.Size(210, 21);
-            this.TypeInstallationComboBox.TabIndex = 23;
-            this.TypeInstallationComboBox.SelectedIndexChanged += new System.EventHandler(this.TypeInstallationComboBox_SelectedIndexChanged);
-            // 
-            // PeriodicTestsGroupBox
-            // 
-            this.PeriodicTestsGroupBox.BackColor = System.Drawing.Color.LimeGreen;
-            this.PeriodicTestsGroupBox.Controls.Add(this.NumberPeriodsNumericUpDown);
-            this.PeriodicTestsGroupBox.Controls.Add(this.TimePeriodicOffNumericUpDown);
-            this.PeriodicTestsGroupBox.Controls.Add(this.TimePeriodicOnNumericUpDown);
-            this.PeriodicTestsGroupBox.Controls.Add(this.label28);
-            this.PeriodicTestsGroupBox.Controls.Add(this.label33);
-            this.PeriodicTestsGroupBox.Controls.Add(this.label36);
-            this.PeriodicTestsGroupBox.Controls.Add(this.label38);
-            this.PeriodicTestsGroupBox.Controls.Add(this.label40);
-            this.PeriodicTestsGroupBox.Enabled = false;
-            this.PeriodicTestsGroupBox.Location = new System.Drawing.Point(6, 120);
-            this.PeriodicTestsGroupBox.Name = "PeriodicTestsGroupBox";
-            this.PeriodicTestsGroupBox.Size = new System.Drawing.Size(300, 96);
-            this.PeriodicTestsGroupBox.TabIndex = 22;
-            this.PeriodicTestsGroupBox.TabStop = false;
-            this.PeriodicTestsGroupBox.Text = "Папаметры периодического испытания";
-            // 
-            // NumberPeriodsNumericUpDown
-            // 
-            this.NumberPeriodsNumericUpDown.Location = new System.Drawing.Point(200, 69);
-            this.NumberPeriodsNumericUpDown.Name = "NumberPeriodsNumericUpDown";
-            this.NumberPeriodsNumericUpDown.Size = new System.Drawing.Size(60, 20);
-            this.NumberPeriodsNumericUpDown.TabIndex = 36;
-            this.NumberPeriodsNumericUpDown.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // TimePeriodicOffNumericUpDown
-            // 
-            this.TimePeriodicOffNumericUpDown.Location = new System.Drawing.Point(200, 43);
-            this.TimePeriodicOffNumericUpDown.Maximum = new decimal(new int[] {
-            1440,
-            0,
-            0,
-            0});
-            this.TimePeriodicOffNumericUpDown.Name = "TimePeriodicOffNumericUpDown";
-            this.TimePeriodicOffNumericUpDown.Size = new System.Drawing.Size(60, 20);
-            this.TimePeriodicOffNumericUpDown.TabIndex = 35;
-            this.TimePeriodicOffNumericUpDown.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.TimePeriodicOffNumericUpDown.MouseClick += new System.Windows.Forms.MouseEventHandler(this.TimePeriodicOffNumericUpDown_MouseClick);
-            // 
-            // TimePeriodicOnNumericUpDown
-            // 
-            this.TimePeriodicOnNumericUpDown.Location = new System.Drawing.Point(200, 17);
-            this.TimePeriodicOnNumericUpDown.Maximum = new decimal(new int[] {
-            1440,
-            0,
-            0,
-            0});
-            this.TimePeriodicOnNumericUpDown.Name = "TimePeriodicOnNumericUpDown";
-            this.TimePeriodicOnNumericUpDown.Size = new System.Drawing.Size(60, 20);
-            this.TimePeriodicOnNumericUpDown.TabIndex = 34;
-            this.TimePeriodicOnNumericUpDown.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.TimePeriodicOnNumericUpDown.MouseClick += new System.Windows.Forms.MouseEventHandler(this.TimePeriodicOnNumericUpDown_MouseClick);
-            // 
-            // label28
-            // 
-            this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(265, 45);
-            this.label28.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(25, 13);
-            this.label28.TabIndex = 33;
-            this.label28.Text = "сек";
-            // 
-            // label33
-            // 
-            this.label33.AutoSize = true;
-            this.label33.Location = new System.Drawing.Point(265, 19);
-            this.label33.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(25, 13);
-            this.label33.TabIndex = 32;
-            this.label33.Text = "сек";
-            // 
-            // label36
-            // 
-            this.label36.AutoSize = true;
-            this.label36.Location = new System.Drawing.Point(6, 71);
-            this.label36.Margin = new System.Windows.Forms.Padding(3);
-            this.label36.Name = "label36";
-            this.label36.Size = new System.Drawing.Size(120, 13);
-            this.label36.TabIndex = 27;
-            this.label36.Text = "Количество периодов:";
-            // 
-            // label38
-            // 
-            this.label38.AutoSize = true;
-            this.label38.Location = new System.Drawing.Point(6, 45);
-            this.label38.Margin = new System.Windows.Forms.Padding(3);
-            this.label38.Name = "label38";
-            this.label38.Size = new System.Drawing.Size(188, 13);
-            this.label38.TabIndex = 24;
-            this.label38.Text = "Время во выключенном состоянии:";
-            // 
-            // label40
-            // 
-            this.label40.AutoSize = true;
-            this.label40.Location = new System.Drawing.Point(6, 19);
-            this.label40.Margin = new System.Windows.Forms.Padding(3);
-            this.label40.Name = "label40";
-            this.label40.Size = new System.Drawing.Size(180, 13);
-            this.label40.TabIndex = 21;
-            this.label40.Text = "Время во включенном состоянии:";
-            // 
             // LaunchButton
             // 
             this.LaunchButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.LaunchButton.Location = new System.Drawing.Point(6, 433);
+            this.LaunchButton.Location = new System.Drawing.Point(428, 478);
             this.LaunchButton.Name = "LaunchButton";
-            this.LaunchButton.Size = new System.Drawing.Size(300, 28);
+            this.LaunchButton.Size = new System.Drawing.Size(300, 29);
             this.LaunchButton.TabIndex = 21;
-            this.LaunchButton.Text = "ЗАПУСТИТЬ";
+            this.LaunchButton.Text = "ЗАПУК ИСПЫТАНИЯ";
             this.LaunchButton.UseVisualStyleBackColor = true;
             this.LaunchButton.Click += new System.EventHandler(this.LaunchButton_Click);
-            // 
-            // ResourceTestsGroupBox
-            // 
-            this.ResourceTestsGroupBox.BackColor = System.Drawing.Color.SpringGreen;
-            this.ResourceTestsGroupBox.Controls.Add(this.TimeResourceOffNumericUpDown);
-            this.ResourceTestsGroupBox.Controls.Add(this.TimeResourceOnNumericUpDown);
-            this.ResourceTestsGroupBox.Controls.Add(this.label31);
-            this.ResourceTestsGroupBox.Controls.Add(this.label32);
-            this.ResourceTestsGroupBox.Controls.Add(this.label29);
-            this.ResourceTestsGroupBox.Controls.Add(this.label30);
-            this.ResourceTestsGroupBox.Enabled = false;
-            this.ResourceTestsGroupBox.Location = new System.Drawing.Point(6, 222);
-            this.ResourceTestsGroupBox.Name = "ResourceTestsGroupBox";
-            this.ResourceTestsGroupBox.Size = new System.Drawing.Size(300, 70);
-            this.ResourceTestsGroupBox.TabIndex = 15;
-            this.ResourceTestsGroupBox.TabStop = false;
-            this.ResourceTestsGroupBox.Text = "Папаметры ресурсного испытания";
-            // 
-            // TimeResourceOffNumericUpDown
-            // 
-            this.TimeResourceOffNumericUpDown.Location = new System.Drawing.Point(200, 43);
-            this.TimeResourceOffNumericUpDown.Maximum = new decimal(new int[] {
-            1400,
-            0,
-            0,
-            0});
-            this.TimeResourceOffNumericUpDown.Name = "TimeResourceOffNumericUpDown";
-            this.TimeResourceOffNumericUpDown.Size = new System.Drawing.Size(60, 20);
-            this.TimeResourceOffNumericUpDown.TabIndex = 31;
-            this.TimeResourceOffNumericUpDown.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.TimeResourceOffNumericUpDown.MouseClick += new System.Windows.Forms.MouseEventHandler(this.TimeResourceOffNumericUpDown_MouseClick);
-            // 
-            // TimeResourceOnNumericUpDown
-            // 
-            this.TimeResourceOnNumericUpDown.Location = new System.Drawing.Point(200, 17);
-            this.TimeResourceOnNumericUpDown.Maximum = new decimal(new int[] {
-            1440,
-            0,
-            0,
-            0});
-            this.TimeResourceOnNumericUpDown.Name = "TimeResourceOnNumericUpDown";
-            this.TimeResourceOnNumericUpDown.Size = new System.Drawing.Size(60, 20);
-            this.TimeResourceOnNumericUpDown.TabIndex = 30;
-            this.TimeResourceOnNumericUpDown.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.TimeResourceOnNumericUpDown.MouseClick += new System.Windows.Forms.MouseEventHandler(this.TimeResourceOnNumericUpDown_MouseClick);
-            // 
-            // label31
-            // 
-            this.label31.AutoSize = true;
-            this.label31.Location = new System.Drawing.Point(265, 45);
-            this.label31.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(25, 13);
-            this.label31.TabIndex = 26;
-            this.label31.Text = "сек";
-            // 
-            // label32
-            // 
-            this.label32.AutoSize = true;
-            this.label32.Location = new System.Drawing.Point(6, 45);
-            this.label32.Margin = new System.Windows.Forms.Padding(3);
-            this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(188, 13);
-            this.label32.TabIndex = 24;
-            this.label32.Text = "Время во выключенном состоянии:";
-            // 
-            // label29
-            // 
-            this.label29.AutoSize = true;
-            this.label29.Location = new System.Drawing.Point(265, 19);
-            this.label29.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(25, 13);
-            this.label29.TabIndex = 23;
-            this.label29.Text = "сек";
-            // 
-            // label30
-            // 
-            this.label30.AutoSize = true;
-            this.label30.Location = new System.Drawing.Point(6, 19);
-            this.label30.Margin = new System.Windows.Forms.Padding(3);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(180, 13);
-            this.label30.TabIndex = 21;
-            this.label30.Text = "Время во включенном состоянии:";
-            // 
-            // ThermometerGroupBox
-            // 
-            this.ThermometerGroupBox.BackColor = System.Drawing.Color.LightSeaGreen;
-            this.ThermometerGroupBox.Controls.Add(this.ThermometerOnRadioButton);
-            this.ThermometerGroupBox.Controls.Add(this.ThermometerOffRadioButton);
-            this.ThermometerGroupBox.ForeColor = System.Drawing.Color.Black;
-            this.ThermometerGroupBox.Location = new System.Drawing.Point(6, 73);
-            this.ThermometerGroupBox.Name = "ThermometerGroupBox";
-            this.ThermometerGroupBox.Size = new System.Drawing.Size(300, 41);
-            this.ThermometerGroupBox.TabIndex = 14;
-            this.ThermometerGroupBox.TabStop = false;
-            this.ThermometerGroupBox.Text = "Датчик температуры";
-            // 
-            // ThermometerOnRadioButton
-            // 
-            this.ThermometerOnRadioButton.AutoSize = true;
-            this.ThermometerOnRadioButton.Location = new System.Drawing.Point(6, 18);
-            this.ThermometerOnRadioButton.Name = "ThermometerOnRadioButton";
-            this.ThermometerOnRadioButton.Size = new System.Drawing.Size(79, 17);
-            this.ThermometerOnRadioButton.TabIndex = 12;
-            this.ThermometerOnRadioButton.Text = "ВКЛЮЧЕН";
-            this.ThermometerOnRadioButton.UseVisualStyleBackColor = true;
-            // 
-            // ThermometerOffRadioButton
-            // 
-            this.ThermometerOffRadioButton.AutoSize = true;
-            this.ThermometerOffRadioButton.Checked = true;
-            this.ThermometerOffRadioButton.Location = new System.Drawing.Point(91, 18);
-            this.ThermometerOffRadioButton.Name = "ThermometerOffRadioButton";
-            this.ThermometerOffRadioButton.Size = new System.Drawing.Size(89, 17);
-            this.ThermometerOffRadioButton.TabIndex = 13;
-            this.ThermometerOffRadioButton.TabStop = true;
-            this.ThermometerOffRadioButton.Text = "ВЫКЛЮЧЕН";
-            this.ThermometerOffRadioButton.UseVisualStyleBackColor = true;
-            // 
-            // label27
-            // 
-            this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(6, 22);
-            this.label27.Margin = new System.Windows.Forms.Padding(3);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(67, 13);
-            this.label27.TabIndex = 11;
-            this.label27.Text = "Испытание:";
-            // 
-            // TypeTestComboBox
-            // 
-            this.TypeTestComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.TypeTestComboBox.FormattingEnabled = true;
-            this.TypeTestComboBox.Items.AddRange(new object[] {
-            "ресурсное",
-            "переодическое "});
-            this.TypeTestComboBox.Location = new System.Drawing.Point(96, 19);
-            this.TypeTestComboBox.Name = "TypeTestComboBox";
-            this.TypeTestComboBox.Size = new System.Drawing.Size(210, 21);
-            this.TypeTestComboBox.TabIndex = 0;
-            this.TypeTestComboBox.SelectedIndexChanged += new System.EventHandler(this.TypeTestComboBox_SelectedIndexChanged);
             // 
             // TimerStart
             // 
@@ -1044,13 +719,14 @@ namespace TesterAppUI
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(752, 512);
-            this.Controls.Add(this.ParametersTestGroupBox);
+            this.ClientSize = new System.Drawing.Size(1002, 543);
             this.Controls.Add(this.DisableButton);
             this.Controls.Add(this.ConnectButton);
+            this.Controls.Add(this.LaunchButton);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(2);
@@ -1072,19 +748,6 @@ namespace TesterAppUI
             this.groupBox4.PerformLayout();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
-            this.ParametersTestGroupBox.ResumeLayout(false);
-            this.ParametersTestGroupBox.PerformLayout();
-            this.PeriodicTestsGroupBox.ResumeLayout(false);
-            this.PeriodicTestsGroupBox.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.NumberPeriodsNumericUpDown)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TimePeriodicOffNumericUpDown)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TimePeriodicOnNumericUpDown)).EndInit();
-            this.ResourceTestsGroupBox.ResumeLayout(false);
-            this.ResourceTestsGroupBox.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.TimeResourceOffNumericUpDown)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TimeResourceOnNumericUpDown)).EndInit();
-            this.ThermometerGroupBox.ResumeLayout(false);
-            this.ThermometerGroupBox.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1143,31 +806,7 @@ namespace TesterAppUI
         private System.Windows.Forms.Button DisableButton;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Button ResetButton;
-        private System.Windows.Forms.GroupBox ParametersTestGroupBox;
-        private System.Windows.Forms.ComboBox TypeTestComboBox;
         private System.Windows.Forms.Button LaunchButton;
-        private System.Windows.Forms.GroupBox ResourceTestsGroupBox;
-        private System.Windows.Forms.Label label29;
-        private System.Windows.Forms.Label label30;
-        private System.Windows.Forms.GroupBox ThermometerGroupBox;
-        private System.Windows.Forms.RadioButton ThermometerOnRadioButton;
-        private System.Windows.Forms.RadioButton ThermometerOffRadioButton;
-        private System.Windows.Forms.Label label27;
-        private System.Windows.Forms.GroupBox PeriodicTestsGroupBox;
-        private System.Windows.Forms.Label label36;
-        private System.Windows.Forms.Label label38;
-        private System.Windows.Forms.Label label40;
-        private System.Windows.Forms.Label label31;
-        private System.Windows.Forms.Label label32;
-        private System.Windows.Forms.Label label41;
-        private System.Windows.Forms.ComboBox TypeInstallationComboBox;
-        private System.Windows.Forms.NumericUpDown TimeResourceOnNumericUpDown;
-        private System.Windows.Forms.NumericUpDown TimePeriodicOffNumericUpDown;
-        private System.Windows.Forms.NumericUpDown TimePeriodicOnNumericUpDown;
-        private System.Windows.Forms.Label label28;
-        private System.Windows.Forms.Label label33;
-        private System.Windows.Forms.NumericUpDown TimeResourceOffNumericUpDown;
-        private System.Windows.Forms.NumericUpDown NumberPeriodsNumericUpDown;
         private System.Windows.Forms.NumericUpDown PowerNumericUpDown;
         private System.Windows.Forms.NumericUpDown VoltageNumericUpDown;
         private System.Windows.Forms.NumericUpDown CurrentNumericUpDown;

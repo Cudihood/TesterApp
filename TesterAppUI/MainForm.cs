@@ -383,10 +383,7 @@ namespace TesterAppUI
         /// <param name="e"></param>
         private void timer1_Tick(object sender, EventArgs e)
         {
-            if (StartButton.Enabled == false)
-            {
-                ManagementParameters();
-            }
+            
             ControllerParameters();
             WorkParameters();
             
@@ -504,18 +501,17 @@ namespace TesterAppUI
                 MessageBox.Show("Проверьте настройки подключения", "Ошибка", MessageBoxButtons.OK);
                 return;
             }
-
-            TimeTest();
+            //TimeTest();
             var testing = new TestingForm();
             testing._controllerParameters = _controllerParameters;
-            testing._timeRemeining = _timeTest;
+            //testing._timeRemeining = _timeTest;
 
             if (Application.OpenForms.OfType<TestingForm>().Count() == 0) 
             {
                 testing.Show();
 
             }
-            Testing();
+            //Testing();
 
         }
 

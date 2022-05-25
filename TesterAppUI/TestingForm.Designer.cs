@@ -30,16 +30,16 @@ namespace TesterAppUI
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea6 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea7 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series7 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea8 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series8 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea9 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series9 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea10 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series10 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.FrequencyVoltageChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.label1 = new System.Windows.Forms.Label();
             this.TimeTestTextBox = new System.Windows.Forms.TextBox();
@@ -67,31 +67,7 @@ namespace TesterAppUI
             this.VoltageOutputChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.CurrentOutputChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.ParametersTestGroupBox = new System.Windows.Forms.GroupBox();
-            this.label41 = new System.Windows.Forms.Label();
-            this.TypeInstallationComboBox = new System.Windows.Forms.ComboBox();
-            this.PeriodicTestsGroupBox = new System.Windows.Forms.GroupBox();
-            this.NumberPeriodsNumericUpDown = new System.Windows.Forms.NumericUpDown();
-            this.TimePeriodicOffNumericUpDown = new System.Windows.Forms.NumericUpDown();
-            this.TimePeriodicOnNumericUpDown = new System.Windows.Forms.NumericUpDown();
-            this.label28 = new System.Windows.Forms.Label();
-            this.label33 = new System.Windows.Forms.Label();
-            this.label36 = new System.Windows.Forms.Label();
-            this.label38 = new System.Windows.Forms.Label();
-            this.label40 = new System.Windows.Forms.Label();
             this.LaunchButton = new System.Windows.Forms.Button();
-            this.ResourceTestsGroupBox = new System.Windows.Forms.GroupBox();
-            this.TimeResourceOffNumericUpDown = new System.Windows.Forms.NumericUpDown();
-            this.TimeResourceOnNumericUpDown = new System.Windows.Forms.NumericUpDown();
-            this.label31 = new System.Windows.Forms.Label();
-            this.label32 = new System.Windows.Forms.Label();
-            this.label29 = new System.Windows.Forms.Label();
-            this.label30 = new System.Windows.Forms.Label();
-            this.ThermometerGroupBox = new System.Windows.Forms.GroupBox();
-            this.ThermometerOnRadioButton = new System.Windows.Forms.RadioButton();
-            this.ThermometerOffRadioButton = new System.Windows.Forms.RadioButton();
-            this.label27 = new System.Windows.Forms.Label();
-            this.TypeTestComboBox = new System.Windows.Forms.ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.PowerNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.VoltageNumericUpDown = new System.Windows.Forms.NumericUpDown();
@@ -103,6 +79,12 @@ namespace TesterAppUI
             this.label4 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.SettingTestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.SettingGraphicsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.StopButton = new System.Windows.Forms.Button();
+            this.label19 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.FrequencyVoltageChart)).BeginInit();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PowerOutputChart)).BeginInit();
@@ -110,44 +92,36 @@ namespace TesterAppUI
             ((System.ComponentModel.ISupportInitialize)(this.VoltageOutputChart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CurrentOutputChart)).BeginInit();
             this.panel1.SuspendLayout();
-            this.ParametersTestGroupBox.SuspendLayout();
-            this.PeriodicTestsGroupBox.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.NumberPeriodsNumericUpDown)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TimePeriodicOffNumericUpDown)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TimePeriodicOnNumericUpDown)).BeginInit();
-            this.ResourceTestsGroupBox.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.TimeResourceOffNumericUpDown)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TimeResourceOnNumericUpDown)).BeginInit();
-            this.ThermometerGroupBox.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PowerNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.VoltageNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CurrentNumericUpDown)).BeginInit();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // FrequencyVoltageChart
             // 
             this.FrequencyVoltageChart.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            chartArea6.Name = "ChartArea1";
-            this.FrequencyVoltageChart.ChartAreas.Add(chartArea6);
+            chartArea1.Name = "ChartArea1";
+            this.FrequencyVoltageChart.ChartAreas.Add(chartArea1);
             this.FrequencyVoltageChart.Location = new System.Drawing.Point(6, 6);
             this.FrequencyVoltageChart.Name = "FrequencyVoltageChart";
-            series6.BorderWidth = 2;
-            series6.ChartArea = "ChartArea1";
-            series6.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series6.Color = System.Drawing.Color.Red;
-            series6.Name = "Частота ";
-            series6.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.DateTime;
-            this.FrequencyVoltageChart.Series.Add(series6);
-            this.FrequencyVoltageChart.Size = new System.Drawing.Size(432, 229);
+            series1.BorderWidth = 2;
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series1.Color = System.Drawing.Color.Red;
+            series1.Name = "Частота ";
+            series1.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.DateTime;
+            this.FrequencyVoltageChart.Series.Add(series1);
+            this.FrequencyVoltageChart.Size = new System.Drawing.Size(691, 229);
             this.FrequencyVoltageChart.TabIndex = 1;
             this.FrequencyVoltageChart.Text = "Частота напряжения";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 9);
+            this.label1.Location = new System.Drawing.Point(10, 358);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(116, 13);
             this.label1.TabIndex = 5;
@@ -155,14 +129,14 @@ namespace TesterAppUI
             // 
             // TimeTestTextBox
             // 
-            this.TimeTestTextBox.Location = new System.Drawing.Point(134, 6);
+            this.TimeTestTextBox.Location = new System.Drawing.Point(74, 387);
             this.TimeTestTextBox.Name = "TimeTestTextBox";
             this.TimeTestTextBox.Size = new System.Drawing.Size(56, 20);
             this.TimeTestTextBox.TabIndex = 6;
             // 
             // RemainingTimeTextBox
             // 
-            this.RemainingTimeTextBox.Location = new System.Drawing.Point(134, 32);
+            this.RemainingTimeTextBox.Location = new System.Drawing.Point(74, 413);
             this.RemainingTimeTextBox.Name = "RemainingTimeTextBox";
             this.RemainingTimeTextBox.Size = new System.Drawing.Size(56, 20);
             this.RemainingTimeTextBox.TabIndex = 8;
@@ -170,11 +144,11 @@ namespace TesterAppUI
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 35);
+            this.label2.Location = new System.Drawing.Point(12, 416);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(108, 13);
+            this.label2.Size = new System.Drawing.Size(56, 13);
             this.label2.TabIndex = 7;
-            this.label2.Text = "Оставшееся время:";
+            this.label2.Text = "Осталось";
             // 
             // timer1
             // 
@@ -199,10 +173,10 @@ namespace TesterAppUI
             this.groupBox4.Controls.Add(this.label11);
             this.groupBox4.Controls.Add(this.label12);
             this.groupBox4.Controls.Add(this.FrequencyVoltageTextBox);
-            this.groupBox4.Location = new System.Drawing.Point(6, 87);
+            this.groupBox4.Location = new System.Drawing.Point(12, 27);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.groupBox4.Size = new System.Drawing.Size(298, 148);
+            this.groupBox4.Size = new System.Drawing.Size(300, 148);
             this.groupBox4.TabIndex = 11;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Параметры контроля ПЧ:";
@@ -361,19 +335,19 @@ namespace TesterAppUI
             // 
             this.PowerOutputChart.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            chartArea7.Name = "ChartArea1";
-            this.PowerOutputChart.ChartAreas.Add(chartArea7);
+            chartArea2.Name = "ChartArea1";
+            this.PowerOutputChart.ChartAreas.Add(chartArea2);
             this.PowerOutputChart.Location = new System.Drawing.Point(6, 946);
             this.PowerOutputChart.Name = "PowerOutputChart";
             this.PowerOutputChart.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
-            series7.BorderWidth = 2;
-            series7.ChartArea = "ChartArea1";
-            series7.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series7.Color = System.Drawing.Color.Red;
-            series7.Name = "Частота ";
-            series7.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.DateTime;
-            this.PowerOutputChart.Series.Add(series7);
-            this.PowerOutputChart.Size = new System.Drawing.Size(432, 229);
+            series2.BorderWidth = 2;
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series2.Color = System.Drawing.Color.Red;
+            series2.Name = "Частота ";
+            series2.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.DateTime;
+            this.PowerOutputChart.Series.Add(series2);
+            this.PowerOutputChart.Size = new System.Drawing.Size(691, 229);
             this.PowerOutputChart.TabIndex = 12;
             this.PowerOutputChart.Text = "chart2";
             // 
@@ -381,19 +355,19 @@ namespace TesterAppUI
             // 
             this.VoltageEntranceChart.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            chartArea8.Name = "ChartArea1";
-            this.VoltageEntranceChart.ChartAreas.Add(chartArea8);
+            chartArea3.Name = "ChartArea1";
+            this.VoltageEntranceChart.ChartAreas.Add(chartArea3);
             this.VoltageEntranceChart.Location = new System.Drawing.Point(6, 241);
             this.VoltageEntranceChart.Name = "VoltageEntranceChart";
             this.VoltageEntranceChart.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
-            series8.BorderWidth = 2;
-            series8.ChartArea = "ChartArea1";
-            series8.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series8.Color = System.Drawing.Color.Red;
-            series8.Name = "U на входе";
-            series8.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.DateTime;
-            this.VoltageEntranceChart.Series.Add(series8);
-            this.VoltageEntranceChart.Size = new System.Drawing.Size(432, 229);
+            series3.BorderWidth = 2;
+            series3.ChartArea = "ChartArea1";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series3.Color = System.Drawing.Color.Red;
+            series3.Name = "U на входе";
+            series3.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.DateTime;
+            this.VoltageEntranceChart.Series.Add(series3);
+            this.VoltageEntranceChart.Size = new System.Drawing.Size(691, 229);
             this.VoltageEntranceChart.TabIndex = 14;
             this.VoltageEntranceChart.Text = "Напряжение на входе";
             // 
@@ -401,19 +375,19 @@ namespace TesterAppUI
             // 
             this.VoltageOutputChart.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            chartArea9.Name = "ChartArea1";
-            this.VoltageOutputChart.ChartAreas.Add(chartArea9);
+            chartArea4.Name = "ChartArea1";
+            this.VoltageOutputChart.ChartAreas.Add(chartArea4);
             this.VoltageOutputChart.Location = new System.Drawing.Point(6, 476);
             this.VoltageOutputChart.Name = "VoltageOutputChart";
             this.VoltageOutputChart.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
-            series9.BorderWidth = 2;
-            series9.ChartArea = "ChartArea1";
-            series9.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series9.Color = System.Drawing.Color.Red;
-            series9.Name = "Частота ";
-            series9.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.DateTime;
-            this.VoltageOutputChart.Series.Add(series9);
-            this.VoltageOutputChart.Size = new System.Drawing.Size(432, 229);
+            series4.BorderWidth = 2;
+            series4.ChartArea = "ChartArea1";
+            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series4.Color = System.Drawing.Color.Red;
+            series4.Name = "Частота ";
+            series4.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.DateTime;
+            this.VoltageOutputChart.Series.Add(series4);
+            this.VoltageOutputChart.Size = new System.Drawing.Size(691, 229);
             this.VoltageOutputChart.TabIndex = 15;
             this.VoltageOutputChart.Text = "Напряжение на выходе";
             // 
@@ -421,19 +395,19 @@ namespace TesterAppUI
             // 
             this.CurrentOutputChart.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            chartArea10.Name = "ChartArea1";
-            this.CurrentOutputChart.ChartAreas.Add(chartArea10);
+            chartArea5.Name = "ChartArea1";
+            this.CurrentOutputChart.ChartAreas.Add(chartArea5);
             this.CurrentOutputChart.Location = new System.Drawing.Point(6, 711);
             this.CurrentOutputChart.Name = "CurrentOutputChart";
             this.CurrentOutputChart.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
-            series10.BorderWidth = 2;
-            series10.ChartArea = "ChartArea1";
-            series10.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series10.Color = System.Drawing.Color.Red;
-            series10.Name = "Частота ";
-            series10.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.DateTime;
-            this.CurrentOutputChart.Series.Add(series10);
-            this.CurrentOutputChart.Size = new System.Drawing.Size(432, 229);
+            series5.BorderWidth = 2;
+            series5.ChartArea = "ChartArea1";
+            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series5.Color = System.Drawing.Color.Red;
+            series5.Name = "Частота ";
+            series5.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.DateTime;
+            this.CurrentOutputChart.Series.Add(series5);
+            this.CurrentOutputChart.Size = new System.Drawing.Size(691, 229);
             this.CurrentOutputChart.TabIndex = 13;
             this.CurrentOutputChart.Text = "chart2";
             // 
@@ -444,313 +418,27 @@ namespace TesterAppUI
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.AutoScroll = true;
             this.panel1.AutoScrollMargin = new System.Drawing.Size(3, 3);
-            this.panel1.Controls.Add(this.groupBox4);
             this.panel1.Controls.Add(this.PowerOutputChart);
             this.panel1.Controls.Add(this.VoltageEntranceChart);
             this.panel1.Controls.Add(this.FrequencyVoltageChart);
             this.panel1.Controls.Add(this.CurrentOutputChart);
             this.panel1.Controls.Add(this.VoltageOutputChart);
-            this.panel1.Location = new System.Drawing.Point(330, 6);
+            this.panel1.Location = new System.Drawing.Point(330, 32);
             this.panel1.Name = "panel1";
             this.panel1.Padding = new System.Windows.Forms.Padding(3);
-            this.panel1.Size = new System.Drawing.Size(461, 516);
+            this.panel1.Size = new System.Drawing.Size(720, 510);
             this.panel1.TabIndex = 16;
-            // 
-            // ParametersTestGroupBox
-            // 
-            this.ParametersTestGroupBox.BackColor = System.Drawing.Color.PaleTurquoise;
-            this.ParametersTestGroupBox.Controls.Add(this.label41);
-            this.ParametersTestGroupBox.Controls.Add(this.TypeInstallationComboBox);
-            this.ParametersTestGroupBox.Controls.Add(this.PeriodicTestsGroupBox);
-            this.ParametersTestGroupBox.Controls.Add(this.LaunchButton);
-            this.ParametersTestGroupBox.Controls.Add(this.ResourceTestsGroupBox);
-            this.ParametersTestGroupBox.Controls.Add(this.ThermometerGroupBox);
-            this.ParametersTestGroupBox.Controls.Add(this.label27);
-            this.ParametersTestGroupBox.Controls.Add(this.TypeTestComboBox);
-            this.ParametersTestGroupBox.Controls.Add(this.groupBox1);
-            this.ParametersTestGroupBox.Enabled = false;
-            this.ParametersTestGroupBox.Location = new System.Drawing.Point(12, 58);
-            this.ParametersTestGroupBox.Name = "ParametersTestGroupBox";
-            this.ParametersTestGroupBox.Size = new System.Drawing.Size(312, 464);
-            this.ParametersTestGroupBox.TabIndex = 23;
-            this.ParametersTestGroupBox.TabStop = false;
-            this.ParametersTestGroupBox.Text = "Параметры испытания:";
-            // 
-            // label41
-            // 
-            this.label41.AutoSize = true;
-            this.label41.Location = new System.Drawing.Point(6, 49);
-            this.label41.Margin = new System.Windows.Forms.Padding(3);
-            this.label41.Name = "label41";
-            this.label41.Size = new System.Drawing.Size(84, 13);
-            this.label41.TabIndex = 24;
-            this.label41.Text = "Тип установки:";
-            // 
-            // TypeInstallationComboBox
-            // 
-            this.TypeInstallationComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.TypeInstallationComboBox.FormattingEnabled = true;
-            this.TypeInstallationComboBox.Items.AddRange(new object[] {
-            "IHM-15",
-            "IHM-25",
-            "IHM-30"});
-            this.TypeInstallationComboBox.Location = new System.Drawing.Point(96, 46);
-            this.TypeInstallationComboBox.Name = "TypeInstallationComboBox";
-            this.TypeInstallationComboBox.Size = new System.Drawing.Size(210, 21);
-            this.TypeInstallationComboBox.TabIndex = 23;
-            // 
-            // PeriodicTestsGroupBox
-            // 
-            this.PeriodicTestsGroupBox.BackColor = System.Drawing.Color.LimeGreen;
-            this.PeriodicTestsGroupBox.Controls.Add(this.NumberPeriodsNumericUpDown);
-            this.PeriodicTestsGroupBox.Controls.Add(this.TimePeriodicOffNumericUpDown);
-            this.PeriodicTestsGroupBox.Controls.Add(this.TimePeriodicOnNumericUpDown);
-            this.PeriodicTestsGroupBox.Controls.Add(this.label28);
-            this.PeriodicTestsGroupBox.Controls.Add(this.label33);
-            this.PeriodicTestsGroupBox.Controls.Add(this.label36);
-            this.PeriodicTestsGroupBox.Controls.Add(this.label38);
-            this.PeriodicTestsGroupBox.Controls.Add(this.label40);
-            this.PeriodicTestsGroupBox.Enabled = false;
-            this.PeriodicTestsGroupBox.Location = new System.Drawing.Point(6, 120);
-            this.PeriodicTestsGroupBox.Name = "PeriodicTestsGroupBox";
-            this.PeriodicTestsGroupBox.Size = new System.Drawing.Size(300, 96);
-            this.PeriodicTestsGroupBox.TabIndex = 22;
-            this.PeriodicTestsGroupBox.TabStop = false;
-            this.PeriodicTestsGroupBox.Text = "Папаметры периодического испытания";
-            // 
-            // NumberPeriodsNumericUpDown
-            // 
-            this.NumberPeriodsNumericUpDown.Location = new System.Drawing.Point(200, 69);
-            this.NumberPeriodsNumericUpDown.Name = "NumberPeriodsNumericUpDown";
-            this.NumberPeriodsNumericUpDown.Size = new System.Drawing.Size(60, 20);
-            this.NumberPeriodsNumericUpDown.TabIndex = 36;
-            this.NumberPeriodsNumericUpDown.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // TimePeriodicOffNumericUpDown
-            // 
-            this.TimePeriodicOffNumericUpDown.Location = new System.Drawing.Point(200, 43);
-            this.TimePeriodicOffNumericUpDown.Maximum = new decimal(new int[] {
-            1440,
-            0,
-            0,
-            0});
-            this.TimePeriodicOffNumericUpDown.Name = "TimePeriodicOffNumericUpDown";
-            this.TimePeriodicOffNumericUpDown.Size = new System.Drawing.Size(60, 20);
-            this.TimePeriodicOffNumericUpDown.TabIndex = 35;
-            this.TimePeriodicOffNumericUpDown.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // TimePeriodicOnNumericUpDown
-            // 
-            this.TimePeriodicOnNumericUpDown.Location = new System.Drawing.Point(200, 17);
-            this.TimePeriodicOnNumericUpDown.Maximum = new decimal(new int[] {
-            1440,
-            0,
-            0,
-            0});
-            this.TimePeriodicOnNumericUpDown.Name = "TimePeriodicOnNumericUpDown";
-            this.TimePeriodicOnNumericUpDown.Size = new System.Drawing.Size(60, 20);
-            this.TimePeriodicOnNumericUpDown.TabIndex = 34;
-            this.TimePeriodicOnNumericUpDown.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // label28
-            // 
-            this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(265, 45);
-            this.label28.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(25, 13);
-            this.label28.TabIndex = 33;
-            this.label28.Text = "сек";
-            // 
-            // label33
-            // 
-            this.label33.AutoSize = true;
-            this.label33.Location = new System.Drawing.Point(265, 19);
-            this.label33.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(25, 13);
-            this.label33.TabIndex = 32;
-            this.label33.Text = "сек";
-            // 
-            // label36
-            // 
-            this.label36.AutoSize = true;
-            this.label36.Location = new System.Drawing.Point(6, 71);
-            this.label36.Margin = new System.Windows.Forms.Padding(3);
-            this.label36.Name = "label36";
-            this.label36.Size = new System.Drawing.Size(120, 13);
-            this.label36.TabIndex = 27;
-            this.label36.Text = "Количество периодов:";
-            // 
-            // label38
-            // 
-            this.label38.AutoSize = true;
-            this.label38.Location = new System.Drawing.Point(6, 45);
-            this.label38.Margin = new System.Windows.Forms.Padding(3);
-            this.label38.Name = "label38";
-            this.label38.Size = new System.Drawing.Size(188, 13);
-            this.label38.TabIndex = 24;
-            this.label38.Text = "Время во выключенном состоянии:";
-            // 
-            // label40
-            // 
-            this.label40.AutoSize = true;
-            this.label40.Location = new System.Drawing.Point(6, 19);
-            this.label40.Margin = new System.Windows.Forms.Padding(3);
-            this.label40.Name = "label40";
-            this.label40.Size = new System.Drawing.Size(180, 13);
-            this.label40.TabIndex = 21;
-            this.label40.Text = "Время во включенном состоянии:";
             // 
             // LaunchButton
             // 
             this.LaunchButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.LaunchButton.Location = new System.Drawing.Point(6, 433);
+            this.LaunchButton.Location = new System.Drawing.Point(12, 321);
             this.LaunchButton.Name = "LaunchButton";
             this.LaunchButton.Size = new System.Drawing.Size(300, 28);
             this.LaunchButton.TabIndex = 21;
-            this.LaunchButton.Text = "ЗАПУСТИТЬ";
+            this.LaunchButton.Text = "ЗАПУСК";
             this.LaunchButton.UseVisualStyleBackColor = true;
-            // 
-            // ResourceTestsGroupBox
-            // 
-            this.ResourceTestsGroupBox.BackColor = System.Drawing.Color.SpringGreen;
-            this.ResourceTestsGroupBox.Controls.Add(this.TimeResourceOffNumericUpDown);
-            this.ResourceTestsGroupBox.Controls.Add(this.TimeResourceOnNumericUpDown);
-            this.ResourceTestsGroupBox.Controls.Add(this.label31);
-            this.ResourceTestsGroupBox.Controls.Add(this.label32);
-            this.ResourceTestsGroupBox.Controls.Add(this.label29);
-            this.ResourceTestsGroupBox.Controls.Add(this.label30);
-            this.ResourceTestsGroupBox.Enabled = false;
-            this.ResourceTestsGroupBox.Location = new System.Drawing.Point(6, 222);
-            this.ResourceTestsGroupBox.Name = "ResourceTestsGroupBox";
-            this.ResourceTestsGroupBox.Size = new System.Drawing.Size(300, 70);
-            this.ResourceTestsGroupBox.TabIndex = 15;
-            this.ResourceTestsGroupBox.TabStop = false;
-            this.ResourceTestsGroupBox.Text = "Папаметры ресурсного испытания";
-            // 
-            // TimeResourceOffNumericUpDown
-            // 
-            this.TimeResourceOffNumericUpDown.Location = new System.Drawing.Point(200, 43);
-            this.TimeResourceOffNumericUpDown.Maximum = new decimal(new int[] {
-            1400,
-            0,
-            0,
-            0});
-            this.TimeResourceOffNumericUpDown.Name = "TimeResourceOffNumericUpDown";
-            this.TimeResourceOffNumericUpDown.Size = new System.Drawing.Size(60, 20);
-            this.TimeResourceOffNumericUpDown.TabIndex = 31;
-            this.TimeResourceOffNumericUpDown.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // TimeResourceOnNumericUpDown
-            // 
-            this.TimeResourceOnNumericUpDown.Location = new System.Drawing.Point(200, 17);
-            this.TimeResourceOnNumericUpDown.Maximum = new decimal(new int[] {
-            1440,
-            0,
-            0,
-            0});
-            this.TimeResourceOnNumericUpDown.Name = "TimeResourceOnNumericUpDown";
-            this.TimeResourceOnNumericUpDown.Size = new System.Drawing.Size(60, 20);
-            this.TimeResourceOnNumericUpDown.TabIndex = 30;
-            this.TimeResourceOnNumericUpDown.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // label31
-            // 
-            this.label31.AutoSize = true;
-            this.label31.Location = new System.Drawing.Point(265, 45);
-            this.label31.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(25, 13);
-            this.label31.TabIndex = 26;
-            this.label31.Text = "сек";
-            // 
-            // label32
-            // 
-            this.label32.AutoSize = true;
-            this.label32.Location = new System.Drawing.Point(6, 45);
-            this.label32.Margin = new System.Windows.Forms.Padding(3);
-            this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(188, 13);
-            this.label32.TabIndex = 24;
-            this.label32.Text = "Время во выключенном состоянии:";
-            // 
-            // label29
-            // 
-            this.label29.AutoSize = true;
-            this.label29.Location = new System.Drawing.Point(265, 19);
-            this.label29.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(25, 13);
-            this.label29.TabIndex = 23;
-            this.label29.Text = "сек";
-            // 
-            // label30
-            // 
-            this.label30.AutoSize = true;
-            this.label30.Location = new System.Drawing.Point(6, 19);
-            this.label30.Margin = new System.Windows.Forms.Padding(3);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(180, 13);
-            this.label30.TabIndex = 21;
-            this.label30.Text = "Время во включенном состоянии:";
-            // 
-            // ThermometerGroupBox
-            // 
-            this.ThermometerGroupBox.BackColor = System.Drawing.Color.LightSeaGreen;
-            this.ThermometerGroupBox.Controls.Add(this.ThermometerOnRadioButton);
-            this.ThermometerGroupBox.Controls.Add(this.ThermometerOffRadioButton);
-            this.ThermometerGroupBox.ForeColor = System.Drawing.Color.Black;
-            this.ThermometerGroupBox.Location = new System.Drawing.Point(6, 73);
-            this.ThermometerGroupBox.Name = "ThermometerGroupBox";
-            this.ThermometerGroupBox.Size = new System.Drawing.Size(300, 41);
-            this.ThermometerGroupBox.TabIndex = 14;
-            this.ThermometerGroupBox.TabStop = false;
-            this.ThermometerGroupBox.Text = "Датчик температуры";
-            // 
-            // ThermometerOnRadioButton
-            // 
-            this.ThermometerOnRadioButton.AutoSize = true;
-            this.ThermometerOnRadioButton.Location = new System.Drawing.Point(6, 18);
-            this.ThermometerOnRadioButton.Name = "ThermometerOnRadioButton";
-            this.ThermometerOnRadioButton.Size = new System.Drawing.Size(79, 17);
-            this.ThermometerOnRadioButton.TabIndex = 12;
-            this.ThermometerOnRadioButton.Text = "ВКЛЮЧЕН";
-            this.ThermometerOnRadioButton.UseVisualStyleBackColor = true;
-            // 
-            // ThermometerOffRadioButton
-            // 
-            this.ThermometerOffRadioButton.AutoSize = true;
-            this.ThermometerOffRadioButton.Checked = true;
-            this.ThermometerOffRadioButton.Location = new System.Drawing.Point(91, 18);
-            this.ThermometerOffRadioButton.Name = "ThermometerOffRadioButton";
-            this.ThermometerOffRadioButton.Size = new System.Drawing.Size(89, 17);
-            this.ThermometerOffRadioButton.TabIndex = 13;
-            this.ThermometerOffRadioButton.TabStop = true;
-            this.ThermometerOffRadioButton.Text = "ВЫКЛЮЧЕН";
-            this.ThermometerOffRadioButton.UseVisualStyleBackColor = true;
-            // 
-            // label27
-            // 
-            this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(6, 22);
-            this.label27.Margin = new System.Windows.Forms.Padding(3);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(67, 13);
-            this.label27.TabIndex = 11;
-            this.label27.Text = "Испытание:";
-            // 
-            // TypeTestComboBox
-            // 
-            this.TypeTestComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.TypeTestComboBox.FormattingEnabled = true;
-            this.TypeTestComboBox.Items.AddRange(new object[] {
-            "ресурсное",
-            "переодическое "});
-            this.TypeTestComboBox.Location = new System.Drawing.Point(96, 19);
-            this.TypeTestComboBox.Name = "TypeTestComboBox";
-            this.TypeTestComboBox.Size = new System.Drawing.Size(210, 21);
-            this.TypeTestComboBox.TabIndex = 0;
+            this.LaunchButton.Click += new System.EventHandler(this.LaunchButton_Click);
             // 
             // groupBox1
             // 
@@ -765,7 +453,7 @@ namespace TesterAppUI
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label17);
             this.groupBox1.Controls.Add(this.label18);
-            this.groupBox1.Location = new System.Drawing.Point(6, 298);
+            this.groupBox1.Location = new System.Drawing.Point(12, 181);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox1.Size = new System.Drawing.Size(300, 134);
@@ -813,7 +501,7 @@ namespace TesterAppUI
             this.WriteRegisterButton.Name = "WriteRegisterButton";
             this.WriteRegisterButton.Size = new System.Drawing.Size(290, 33);
             this.WriteRegisterButton.TabIndex = 18;
-            this.WriteRegisterButton.Text = "Применить";
+            this.WriteRegisterButton.Text = "Задать";
             this.WriteRegisterButton.UseVisualStyleBackColor = true;
             // 
             // label6
@@ -876,19 +564,76 @@ namespace TesterAppUI
             this.label18.TabIndex = 10;
             this.label18.Text = "Ток стабилизации БИРН:";
             // 
+            // menuStrip1
+            // 
+            this.menuStrip1.BackColor = System.Drawing.SystemColors.HighlightText;
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.SettingTestToolStripMenuItem,
+            this.SettingGraphicsToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(1050, 24);
+            this.menuStrip1.TabIndex = 24;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // SettingTestToolStripMenuItem
+            // 
+            this.SettingTestToolStripMenuItem.Name = "SettingTestToolStripMenuItem";
+            this.SettingTestToolStripMenuItem.Size = new System.Drawing.Size(141, 20);
+            this.SettingTestToolStripMenuItem.Text = "Настройка испытания";
+            this.SettingTestToolStripMenuItem.Click += new System.EventHandler(this.SettingTestToolStripMenuItem_Click);
+            // 
+            // SettingGraphicsToolStripMenuItem
+            // 
+            this.SettingGraphicsToolStripMenuItem.Name = "SettingGraphicsToolStripMenuItem";
+            this.SettingGraphicsToolStripMenuItem.Size = new System.Drawing.Size(137, 20);
+            this.SettingGraphicsToolStripMenuItem.Text = "Настройка графиков ";
+            // 
+            // StopButton
+            // 
+            this.StopButton.Location = new System.Drawing.Point(12, 468);
+            this.StopButton.Name = "StopButton";
+            this.StopButton.Size = new System.Drawing.Size(300, 74);
+            this.StopButton.TabIndex = 25;
+            this.StopButton.Text = "Осановить";
+            this.StopButton.UseVisualStyleBackColor = true;
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(12, 390);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(50, 13);
+            this.label19.TabIndex = 26;
+            this.label19.Text = "Прошло:";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(132, 355);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(56, 20);
+            this.textBox1.TabIndex = 27;
+            // 
             // TestingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScrollMargin = new System.Drawing.Size(6, 6);
-            this.BackColor = System.Drawing.Color.PeachPuff;
-            this.ClientSize = new System.Drawing.Size(791, 528);
-            this.Controls.Add(this.ParametersTestGroupBox);
+            this.BackColor = System.Drawing.SystemColors.Menu;
+            this.ClientSize = new System.Drawing.Size(1050, 554);
+            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.label19);
+            this.Controls.Add(this.StopButton);
+            this.Controls.Add(this.groupBox4);
+            this.Controls.Add(this.LaunchButton);
             this.Controls.Add(this.RemainingTimeTextBox);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.label2);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.TimeTestTextBox);
+            this.Controls.Add(this.menuStrip1);
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "TestingForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Испытательный процесс";
@@ -902,24 +647,13 @@ namespace TesterAppUI
             ((System.ComponentModel.ISupportInitialize)(this.VoltageOutputChart)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CurrentOutputChart)).EndInit();
             this.panel1.ResumeLayout(false);
-            this.ParametersTestGroupBox.ResumeLayout(false);
-            this.ParametersTestGroupBox.PerformLayout();
-            this.PeriodicTestsGroupBox.ResumeLayout(false);
-            this.PeriodicTestsGroupBox.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.NumberPeriodsNumericUpDown)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TimePeriodicOffNumericUpDown)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TimePeriodicOnNumericUpDown)).EndInit();
-            this.ResourceTestsGroupBox.ResumeLayout(false);
-            this.ResourceTestsGroupBox.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.TimeResourceOffNumericUpDown)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TimeResourceOnNumericUpDown)).EndInit();
-            this.ThermometerGroupBox.ResumeLayout(false);
-            this.ThermometerGroupBox.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PowerNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.VoltageNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CurrentNumericUpDown)).EndInit();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -953,31 +687,7 @@ namespace TesterAppUI
         private System.Windows.Forms.DataVisualization.Charting.Chart VoltageOutputChart;
         private System.Windows.Forms.DataVisualization.Charting.Chart CurrentOutputChart;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.GroupBox ParametersTestGroupBox;
-        private System.Windows.Forms.Label label41;
-        private System.Windows.Forms.ComboBox TypeInstallationComboBox;
-        private System.Windows.Forms.GroupBox PeriodicTestsGroupBox;
-        private System.Windows.Forms.NumericUpDown NumberPeriodsNumericUpDown;
-        private System.Windows.Forms.NumericUpDown TimePeriodicOffNumericUpDown;
-        private System.Windows.Forms.NumericUpDown TimePeriodicOnNumericUpDown;
-        private System.Windows.Forms.Label label28;
-        private System.Windows.Forms.Label label33;
-        private System.Windows.Forms.Label label36;
-        private System.Windows.Forms.Label label38;
-        private System.Windows.Forms.Label label40;
         private System.Windows.Forms.Button LaunchButton;
-        private System.Windows.Forms.GroupBox ResourceTestsGroupBox;
-        private System.Windows.Forms.NumericUpDown TimeResourceOffNumericUpDown;
-        private System.Windows.Forms.NumericUpDown TimeResourceOnNumericUpDown;
-        private System.Windows.Forms.Label label31;
-        private System.Windows.Forms.Label label32;
-        private System.Windows.Forms.Label label29;
-        private System.Windows.Forms.Label label30;
-        private System.Windows.Forms.GroupBox ThermometerGroupBox;
-        private System.Windows.Forms.RadioButton ThermometerOnRadioButton;
-        private System.Windows.Forms.RadioButton ThermometerOffRadioButton;
-        private System.Windows.Forms.Label label27;
-        private System.Windows.Forms.ComboBox TypeTestComboBox;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.NumericUpDown PowerNumericUpDown;
         private System.Windows.Forms.NumericUpDown VoltageNumericUpDown;
@@ -989,5 +699,11 @@ namespace TesterAppUI
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem SettingTestToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem SettingGraphicsToolStripMenuItem;
+        private System.Windows.Forms.Button StopButton;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }
