@@ -256,9 +256,9 @@ namespace TesterAppUI
             this.label6.Location = new System.Drawing.Point(265, 72);
             this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(19, 13);
+            this.label6.Size = new System.Drawing.Size(25, 13);
             this.label6.TabIndex = 17;
-            this.label6.Text = "Вт";
+            this.label6.Text = "кВт";
             // 
             // label5
             // 
@@ -380,9 +380,9 @@ namespace TesterAppUI
             this.label15.Location = new System.Drawing.Point(388, 122);
             this.label15.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(19, 13);
+            this.label15.Size = new System.Drawing.Size(25, 13);
             this.label15.TabIndex = 23;
-            this.label15.Text = "Вт";
+            this.label15.Text = "кВт";
             // 
             // PowerOutputTextBox
             // 
@@ -460,9 +460,9 @@ namespace TesterAppUI
             this.label9.Location = new System.Drawing.Point(388, 18);
             this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(19, 13);
+            this.label9.Size = new System.Drawing.Size(25, 13);
             this.label9.TabIndex = 15;
-            this.label9.Text = "Гц";
+            this.label9.Text = "кГц";
             // 
             // VoltageOutputTextBox
             // 
@@ -556,9 +556,9 @@ namespace TesterAppUI
             this.label17.Location = new System.Drawing.Point(386, 123);
             this.label17.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(19, 13);
+            this.label17.Size = new System.Drawing.Size(25, 13);
             this.label17.TabIndex = 23;
-            this.label17.Text = "Гц";
+            this.label17.Text = "кГц";
             // 
             // textBox10
             // 
@@ -586,9 +586,9 @@ namespace TesterAppUI
             this.label19.Location = new System.Drawing.Point(386, 97);
             this.label19.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(19, 13);
+            this.label19.Size = new System.Drawing.Size(25, 13);
             this.label19.TabIndex = 20;
-            this.label19.Text = "Гц";
+            this.label19.Text = "кГц";
             // 
             // textBox11
             // 
@@ -831,9 +831,9 @@ namespace TesterAppUI
             this.label28.Location = new System.Drawing.Point(265, 45);
             this.label28.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(27, 13);
+            this.label28.Size = new System.Drawing.Size(25, 13);
             this.label28.TabIndex = 33;
-            this.label28.Text = "мин";
+            this.label28.Text = "сек";
             // 
             // label33
             // 
@@ -841,9 +841,9 @@ namespace TesterAppUI
             this.label33.Location = new System.Drawing.Point(265, 19);
             this.label33.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(27, 13);
+            this.label33.Size = new System.Drawing.Size(25, 13);
             this.label33.TabIndex = 32;
-            this.label33.Text = "мин";
+            this.label33.Text = "сек";
             // 
             // label36
             // 
@@ -937,9 +937,9 @@ namespace TesterAppUI
             this.label31.Location = new System.Drawing.Point(265, 45);
             this.label31.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(27, 13);
+            this.label31.Size = new System.Drawing.Size(25, 13);
             this.label31.TabIndex = 26;
-            this.label31.Text = "мин";
+            this.label31.Text = "сек";
             // 
             // label32
             // 
@@ -957,9 +957,9 @@ namespace TesterAppUI
             this.label29.Location = new System.Drawing.Point(265, 19);
             this.label29.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(27, 13);
+            this.label29.Size = new System.Drawing.Size(25, 13);
             this.label29.TabIndex = 23;
-            this.label29.Text = "мин";
+            this.label29.Text = "сек";
             // 
             // label30
             // 

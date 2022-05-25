@@ -47,22 +47,24 @@ namespace TesterAppUI
         /// <summary>
         /// Переменная хранящая время всего тестирования
         /// </summary>
-        private DateTime _timeTest = new DateTime(0, 0);
+        public DateTime _timeTest = new DateTime(0, 0);
 
         /// <summary>
         /// Переменная хранящая время активного режима установки
         /// </summary>
-        private DateTime _timeStart;
+        public DateTime _timeStart;
 
         /// <summary>
         /// Переменная хранящая время установки в выключенном состоянии
         /// </summary>
-        private DateTime _timeStop;
+        public DateTime _timeStop;
 
         /// <summary>
         /// Переменная для обнеления времени
         /// </summary>
-        private DateTime _timeNull = new DateTime(0, 0);
+        public DateTime _timeNull = new DateTime(0, 0);
+
+        private bool _key;
 
 
 
@@ -96,11 +98,12 @@ namespace TesterAppUI
         /// <param name="e"></param>
         private void ConnectButton_Click(object sender, EventArgs e)
         {
+            _key = true;
             try
             {
                 _port.Open();
             }
-            catch(NullReferenceException ex)
+            catch(NullReferenceException)
             {
                 MessageBox.Show("Не указаны настройки порта", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     //("Проверьте настройки подключения", "Ошибка", MessageBoxButtons.OK);
@@ -114,6 +117,7 @@ namespace TesterAppUI
             StartButton.Enabled = true;
             ParametersTestGroupBox.Enabled = true;
 
+
             ControllerParameters();
             WorkParameters();
             ManagementParameters();
@@ -126,6 +130,7 @@ namespace TesterAppUI
         /// <param name="e"></param>
         private void DisableButton_Click(object sender, EventArgs e)
         {
+            _key = false;
             try
             {
                 StartStopController(false);
@@ -142,6 +147,8 @@ namespace TesterAppUI
                 //("Проверьте настройки подключения", "Ошибка", MessageBoxButtons.OK);
                 return;
             }
+
+            timer1.Enabled = false;
             ConnectButton.Enabled = true;
             DisableButton.Enabled = false;
             StartButton.Enabled = false;
@@ -159,31 +166,44 @@ namespace TesterAppUI
             for (int i = 0; i <= 4; i++)
             {
                 ushort[] result = _masrerRTU.ReadHoldingRegisters(_slaveAddress, startAddress[i], _numberOfPoints);
+                string a;
+                double e;
                 switch (i)
                 {
                     case 0:
                         FrequencyVoltageTextBox.Text = string.Empty;
-                        FrequencyVoltageTextBox.Text = String.Concat<ushort>(result);
+                        a = String.Concat<ushort>(result);
+                        e = Convert.ToDouble(a)/100;
+                        //FrequencyVoltageTextBox.Text = String.Concat<ushort>(result);
+                        FrequencyVoltageTextBox.Text = e.ToString();
                         _controllerParameters[i] = FrequencyVoltageTextBox.Text;
                         break;
                     case 1:
                         VoltageEntranceTextBox.Text = string.Empty;
+                        //a = String.Concat<ushort>(result);
+                        //e = Convert.ToDouble(a);
                         VoltageEntranceTextBox.Text = String.Concat<ushort>(result);
                         _controllerParameters[i] = VoltageEntranceTextBox.Text;
                         break;
                     case 2:
                         VoltageOutputTextBox.Text = string.Empty;
+                        a = String.Concat<ushort>(result);
+                        e = Convert.ToDouble(a);
                         VoltageOutputTextBox.Text = String.Concat<ushort>(result);
                         _controllerParameters[i] = VoltageOutputTextBox.Text;
                         break;
                     case 3:
                         CurrentOutputTextBox.Text = string.Empty;
-                        CurrentOutputTextBox.Text = String.Concat<ushort>(result);
+                        a = string.Concat(result);
+                        e = Convert.ToDouble(a)/10;
+                        CurrentOutputTextBox.Text = e.ToString();//String.Concat<ushort>(result);
                         _controllerParameters[i] = CurrentOutputTextBox.Text;
                         break;
                     case 4:
                         PowerOutputTextBox.Text = string.Empty;
-                        PowerOutputTextBox.Text = String.Concat<ushort>(result);
+                        a = String.Concat<ushort>(result);
+                        e = Convert.ToDouble(a)/10;
+                        PowerOutputTextBox.Text = e.ToString();//String.Concat<ushort>(result);
                         _controllerParameters[i] = PowerOutputTextBox.Text;
                         break;
                 }
@@ -196,7 +216,8 @@ namespace TesterAppUI
         private void WorkParameters()
         {
             ushort[] startAddress = {0xA440, 0xA441, 0xa442, 0xa443, 0xA444 };
-
+            string a;
+            double e;
             for (int i = 0; i <= 4; i++)
             {
                 ushort[] result = _masrerRTU.ReadHoldingRegisters(_slaveAddress, startAddress[i], _numberOfPoints);
@@ -212,15 +233,21 @@ namespace TesterAppUI
                         break;
                     case 2:
                         textBox12.Text = string.Empty;
-                        textBox12.Text = String.Concat<ushort>(result);
+                        a = String.Concat<ushort>(result);
+                        e = Convert.ToDouble(a)/10;
+                        textBox12.Text = e.ToString();//String.Concat<ushort>(result);
                         break;
                     case 3:
                         textBox11.Text = string.Empty;
-                        textBox11.Text = String.Concat<ushort>(result);
+                        a = String.Concat<ushort>(result);
+                        e = Convert.ToDouble(a)/10;
+                        textBox11.Text = e.ToString();//String.Concat<ushort>(result);
                         break;
                     case 4:
                         textBox10.Text = string.Empty;
-                        textBox10.Text = String.Concat<ushort>(result);
+                        a = String.Concat<ushort>(result);
+                        e = Convert.ToDouble(a);
+                        textBox10.Text = e.ToString();//String.Concat<ushort>(result);
                         break;
                 }
             }
@@ -233,7 +260,8 @@ namespace TesterAppUI
         private void ManagementParameters()
         {
             ushort[] startAddress = {0xA420, 0xa421, 0xa422};
-
+            string a;
+            double e;
             for (int i = 0; i <= 2; i++)
             {
                 ushort[] result = _masrerRTU.ReadHoldingRegisters(_slaveAddress, startAddress[i], _numberOfPoints);
@@ -242,7 +270,9 @@ namespace TesterAppUI
                 {
                     case 0:
                         CurrentNumericUpDown.Text = string.Empty;
-                        CurrentNumericUpDown.Text = String.Concat<ushort>(result);
+                        a = String.Concat<ushort>(result);
+                        e = Convert.ToDouble(a) / 10;
+                        CurrentNumericUpDown.Text = e.ToString();// String.Concat<ushort>(result);
                         break;
                     case 1:
                         VoltageNumericUpDown.Text = string.Empty;
@@ -250,6 +280,8 @@ namespace TesterAppUI
                         break;
                     case 2:
                         PowerNumericUpDown.Text = string.Empty;
+                        a = String.Concat<ushort>(result);
+                        e = Convert.ToDouble(a) / 10;
                         PowerNumericUpDown.Text = String.Concat<ushort>(result);
                         break;
                 }
@@ -272,16 +304,17 @@ namespace TesterAppUI
                     switch (i)
                     {
                         case 0:
-                            value = Convert.ToUInt16(CurrentNumericUpDown.Text);
+                            value = (ushort) (Convert.ToUInt16(CurrentNumericUpDown.Text)*Convert.ToUInt16(10));
                             _masrerRTU.WriteSingleRegister(_slaveAddress, startAddress[i], value);
                             break;
                         case 1:
-                            value = Convert.ToUInt16(VoltageNumericUpDown.Text);
+
+                            //value = Convert.ToUInt16(VoltageNumericUpDown.Text);
                             ///значения в регистр а421 не записывается!!!!!
-                            _masrerRTU.WriteSingleRegister(_slaveAddress, startAddress[i], value);
+                            //_masrerRTU.WriteSingleRegister(_slaveAddress, startAddress[i], value);
                             break;
                         case 2:
-                            value = Convert.ToUInt16(CurrentNumericUpDown.Text);
+                            value = (ushort) (Convert.ToUInt16(PowerNumericUpDown.Text) * Convert.ToUInt16(10));
                             _masrerRTU.WriteSingleRegister(_slaveAddress, startAddress[i], value);
                             break;
                     }
@@ -321,22 +354,24 @@ namespace TesterAppUI
                 ResetButton.Enabled = true;
                 StartButton.Enabled = false;
                 WriteRegisterButton.Enabled = false;
-                CurrentNumericUpDown.Enabled = false;
-                PowerNumericUpDown.Enabled = false;
-                VoltageNumericUpDown.Enabled = false;
+                
+                CurrentNumericUpDown.ReadOnly = true;
+                PowerNumericUpDown.ReadOnly = true;
+                VoltageNumericUpDown.ReadOnly = true;
             }
             else
             {
                 value = Convert.ToUInt16(0);
                 _masrerRTU.WriteSingleRegister(_slaveAddress, startAddress, value);
-                timer1.Enabled = false;
-                StopButton.Enabled = true;
-                ResetButton.Enabled = true;
-                StartButton.Enabled = false;
-                WriteRegisterButton.Enabled = false;
-                CurrentNumericUpDown.Enabled = false;
-                PowerNumericUpDown.Enabled = false;
-                VoltageNumericUpDown.Enabled = false;
+                timer1.Enabled = true;
+                StopButton.Enabled = false;
+                ResetButton.Enabled = false;
+                StartButton.Enabled = true;
+                WriteRegisterButton.Enabled = true;
+                
+                CurrentNumericUpDown.ReadOnly = false;
+                PowerNumericUpDown.ReadOnly = false;
+                VoltageNumericUpDown.ReadOnly = false;
             }
         }
 
@@ -348,9 +383,13 @@ namespace TesterAppUI
         /// <param name="e"></param>
         private void timer1_Tick(object sender, EventArgs e)
         {
+            if (StartButton.Enabled == false)
+            {
+                ManagementParameters();
+            }
             ControllerParameters();
             WorkParameters();
-            ManagementParameters();
+            
             SatusController();
         }
 
@@ -423,6 +462,7 @@ namespace TesterAppUI
         /// <param name="e"></param>
         private void StopButton_Click(object sender, EventArgs e)
         {
+            _key = false;
             StartStopController(false);
         }
 
@@ -469,13 +509,13 @@ namespace TesterAppUI
             var testing = new TestingForm();
             testing._controllerParameters = _controllerParameters;
             testing._timeRemeining = _timeTest;
-            Testing();
 
             if (Application.OpenForms.OfType<TestingForm>().Count() == 0) 
             {
                 testing.Show();
 
             }
+            Testing();
 
         }
 
@@ -487,29 +527,30 @@ namespace TesterAppUI
             if (TypeInstallationComboBox.SelectedIndex == -1)
             {
                 throw new ArgumentException("Не выбран тип установки");
-                return;
             }
             if (TypeTestComboBox.SelectedIndex == -1)
             {
                 throw new ArgumentException("Не выбран тип испытания");
-                return;
             }
             switch (TypeTestComboBox.SelectedIndex)
             {
                 case 0:
                     if (TimeResourceOffNumericUpDown.Value == 0
-                        && TimeResourceOnNumericUpDown.Value == 0)
+                        || TimeResourceOnNumericUpDown.Value == 0)
                     {
                         throw new ArgumentException("Не указанно время работы");
-                        return;
                     }
                     break;
                 case 1:
                     if (TimePeriodicOffNumericUpDown.Value == 0
-                        && TimePeriodicOnNumericUpDown.Value == 0)
+                        || TimePeriodicOnNumericUpDown.Value == 0)
                     {
                         throw new ArgumentException("Не указанно время работы");
-                        return;
+                    }
+
+                    if (NumberPeriodsNumericUpDown.Value == 0)
+                    {
+                        throw new ArgumentException("Не указанно коллиество периодов");
                     }
                     break;
             }
@@ -523,17 +564,17 @@ namespace TesterAppUI
             switch (TypeTestComboBox.SelectedIndex)
             {
                 case 0:
-                    _timeStart = _timeTest.AddMinutes(Convert.ToDouble(TimeResourceOnNumericUpDown.Text));
-                    _timeStop = _timeTest.AddMinutes(Convert.ToDouble(TimeResourceOffNumericUpDown.Text));
-                    _timeTest = _timeTest.AddMinutes(Convert.ToDouble(TimeResourceOffNumericUpDown.Text) 
-                                         + Convert.ToDouble(TimeResourceOnNumericUpDown.Text));
+                    _timeStart = _timeTest.AddSeconds(Convert.ToDouble(TimeResourceOnNumericUpDown.Text));
+                    _timeStop = _timeTest.AddSeconds(Convert.ToDouble(TimeResourceOffNumericUpDown.Text));
+                    _timeTest = _timeTest.AddSeconds(Convert.ToDouble(TimeResourceOffNumericUpDown.Text) 
+                                                     + Convert.ToDouble(TimeResourceOnNumericUpDown.Text));
                     break;
                 case 1:
-                    _timeStart = _timeTest.AddMinutes(Convert.ToDouble(TimePeriodicOffNumericUpDown.Text));
-                    _timeStop = _timeTest.AddMinutes(Convert.ToDouble(TimePeriodicOnNumericUpDown.Text));
+                    _timeStart = _timeTest.AddSeconds(Convert.ToDouble(TimePeriodicOnNumericUpDown.Text));
+                    _timeStop = _timeTest.AddSeconds(Convert.ToDouble(TimePeriodicOffNumericUpDown.Text));
                     double value = (Convert.ToDouble(TimePeriodicOffNumericUpDown.Text)
                                     + Convert.ToDouble(TimePeriodicOnNumericUpDown.Text))*Convert.ToDouble(NumberPeriodsNumericUpDown.Text);
-                    _timeTest = _timeTest.AddMinutes(value);
+                    _timeTest = _timeTest.AddSeconds(value);
                     break;
             }
         }
@@ -545,46 +586,7 @@ namespace TesterAppUI
         {
             TimerStart.Enabled = true;
             StartStopController(true);
-            switch (TypeTestComboBox.SelectedIndex)
-            {
-                case 0:
-                    if (_timeStart.Hour == 0 && _timeStart.Minute == 0 && _timeStart.Second == 0)
-                    {
-                        StartStopController(false);
-                        TimerStop.Enabled = true;
-                    }
-                    if (_timeStop.Hour == 0 && _timeStop.Minute == 0 && _timeStop.Second == 0)
-                    {
-                        _timeStop = _timeNull;
-                        _timeStart = _timeNull;
-                        _timeTest = _timeNull;
-                    }
-                   
-                    break;
-                case 1:
-                    for (int i = 0; i < TimePeriodicOnNumericUpDown.Value; i++)
-                    {
-                        if (_timeStart.Hour == 0 && _timeStart.Minute == 0 && _timeStart.Second == 0)
-                        {
-                            StartStopController(false);
-                            TimerStop.Enabled = true;
-                        }
-                        if (_timeStop.Hour == 0 && _timeStop.Minute == 0 && _timeStop.Second == 0)
-                         {
-                             if ((i++) == TimePeriodicOnNumericUpDown.Value)
-                             {
-                                 _timeStop = _timeNull;
-                                 _timeStart = _timeNull;
-                                 _timeTest = _timeNull;
-                                return;
-                             }
-                            StartStopController(true);
-                            _timeStart = _timeTest.AddMinutes(Convert.ToDouble(TimeResourceOnNumericUpDown.Text));
-                            _timeStop = _timeTest.AddMinutes(Convert.ToDouble(TimeResourceOffNumericUpDown.Text));
-                        }
-                    }
-                    break;
-            }
+            
         }
 
         /// <summary>
@@ -594,7 +596,8 @@ namespace TesterAppUI
         /// <param name="e"></param>
         private void TimerStart_Tick(object sender, EventArgs e)
         {
-            _timeStart.AddSeconds(-1);
+            _timeStart = _timeStart.AddSeconds(-1);
+            TypeTimeTestCheked();
         }
 
         /// <summary>
@@ -604,7 +607,8 @@ namespace TesterAppUI
         /// <param name="e"></param>
         private void TimerStop_Tick(object sender, EventArgs e)
         {
-            _timeStop.AddSeconds(-1);
+            _timeStop = _timeStop.AddSeconds(-1);
+            TypeTimeTestCheked();
         }
 
         private void TimePeriodicOnNumericUpDown_MouseClick(object sender, MouseEventArgs e)
@@ -647,18 +651,67 @@ namespace TesterAppUI
             switch (TypeInstallationComboBox.SelectedIndex)
             {
                 case 0:
-                    CurrentNumericUpDown.Maximum = 300;
-                    PowerNumericUpDown.Maximum = 15000;
+                    CurrentNumericUpDown.Maximum = 30;
+                    PowerNumericUpDown.Maximum = 15;
                     break;
                 case 1:
-                    CurrentNumericUpDown.Maximum = 500;
-                    PowerNumericUpDown.Maximum = 25000;
+                    CurrentNumericUpDown.Maximum = 50;
+                    PowerNumericUpDown.Maximum = 25;
                     break;
                 case 2:
-                    CurrentNumericUpDown.Maximum = 600;
-                    PowerNumericUpDown.Maximum = 30000;
+                    CurrentNumericUpDown.Maximum = 60;
+                    PowerNumericUpDown.Maximum = 30;
                     break;
             }
+        }
+
+
+        private int d = 1;
+
+        private void TypeTimeTestCheked()
+        {
+            switch (TypeTestComboBox.SelectedIndex)
+            {
+                case 0:
+                    if (_timeStart.Hour == 0 && _timeStart.Minute == 0 && _timeStart.Second == 0)
+                    {
+                        StartStopController(false);
+                        TimerStart.Enabled = false;
+                        TimerStop.Enabled = true;
+                    }
+                    if (_timeStop.Hour == 0 && _timeStop.Minute == 0 && _timeStop.Second == 0)
+                    {
+                        TimerStop.Enabled = false;
+                        _timeTest = _timeNull;
+                    }
+                    break;
+                case 1:
+                    if (_timeStart.Hour == 0 && _timeStart.Minute == 0 && _timeStart.Second == 0)
+                    {
+                        StartStopController(false);
+                        TimerStart.Enabled = false;
+                        TimerStop.Enabled = true;
+                        
+                    }
+
+                    if (_timeStop.Hour == 0 && _timeStop.Minute == 0 && _timeStop.Second == 0)
+                    {
+                        TimerStop.Enabled = false;
+                        _timeTest = _timeNull;
+                        
+                        if (d < NumberPeriodsNumericUpDown.Value)
+                        {
+                            TimeTest();
+                            TimerStart.Enabled = true;
+                            StartStopController(true);
+                            d++;
+                        }
+                    }
+
+
+                    break;
+            }
+
         }
     }
 
