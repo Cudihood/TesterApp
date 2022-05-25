@@ -138,6 +138,7 @@ namespace TesterAppUI
             TypeTimeTestCheked();
         }
 
+        private int d = 1;
         private void TypeTimeTestCheked()
         {
             switch (TypeTestComboBox.SelectedIndex)
@@ -184,6 +185,24 @@ namespace TesterAppUI
 
         }
 
+        private void TypeInstallationComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (TypeInstallationComboBox.SelectedIndex)
+            {
+                case 0:
+                    CurrentNumericUpDown.Maximum = 30;
+                    PowerNumericUpDown.Maximum = 15;
+                    break;
+                case 1:
+                    CurrentNumericUpDown.Maximum = 50;
+                    PowerNumericUpDown.Maximum = 25;
+                    break;
+                case 2:
+                    CurrentNumericUpDown.Maximum = 60;
+                    PowerNumericUpDown.Maximum = 30;
+                    break;
+            }
+        }
         private void OkButton_Click(object sender, EventArgs e)
         {
             CheckData();
@@ -218,5 +237,6 @@ namespace TesterAppUI
                     break;
             }
         }
+
     }
 }

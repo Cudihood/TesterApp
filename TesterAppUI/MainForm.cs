@@ -115,7 +115,7 @@ namespace TesterAppUI
             ConnectButton.Enabled = false;
             DisableButton.Enabled = true;
             StartButton.Enabled = true;
-            ParametersTestGroupBox.Enabled = true;
+            
 
 
             ControllerParameters();
@@ -154,7 +154,7 @@ namespace TesterAppUI
             StartButton.Enabled = false;
             StopButton.Enabled = false;
             ResetButton.Enabled = false;
-            ParametersTestGroupBox.Enabled = false;
+            
         }
 
         /// <summary>
@@ -430,27 +430,7 @@ namespace TesterAppUI
             this.ActiveControl = null;
         }
 
-        /// <summary>
-        /// Задает тип теста 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void TypeTestComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            switch (TypeTestComboBox.SelectedIndex)
-            {
-                case 0:
-                    ResourceTestsGroupBox.Enabled = true;
-                    PeriodicTestsGroupBox.Enabled = false;
-
-                    break;
-                case 1:
-                    ResourceTestsGroupBox.Enabled = false;
-                    PeriodicTestsGroupBox.Enabled = true;
-
-                    break;
-            }
-        }
+        
 
         /// <summary>
         /// Выключает установку
@@ -486,16 +466,7 @@ namespace TesterAppUI
         /// <param name="e"></param>
         private void LaunchButton_Click(object sender, EventArgs e)
         {
-            try
-            {
-                CheckData();
-            }
-            catch (ArgumentException exception)
-            {
-                MessageBox.Show($"{exception.Message}", "Ошибка", MessageBoxButtons.OK);
-                return;
-            }
-
+            
             if (_port == null) 
             {
                 MessageBox.Show("Проверьте настройки подключения", "Ошибка", MessageBoxButtons.OK);
@@ -515,117 +486,8 @@ namespace TesterAppUI
 
         }
 
-        /// <summary>
-        /// Проверяет указанно ли время работы установки
-        /// </summary>
-        private void CheckData()
-        {
-            if (TypeInstallationComboBox.SelectedIndex == -1)
-            {
-                throw new ArgumentException("Не выбран тип установки");
-            }
-            if (TypeTestComboBox.SelectedIndex == -1)
-            {
-                throw new ArgumentException("Не выбран тип испытания");
-            }
-            switch (TypeTestComboBox.SelectedIndex)
-            {
-                case 0:
-                    if (TimeResourceOffNumericUpDown.Value == 0
-                        || TimeResourceOnNumericUpDown.Value == 0)
-                    {
-                        throw new ArgumentException("Не указанно время работы");
-                    }
-                    break;
-                case 1:
-                    if (TimePeriodicOffNumericUpDown.Value == 0
-                        || TimePeriodicOnNumericUpDown.Value == 0)
-                    {
-                        throw new ArgumentException("Не указанно время работы");
-                    }
+        
 
-                    if (NumberPeriodsNumericUpDown.Value == 0)
-                    {
-                        throw new ArgumentException("Не указанно коллиество периодов");
-                    }
-                    break;
-            }
-        }
-
-        /// <summary>
-        /// Задает время тестирования установки
-        /// </summary>
-        private void TimeTest()
-        {
-            switch (TypeTestComboBox.SelectedIndex)
-            {
-                case 0:
-                    _timeStart = _timeTest.AddSeconds(Convert.ToDouble(TimeResourceOnNumericUpDown.Text));
-                    _timeStop = _timeTest.AddSeconds(Convert.ToDouble(TimeResourceOffNumericUpDown.Text));
-                    _timeTest = _timeTest.AddSeconds(Convert.ToDouble(TimeResourceOffNumericUpDown.Text) 
-                                                     + Convert.ToDouble(TimeResourceOnNumericUpDown.Text));
-                    break;
-                case 1:
-                    _timeStart = _timeTest.AddSeconds(Convert.ToDouble(TimePeriodicOnNumericUpDown.Text));
-                    _timeStop = _timeTest.AddSeconds(Convert.ToDouble(TimePeriodicOffNumericUpDown.Text));
-                    double value = (Convert.ToDouble(TimePeriodicOffNumericUpDown.Text)
-                                    + Convert.ToDouble(TimePeriodicOnNumericUpDown.Text))*Convert.ToDouble(NumberPeriodsNumericUpDown.Text);
-                    _timeTest = _timeTest.AddSeconds(value);
-                    break;
-            }
-        }
-
-        /// <summary>
-        /// Запускает сценарий тестирования
-        /// </summary>
-        private void Testing()
-        {
-            TimerStart.Enabled = true;
-            StartStopController(true);
-            
-        }
-
-        /// <summary>
-        /// Запускает таймер отсчета времени активного состояния контроллера
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void TimerStart_Tick(object sender, EventArgs e)
-        {
-            _timeStart = _timeStart.AddSeconds(-1);
-            TypeTimeTestCheked();
-        }
-
-        /// <summary>
-        /// Запускает таймер отчета времни для выключенного состояния контроллера
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void TimerStop_Tick(object sender, EventArgs e)
-        {
-            _timeStop = _timeStop.AddSeconds(-1);
-            TypeTimeTestCheked();
-        }
-
-        private void TimePeriodicOnNumericUpDown_MouseClick(object sender, MouseEventArgs e)
-        {
-            TimePeriodicOnNumericUpDown.Select(0,TimePeriodicOnNumericUpDown.Value.ToString().Length);
-        }
-
-        private void TimePeriodicOffNumericUpDown_MouseClick(object sender, MouseEventArgs e)
-        {
-            TimePeriodicOffNumericUpDown.Select(0, TimePeriodicOffNumericUpDown.Value.ToString().Length);
-        }
-
-        private void TimeResourceOnNumericUpDown_MouseClick(object sender, MouseEventArgs e)
-        {
-            TimeResourceOnNumericUpDown.Select(0, TimeResourceOnNumericUpDown.Value.ToString().Length);
-        }
-
-        private void TimeResourceOffNumericUpDown_MouseClick(object sender, MouseEventArgs e)
-        {
-            TimeResourceOffNumericUpDown.Select(0, TimeResourceOffNumericUpDown.Value.ToString().Length);
-        }
 
         private void CurrentNumericUpDown_MouseClick(object sender, MouseEventArgs e)
         {
@@ -637,77 +499,10 @@ namespace TesterAppUI
             VoltageNumericUpDown.Select(0, VoltageNumericUpDown.Value.ToString().Length);
         }
 
+
         private void PowerNumericUpDown_MouseClick(object sender, MouseEventArgs e)
         {
             PowerNumericUpDown.Select(0, PowerNumericUpDown.Value.ToString().Length);
-        }
-
-        private void TypeInstallationComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            switch (TypeInstallationComboBox.SelectedIndex)
-            {
-                case 0:
-                    CurrentNumericUpDown.Maximum = 30;
-                    PowerNumericUpDown.Maximum = 15;
-                    break;
-                case 1:
-                    CurrentNumericUpDown.Maximum = 50;
-                    PowerNumericUpDown.Maximum = 25;
-                    break;
-                case 2:
-                    CurrentNumericUpDown.Maximum = 60;
-                    PowerNumericUpDown.Maximum = 30;
-                    break;
-            }
-        }
-
-
-        private int d = 1;
-
-        private void TypeTimeTestCheked()
-        {
-            switch (TypeTestComboBox.SelectedIndex)
-            {
-                case 0:
-                    if (_timeStart.Hour == 0 && _timeStart.Minute == 0 && _timeStart.Second == 0)
-                    {
-                        StartStopController(false);
-                        TimerStart.Enabled = false;
-                        TimerStop.Enabled = true;
-                    }
-                    if (_timeStop.Hour == 0 && _timeStop.Minute == 0 && _timeStop.Second == 0)
-                    {
-                        TimerStop.Enabled = false;
-                        _timeTest = _timeNull;
-                    }
-                    break;
-                case 1:
-                    if (_timeStart.Hour == 0 && _timeStart.Minute == 0 && _timeStart.Second == 0)
-                    {
-                        StartStopController(false);
-                        TimerStart.Enabled = false;
-                        TimerStop.Enabled = true;
-                        
-                    }
-
-                    if (_timeStop.Hour == 0 && _timeStop.Minute == 0 && _timeStop.Second == 0)
-                    {
-                        TimerStop.Enabled = false;
-                        _timeTest = _timeNull;
-                        
-                        if (d < NumberPeriodsNumericUpDown.Value)
-                        {
-                            TimeTest();
-                            TimerStart.Enabled = true;
-                            StartStopController(true);
-                            d++;
-                        }
-                    }
-
-
-                    break;
-            }
-
         }
     }
 
