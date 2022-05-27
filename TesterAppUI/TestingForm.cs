@@ -114,6 +114,7 @@ namespace TesterAppUI
                 {
                     timer1.Enabled = false;
                     timer2.Enabled = false;
+                    ChartParameters();
                     MessageBox.Show("Испытание завершенно", "Внимание", MessageBoxButtons.OKCancel);
                     _timeRemeining = _timeTest;
                     _timeBeginning = _timeNull;
@@ -170,6 +171,7 @@ namespace TesterAppUI
         {
             FrequencyVoltageChart.ChartAreas[0].AxisY.Maximum = 60;
             FrequencyVoltageChart.ChartAreas[0].AxisY.Minimum = 0;
+            FrequencyVoltageChart.ChartAreas[0].AxisY.LabelStyle.Format ="0";
             FrequencyVoltageChart.ChartAreas[0].AxisX.LabelStyle.Format = "mm:ss";
             FrequencyVoltageChart.Series[0].XValueType = ChartValueType.DateTime;
             FrequencyVoltageChart.ChartAreas[0].AxisX.Minimum = _timeNull.ToOADate();
@@ -219,7 +221,7 @@ namespace TesterAppUI
         /// </summary>
         private void ChartParameters()
         {
-            FrequencyVoltageChart.Series[0].Points.AddXY(_timeBeginning, Convert.ToDouble(_controllerParameters[0]));
+            FrequencyVoltageChart.Series[0].Points.AddXY(_timeBeginning, _controllerParameters[0]);
             VoltageEntranceChart.Series[0].Points.AddXY(_timeBeginning, Convert.ToDouble(_controllerParameters[1]));
             VoltageOutputChart.Series[0].Points.AddXY(_timeBeginning, Convert.ToDouble(_controllerParameters[2]));
             CurrentOutputChart.Series[0].Points.AddXY(_timeBeginning, Convert.ToDouble(_controllerParameters[3]));
@@ -354,7 +356,7 @@ namespace TesterAppUI
 
         private void SettingChartsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var result = _settingCharts.ShowDialog();
+            var result = _settingChart.ShowDialog();
             if (result != DialogResult.OK)
             {
                 return;
