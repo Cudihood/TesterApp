@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices.ComTypes;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -22,27 +23,29 @@ namespace TesterAppUI
         /// <summary>
         /// Переменная хранящая время тестирования
         /// </summary>
-        public DateTime _timeTest = new DateTime(0, 0);
+        private DateTime _timeTest = new DateTime(0, 0);
+
+        private DateTime _timeNull = new DateTime(0, 0);
 
         /// <summary>
         /// Переменная хранящая время от начала испытания 
         /// </summary>
-        public DateTime _timeBeginning = new DateTime(0, 0);
+        private DateTime _timeBeginning = new DateTime(0, 0);
 
         /// <summary>
         /// Переменная хранящая время активного режима установки
         /// </summary>
-        public DateTime _timeStart;
+        private DateTime _timeStart;
 
         /// <summary>
         /// Переменная хранящая время установки в выключенном состоянии
         /// </summary>
-        public DateTime _timeStop;
+        private DateTime _timeStop;
 
         /// <summary>
         /// Переменная хранящая оставщееся время
         /// </summary>
-        public DateTime _timeRemeining;
+        private DateTime _timeRemeining;
 
         /// <summary>
         /// Массив хранящий данные параметра контроллера
@@ -52,15 +55,22 @@ namespace TesterAppUI
         /// <summary>
         /// Переменная хранящая колличество периодов;
         /// </summary>
-        public int _numberPeriodsNumeric = 1;
+        private int _numberPeriodsNumeric = 1;
 
-        MainForm mainForm = new MainForm();
+        private int _typeTest;
+        private int _typeInstallation;
 
+        private readonly SettingTestForm _settingTest = new SettingTestForm();
+
+        private SettingChartForm _settingChart = new SettingChartForm();
+
+        private int count = 1;
         private void TestingForm_Load(object sender, EventArgs e)
         {
 
             ChartSetting();
             StopButton.Enabled = false;
+
             
         }
 
@@ -74,24 +84,50 @@ namespace TesterAppUI
             ControllerParameters();
             ChartParameters();
 
-            _timeTest = _timeTest.AddSeconds(1);
             _timeBeginning = _timeBeginning.AddSeconds(1);
-            TimeTestTextBox.Text = _timeBeginning.ToString("mm:ss");
-            
-            
+            TimeBeginningTextBox.Text = _timeBeginning.ToString("mm:ss");
+
+
             _timeRemeining = _timeRemeining.AddSeconds(-1);
             RemainingTimeTextBox.Text = _timeRemeining.ToString("mm:ss");
-            
-            
 
-            if (_timeRemeining.Hour == 0 && _timeRemeining.Minute == 0 && _timeRemeining.Second == 0)
+            if (_timeStart.Hour == 0 && _timeStart.Minute == 0 && _timeStart.Second == 0)
             {
-                timer1.Enabled = false;
-                ChartParameters();
-                MessageBox.Show("Испытание завершенно", "Внимание", MessageBoxButtons.OKCancel);
-                
+
+                Program._mainForm.StartStopController(false);
+                _timeStop = _timeStop.AddSeconds(-1);
+                if (_timeStop.Hour == 0 && _timeStop.Minute == 0 && _timeStop.Second == 0)
+                {
+                    _timeStart = _settingTest._timeStart;
+                    _timeStop = _settingTest._timeStop;
+                    if (count != _numberPeriodsNumeric)
+                    {
+                        timer2.Enabled = false;
+                        Program._mainForm.StartStopController(true);
+                        timer1.Enabled = true;
+                        count++;
+                    }
+
+                }
+
+                if (_timeRemeining.Hour == 0 && _timeRemeining.Minute == 0 && _timeRemeining.Second == 0)
+                {
+                    timer1.Enabled = false;
+                    timer2.Enabled = false;
+                    MessageBox.Show("Испытание завершенно", "Внимание", MessageBoxButtons.OKCancel);
+                    _timeRemeining = _timeTest;
+                    _timeBeginning = _timeNull;
+                    LaunchButton.Enabled = true;
+                    menuStrip1.Enabled = true;
+                    StopButton.Enabled = false;
+                    GetTime();
+
+                }
+                return;
             }
-            
+
+            _timeStart = _timeStart.AddSeconds(-1);
+
         }
 
         /// <summary>
@@ -136,8 +172,8 @@ namespace TesterAppUI
             FrequencyVoltageChart.ChartAreas[0].AxisY.Minimum = 0;
             FrequencyVoltageChart.ChartAreas[0].AxisX.LabelStyle.Format = "mm:ss";
             FrequencyVoltageChart.Series[0].XValueType = ChartValueType.DateTime;
-            FrequencyVoltageChart.ChartAreas[0].AxisX.Minimum = _timeBeginning.ToOADate();
-            FrequencyVoltageChart.ChartAreas[0].AxisX.Maximum = _timeRemeining.ToOADate();
+            FrequencyVoltageChart.ChartAreas[0].AxisX.Minimum = _timeNull.ToOADate();
+            FrequencyVoltageChart.ChartAreas[0].AxisX.Maximum = _timeTest.ToOADate();
             FrequencyVoltageChart.ChartAreas[0].AxisX.IntervalType = DateTimeIntervalType.Seconds;
             FrequencyVoltageChart.ChartAreas[0].AxisX.Interval = 1;
 
@@ -145,8 +181,8 @@ namespace TesterAppUI
             VoltageEntranceChart.ChartAreas[0].AxisY.Minimum = 0;
             VoltageEntranceChart.ChartAreas[0].AxisX.LabelStyle.Format = "mm:ss";
             VoltageEntranceChart.Series[0].XValueType = ChartValueType.DateTime;
-            VoltageEntranceChart.ChartAreas[0].AxisX.Minimum = _timeBeginning.ToOADate();
-            VoltageEntranceChart.ChartAreas[0].AxisX.Maximum = _timeRemeining.ToOADate();
+            VoltageEntranceChart.ChartAreas[0].AxisX.Minimum = _timeNull.ToOADate();
+            VoltageEntranceChart.ChartAreas[0].AxisX.Maximum = _timeTest.ToOADate();
             VoltageEntranceChart.ChartAreas[0].AxisX.IntervalType = DateTimeIntervalType.Seconds;
             VoltageEntranceChart.ChartAreas[0].AxisX.Interval = 1;
 
@@ -154,8 +190,8 @@ namespace TesterAppUI
             VoltageOutputChart.ChartAreas[0].AxisY.Minimum = 0;
             VoltageOutputChart.ChartAreas[0].AxisX.LabelStyle.Format = "mm:ss";
             VoltageOutputChart.Series[0].XValueType = ChartValueType.DateTime;
-            VoltageOutputChart.ChartAreas[0].AxisX.Minimum = _timeBeginning.ToOADate();
-            VoltageOutputChart.ChartAreas[0].AxisX.Maximum = _timeRemeining.ToOADate();
+            VoltageOutputChart.ChartAreas[0].AxisX.Minimum = _timeNull.ToOADate();
+            VoltageOutputChart.ChartAreas[0].AxisX.Maximum = _timeTest.ToOADate();
             VoltageOutputChart.ChartAreas[0].AxisX.IntervalType = DateTimeIntervalType.Seconds;
             VoltageOutputChart.ChartAreas[0].AxisX.Interval = 1;
 
@@ -163,8 +199,8 @@ namespace TesterAppUI
             CurrentOutputChart.ChartAreas[0].AxisY.Minimum = 0;
             CurrentOutputChart.ChartAreas[0].AxisX.LabelStyle.Format = "mm:ss";
             CurrentOutputChart.Series[0].XValueType = ChartValueType.DateTime;
-            CurrentOutputChart.ChartAreas[0].AxisX.Minimum = _timeBeginning.ToOADate();
-            CurrentOutputChart.ChartAreas[0].AxisX.Maximum = _timeRemeining.ToOADate();
+            CurrentOutputChart.ChartAreas[0].AxisX.Minimum = _timeNull.ToOADate();
+            CurrentOutputChart.ChartAreas[0].AxisX.Maximum = _timeTest.ToOADate();
             CurrentOutputChart.ChartAreas[0].AxisX.IntervalType = DateTimeIntervalType.Seconds;
             CurrentOutputChart.ChartAreas[0].AxisX.Interval = 1;
 
@@ -172,7 +208,7 @@ namespace TesterAppUI
             PowerOutputChart.ChartAreas[0].AxisY.Minimum = 0;
             PowerOutputChart.ChartAreas[0].AxisX.LabelStyle.Format = "mm:ss";
             PowerOutputChart.Series[0].XValueType = ChartValueType.DateTime;
-            PowerOutputChart.ChartAreas[0].AxisX.Minimum = _timeBeginning.ToOADate();
+            PowerOutputChart.ChartAreas[0].AxisX.Minimum = _timeNull.ToOADate();
             PowerOutputChart.ChartAreas[0].AxisX.Maximum = _timeRemeining.ToOADate();
             PowerOutputChart.ChartAreas[0].AxisX.IntervalType = DateTimeIntervalType.Seconds;
             PowerOutputChart.ChartAreas[0].AxisX.Interval = 1;
@@ -190,29 +226,46 @@ namespace TesterAppUI
             PowerOutputChart.Series[0].Points.AddXY(_timeBeginning, Convert.ToDouble(_controllerParameters[4]));
         }
 
-        private void TestingForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            
-            _timeRemeining = mainForm._timeNull;
-            _timeTest = mainForm._timeNull;
-            mainForm._timeStart = _timeTest;
-            mainForm._timeTest = _timeTest;
-            mainForm._timeStop = _timeTest;
-        }
 
         private void SettingTestToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SettingTestForm settingTest = new SettingTestForm();
-            var result = settingTest.ShowDialog();
+            var result = _settingTest.ShowDialog();
             if (result != DialogResult.OK)
             {
                 return;
             }
 
-            _timeStart = settingTest._timeStart;
-            _timeStop = settingTest._timeStop;
-            _timeTest = settingTest._timeTest;
+            
+                _typeTest = _settingTest._typeTest;
+                _typeInstallation = Program._mainForm._typeInstallation;
+                switch (_typeInstallation)
+                {
+                    case 0:
+                        CurrentNumericUpDown.Maximum = 30;
+                        PowerNumericUpDown.Maximum = 15;
+                        break;
+                    case 1:
+                        CurrentNumericUpDown.Maximum = 50;
+                        PowerNumericUpDown.Maximum = 25;
+                        break;
+                    case 2:
+                        CurrentNumericUpDown.Maximum = 60;
+                        PowerNumericUpDown.Maximum = 30;
+                        break;
+                }
 
+               
+
+                _timeStart = _settingTest._timeStart;
+                _timeStop = _settingTest._timeStop;
+                _timeTest = _settingTest._timeTest;
+                _timeRemeining = _timeTest;
+                _numberPeriodsNumeric = _settingTest._numberPeriodsNumeric;
+
+            
+
+            GetTime();
+            ChartSetting();
         }
 
         private void LaunchButton_Click(object sender, EventArgs e)
@@ -222,11 +275,90 @@ namespace TesterAppUI
                 MessageBox.Show("Не заданын настройки испытания", "Ошибка", MessageBoxButtons.OK);
                 return;
             }
-
+            ClearCharts();
+            Program._mainForm.StartStopController(true);
             timer1.Enabled = true;
-            mainForm.StartStopController(true);
             LaunchButton.Enabled = false;
             StopButton.Enabled = true;
+            menuStrip1.Enabled = false;
+        }
+
+        private void StopButton_Click(object sender, EventArgs e)
+        {
+            Program._mainForm.StartStopController(false);
+            timer1.Enabled = false;
+            LaunchButton.Enabled = true;
+            StopButton.Enabled = false;
+            menuStrip1.Enabled = true;
+            _timeBeginning = _timeNull;
+            _timeRemeining = _timeTest; 
+            GetTime();
+            
+        }
+
+        private void WriteRegisterButton_Click(object sender, EventArgs e)
+        {
+            Program._mainForm.WriteRegister(CurrentNumericUpDown.Text, PowerNumericUpDown.Text);
+        }
+
+        private void timer2_Tick(object sender, EventArgs e)
+        {
+            Program._mainForm.StartStopController(false);
+            _timeStop = _timeStop.AddSeconds(-1);
+            if (_timeStop.Hour == 0 && _timeStop.Minute == 0 && _timeStop.Second == 0)
+            {
+                _timeStart = _settingTest._timeStart;
+                _timeStop = _settingTest._timeStop;
+                if (count != _numberPeriodsNumeric)
+                {
+                    timer2.Enabled = false;
+                    Program._mainForm.StartStopController(true);
+                    timer1.Enabled = true;
+                    count++;
+                }
+
+            }
+
+            if (_timeRemeining.Hour == 0 && _timeRemeining.Minute == 0 && _timeRemeining.Second == 0)
+            {
+                timer1.Enabled = false;
+                timer2.Enabled = false;
+                MessageBox.Show("Испытание завершенно", "Внимание", MessageBoxButtons.OKCancel);
+                _timeRemeining = _timeTest;
+                _timeBeginning = _timeNull;
+                LaunchButton.Enabled = true;
+                menuStrip1.Enabled = true;
+                StopButton.Enabled = false;
+                GetTime();
+
+            }
+        }
+
+        private void GetTime()
+        {
+            TimeTestTextBox.Text = _timeTest.ToString("mm:ss");
+            TimeBeginningTextBox.Text = _timeBeginning.ToString("mm:ss");
+            RemainingTimeTextBox.Text = _timeRemeining.ToString("mm:ss");
+            textBox1.Text = _timeStart.ToString("mm:ss");
+            textBox2.Text = _timeStop.ToString("mm:ss");
+        }
+
+        private void ClearCharts()
+        {
+            FrequencyVoltageChart.Series[0].Points.Clear();
+            VoltageEntranceChart.Series[0].Points.Clear();
+            VoltageOutputChart.Series[0].Points.Clear();
+            CurrentOutputChart.Series[0].Points.Clear();
+            PowerOutputChart.Series[0].Points.Clear();
+        }
+
+        private void SettingChartsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var result = _settingCharts.ShowDialog();
+            if (result != DialogResult.OK)
+            {
+                return;
+            }
         }
     }
 }

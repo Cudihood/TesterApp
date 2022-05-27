@@ -42,6 +42,8 @@ namespace TesterAppUI
             this.CloseButton = new System.Windows.Forms.Button();
             this.ParityComboBox = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
+            this.label41 = new System.Windows.Forms.Label();
+            this.TypeInstallationComboBox = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -66,7 +68,7 @@ namespace TesterAppUI
             // 
             // OpenButton
             // 
-            this.OpenButton.Location = new System.Drawing.Point(5, 169);
+            this.OpenButton.Location = new System.Drawing.Point(12, 200);
             this.OpenButton.Name = "OpenButton";
             this.OpenButton.Size = new System.Drawing.Size(112, 27);
             this.OpenButton.TabIndex = 4;
@@ -76,6 +78,8 @@ namespace TesterAppUI
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label41);
+            this.groupBox1.Controls.Add(this.TypeInstallationComboBox);
             this.groupBox1.Controls.Add(this.DataBitsComboBox);
             this.groupBox1.Controls.Add(this.StopBitsСomboBox);
             this.groupBox1.Controls.Add(this.label8);
@@ -83,15 +87,13 @@ namespace TesterAppUI
             this.groupBox1.Controls.Add(this.PortsComboBox);
             this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.OpenButton);
             this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.CloseButton);
             this.groupBox1.Controls.Add(this.ParityComboBox);
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox1.Size = new System.Drawing.Size(244, 201);
+            this.groupBox1.Size = new System.Drawing.Size(247, 182);
             this.groupBox1.TabIndex = 18;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Настройки порта";
@@ -170,7 +172,7 @@ namespace TesterAppUI
             // 
             // CloseButton
             // 
-            this.CloseButton.Location = new System.Drawing.Point(127, 169);
+            this.CloseButton.Location = new System.Drawing.Point(148, 200);
             this.CloseButton.Name = "CloseButton";
             this.CloseButton.Size = new System.Drawing.Size(112, 27);
             this.CloseButton.TabIndex = 5;
@@ -201,12 +203,37 @@ namespace TesterAppUI
             this.label7.TabIndex = 8;
             this.label7.Text = "Контроль четности:";
             // 
+            // label41
+            // 
+            this.label41.AutoSize = true;
+            this.label41.Location = new System.Drawing.Point(5, 162);
+            this.label41.Margin = new System.Windows.Forms.Padding(3);
+            this.label41.Name = "label41";
+            this.label41.Size = new System.Drawing.Size(84, 13);
+            this.label41.TabIndex = 26;
+            this.label41.Text = "Тип установки:";
+            // 
+            // TypeInstallationComboBox
+            // 
+            this.TypeInstallationComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.TypeInstallationComboBox.FormattingEnabled = true;
+            this.TypeInstallationComboBox.Items.AddRange(new object[] {
+            "IHM-15",
+            "IHM-25",
+            "IHM-30"});
+            this.TypeInstallationComboBox.Location = new System.Drawing.Point(147, 154);
+            this.TypeInstallationComboBox.Name = "TypeInstallationComboBox";
+            this.TypeInstallationComboBox.Size = new System.Drawing.Size(92, 21);
+            this.TypeInstallationComboBox.TabIndex = 25;
+            // 
             // SettingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(268, 224);
+            this.ClientSize = new System.Drawing.Size(272, 239);
             this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.CloseButton);
+            this.Controls.Add(this.OpenButton);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "SettingForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -233,6 +260,8 @@ namespace TesterAppUI
         private System.Windows.Forms.ComboBox BaudRateComboBox;
         private System.Windows.Forms.ComboBox ParityComboBox;
         private System.Windows.Forms.Button CloseButton;
+        private System.Windows.Forms.Label label41;
+        private System.Windows.Forms.ComboBox TypeInstallationComboBox;
     }
 }
 

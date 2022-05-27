@@ -19,9 +19,11 @@ namespace TesterAppUI
         /// Переменная хранящая данные порта
         /// </summary>
         private SerialPort _port;
+
+        public int _typeInstallation;
         public SettingForm()
         {
-            InitializeComponent();        
+            InitializeComponent();
             _port = new SerialPort();
         }
 
@@ -46,6 +48,7 @@ namespace TesterAppUI
             DataBitsComboBox.SelectedIndex = 1;
             ParityComboBox.SelectedIndex = 0;
             StopBitsСomboBox.SelectedIndex = 0;
+            TypeInstallationComboBox.SelectedIndex = 2;
         }
 
         /// <summary>
@@ -99,6 +102,7 @@ namespace TesterAppUI
                     _port.StopBits = StopBits.Two;
                 }
 
+                _typeInstallation = TypeInstallationComboBox.SelectedIndex;
                 DialogResult = DialogResult.OK;
                 Close();
 
@@ -121,8 +125,6 @@ namespace TesterAppUI
 
         }
 
-        
-        
         /// <summary>
         /// Отмена настроик
         /// </summary>

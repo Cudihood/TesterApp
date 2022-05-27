@@ -35,7 +35,7 @@ namespace TesterAppUI
             this.StartButton = new System.Windows.Forms.Button();
             this.StopButton = new System.Windows.Forms.Button();
             this.StatusBox = new System.Windows.Forms.TextBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.ParametrsGroupBox = new System.Windows.Forms.GroupBox();
             this.PowerNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.VoltageNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.CurrentNumericUpDown = new System.Windows.Forms.NumericUpDown();
@@ -86,7 +86,7 @@ namespace TesterAppUI
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.LaunchButton = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
-            this.groupBox1.SuspendLayout();
+            this.ParametrsGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PowerNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.VoltageNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CurrentNumericUpDown)).BeginInit();
@@ -105,7 +105,7 @@ namespace TesterAppUI
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(3, 1, 0, 1);
-            this.menuStrip1.Size = new System.Drawing.Size(1002, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(736, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -147,26 +147,27 @@ namespace TesterAppUI
             this.StatusBox.Size = new System.Drawing.Size(187, 73);
             this.StatusBox.TabIndex = 5;
             // 
-            // groupBox1
+            // ParametrsGroupBox
             // 
-            this.groupBox1.BackColor = System.Drawing.Color.LightSeaGreen;
-            this.groupBox1.Controls.Add(this.PowerNumericUpDown);
-            this.groupBox1.Controls.Add(this.VoltageNumericUpDown);
-            this.groupBox1.Controls.Add(this.CurrentNumericUpDown);
-            this.groupBox1.Controls.Add(this.WriteRegisterButton);
-            this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Location = new System.Drawing.Point(428, 338);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox1.Size = new System.Drawing.Size(300, 134);
-            this.groupBox1.TabIndex = 7;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Управление параметрами работы ПЧ:";
+            this.ParametrsGroupBox.BackColor = System.Drawing.Color.LightSeaGreen;
+            this.ParametrsGroupBox.Controls.Add(this.PowerNumericUpDown);
+            this.ParametrsGroupBox.Controls.Add(this.VoltageNumericUpDown);
+            this.ParametrsGroupBox.Controls.Add(this.CurrentNumericUpDown);
+            this.ParametrsGroupBox.Controls.Add(this.WriteRegisterButton);
+            this.ParametrsGroupBox.Controls.Add(this.label6);
+            this.ParametrsGroupBox.Controls.Add(this.label5);
+            this.ParametrsGroupBox.Controls.Add(this.label1);
+            this.ParametrsGroupBox.Controls.Add(this.label4);
+            this.ParametrsGroupBox.Controls.Add(this.label3);
+            this.ParametrsGroupBox.Controls.Add(this.label2);
+            this.ParametrsGroupBox.Enabled = false;
+            this.ParametrsGroupBox.Location = new System.Drawing.Point(428, 181);
+            this.ParametrsGroupBox.Name = "ParametrsGroupBox";
+            this.ParametrsGroupBox.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ParametrsGroupBox.Size = new System.Drawing.Size(300, 134);
+            this.ParametrsGroupBox.TabIndex = 7;
+            this.ParametrsGroupBox.TabStop = false;
+            this.ParametrsGroupBox.Text = "Управление параметрами работы ПЧ:";
             // 
             // PowerNumericUpDown
             // 
@@ -249,7 +250,7 @@ namespace TesterAppUI
             // 
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(5, 72);
-            this.label4.Margin = new System.Windows.Forms.Padding(3);
+            this.label4.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(151, 13);
             this.label4.TabIndex = 12;
@@ -259,7 +260,7 @@ namespace TesterAppUI
             // 
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(5, 46);
-            this.label3.Margin = new System.Windows.Forms.Padding(3);
+            this.label3.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(181, 13);
             this.label3.TabIndex = 11;
@@ -269,7 +270,7 @@ namespace TesterAppUI
             // 
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(2, 20);
-            this.label2.Margin = new System.Windows.Forms.Padding(3);
+            this.label2.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(136, 13);
             this.label2.TabIndex = 10;
@@ -281,7 +282,7 @@ namespace TesterAppUI
             this.groupBox2.Controls.Add(this.StatusBox);
             this.groupBox2.Location = new System.Drawing.Point(209, 18);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(2);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.groupBox2.Size = new System.Drawing.Size(196, 94);
             this.groupBox2.TabIndex = 8;
             this.groupBox2.TabStop = false;
@@ -294,9 +295,9 @@ namespace TesterAppUI
             this.groupBox3.Controls.Add(this.StartButton);
             this.groupBox3.Controls.Add(this.StopButton);
             this.groupBox3.Controls.Add(this.groupBox2);
-            this.groupBox3.Location = new System.Drawing.Point(12, 74);
+            this.groupBox3.Location = new System.Drawing.Point(12, 87);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Padding = new System.Windows.Forms.Padding(2);
+            this.groupBox3.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.groupBox3.Size = new System.Drawing.Size(410, 117);
             this.groupBox3.TabIndex = 9;
             this.groupBox3.TabStop = false;
@@ -331,10 +332,10 @@ namespace TesterAppUI
             this.groupBox4.Controls.Add(this.label11);
             this.groupBox4.Controls.Add(this.label12);
             this.groupBox4.Controls.Add(this.FrequencyVoltageTextBox);
-            this.groupBox4.Location = new System.Drawing.Point(12, 197);
+            this.groupBox4.Location = new System.Drawing.Point(428, 27);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox4.Size = new System.Drawing.Size(410, 148);
+            this.groupBox4.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox4.Size = new System.Drawing.Size(300, 148);
             this.groupBox4.TabIndex = 10;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Параметры контроля ПЧ:";
@@ -342,7 +343,7 @@ namespace TesterAppUI
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(388, 122);
+            this.label15.Location = new System.Drawing.Point(259, 122);
             this.label15.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(25, 13);
@@ -351,7 +352,7 @@ namespace TesterAppUI
             // 
             // PowerOutputTextBox
             // 
-            this.PowerOutputTextBox.Location = new System.Drawing.Point(331, 119);
+            this.PowerOutputTextBox.Location = new System.Drawing.Point(202, 119);
             this.PowerOutputTextBox.Name = "PowerOutputTextBox";
             this.PowerOutputTextBox.ReadOnly = true;
             this.PowerOutputTextBox.Size = new System.Drawing.Size(52, 20);
@@ -363,7 +364,7 @@ namespace TesterAppUI
             // 
             this.label16.AutoSize = true;
             this.label16.Location = new System.Drawing.Point(4, 122);
-            this.label16.Margin = new System.Windows.Forms.Padding(3);
+            this.label16.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(151, 13);
             this.label16.TabIndex = 21;
@@ -372,7 +373,7 @@ namespace TesterAppUI
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(388, 96);
+            this.label13.Location = new System.Drawing.Point(259, 96);
             this.label13.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(14, 13);
@@ -381,7 +382,7 @@ namespace TesterAppUI
             // 
             // CurrentOutputTextBox
             // 
-            this.CurrentOutputTextBox.Location = new System.Drawing.Point(331, 93);
+            this.CurrentOutputTextBox.Location = new System.Drawing.Point(202, 93);
             this.CurrentOutputTextBox.Name = "CurrentOutputTextBox";
             this.CurrentOutputTextBox.ReadOnly = true;
             this.CurrentOutputTextBox.Size = new System.Drawing.Size(52, 20);
@@ -393,7 +394,7 @@ namespace TesterAppUI
             // 
             this.label14.AutoSize = true;
             this.label14.Location = new System.Drawing.Point(5, 96);
-            this.label14.Margin = new System.Windows.Forms.Padding(3);
+            this.label14.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(117, 13);
             this.label14.TabIndex = 18;
@@ -402,7 +403,7 @@ namespace TesterAppUI
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(388, 70);
+            this.label7.Location = new System.Drawing.Point(259, 70);
             this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(14, 13);
@@ -412,7 +413,7 @@ namespace TesterAppUI
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(388, 44);
+            this.label8.Location = new System.Drawing.Point(259, 44);
             this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(14, 13);
@@ -422,7 +423,7 @@ namespace TesterAppUI
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(388, 18);
+            this.label9.Location = new System.Drawing.Point(259, 18);
             this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(25, 13);
@@ -431,7 +432,7 @@ namespace TesterAppUI
             // 
             // VoltageOutputTextBox
             // 
-            this.VoltageOutputTextBox.Location = new System.Drawing.Point(331, 67);
+            this.VoltageOutputTextBox.Location = new System.Drawing.Point(202, 67);
             this.VoltageOutputTextBox.Name = "VoltageOutputTextBox";
             this.VoltageOutputTextBox.ReadOnly = true;
             this.VoltageOutputTextBox.Size = new System.Drawing.Size(52, 20);
@@ -441,7 +442,7 @@ namespace TesterAppUI
             // 
             // VoltageEntranceTextBox
             // 
-            this.VoltageEntranceTextBox.Location = new System.Drawing.Point(331, 41);
+            this.VoltageEntranceTextBox.Location = new System.Drawing.Point(202, 41);
             this.VoltageEntranceTextBox.Name = "VoltageEntranceTextBox";
             this.VoltageEntranceTextBox.ReadOnly = true;
             this.VoltageEntranceTextBox.Size = new System.Drawing.Size(52, 20);
@@ -453,7 +454,7 @@ namespace TesterAppUI
             // 
             this.label10.AutoSize = true;
             this.label10.Location = new System.Drawing.Point(4, 70);
-            this.label10.Margin = new System.Windows.Forms.Padding(3);
+            this.label10.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(162, 13);
             this.label10.TabIndex = 12;
@@ -463,7 +464,7 @@ namespace TesterAppUI
             // 
             this.label11.AutoSize = true;
             this.label11.Location = new System.Drawing.Point(5, 44);
-            this.label11.Margin = new System.Windows.Forms.Padding(3);
+            this.label11.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(154, 13);
             this.label11.TabIndex = 11;
@@ -473,7 +474,7 @@ namespace TesterAppUI
             // 
             this.label12.AutoSize = true;
             this.label12.Location = new System.Drawing.Point(5, 18);
-            this.label12.Margin = new System.Windows.Forms.Padding(3);
+            this.label12.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(191, 13);
             this.label12.TabIndex = 10;
@@ -481,7 +482,7 @@ namespace TesterAppUI
             // 
             // FrequencyVoltageTextBox
             // 
-            this.FrequencyVoltageTextBox.Location = new System.Drawing.Point(331, 15);
+            this.FrequencyVoltageTextBox.Location = new System.Drawing.Point(202, 15);
             this.FrequencyVoltageTextBox.Name = "FrequencyVoltageTextBox";
             this.FrequencyVoltageTextBox.ReadOnly = true;
             this.FrequencyVoltageTextBox.Size = new System.Drawing.Size(52, 20);
@@ -507,9 +508,9 @@ namespace TesterAppUI
             this.groupBox5.Controls.Add(this.label24);
             this.groupBox5.Controls.Add(this.label25);
             this.groupBox5.Controls.Add(this.textBox14);
-            this.groupBox5.Location = new System.Drawing.Point(12, 350);
+            this.groupBox5.Location = new System.Drawing.Point(14, 210);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Padding = new System.Windows.Forms.Padding(2);
+            this.groupBox5.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.groupBox5.Size = new System.Drawing.Size(410, 146);
             this.groupBox5.TabIndex = 11;
             this.groupBox5.TabStop = false;
@@ -539,7 +540,7 @@ namespace TesterAppUI
             // 
             this.label18.AutoSize = true;
             this.label18.Location = new System.Drawing.Point(5, 123);
-            this.label18.Margin = new System.Windows.Forms.Padding(3);
+            this.label18.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(197, 13);
             this.label18.TabIndex = 21;
@@ -569,7 +570,7 @@ namespace TesterAppUI
             // 
             this.label20.AutoSize = true;
             this.label20.Location = new System.Drawing.Point(5, 97);
-            this.label20.Margin = new System.Windows.Forms.Padding(3);
+            this.label20.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(203, 13);
             this.label20.TabIndex = 18;
@@ -629,7 +630,7 @@ namespace TesterAppUI
             // 
             this.label26.AutoSize = true;
             this.label26.Location = new System.Drawing.Point(5, 19);
-            this.label26.Margin = new System.Windows.Forms.Padding(3);
+            this.label26.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(320, 13);
             this.label26.TabIndex = 10;
@@ -639,7 +640,7 @@ namespace TesterAppUI
             // 
             this.label24.AutoSize = true;
             this.label24.Location = new System.Drawing.Point(4, 70);
-            this.label24.Margin = new System.Windows.Forms.Padding(3);
+            this.label24.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(328, 13);
             this.label24.TabIndex = 12;
@@ -649,7 +650,7 @@ namespace TesterAppUI
             // 
             this.label25.AutoSize = true;
             this.label25.Location = new System.Drawing.Point(5, 45);
-            this.label25.Margin = new System.Windows.Forms.Padding(3);
+            this.label25.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(314, 13);
             this.label25.TabIndex = 11;
@@ -669,7 +670,7 @@ namespace TesterAppUI
             // 
             this.ConnectButton.Location = new System.Drawing.Point(12, 27);
             this.ConnectButton.Name = "ConnectButton";
-            this.ConnectButton.Size = new System.Drawing.Size(202, 41);
+            this.ConnectButton.Size = new System.Drawing.Size(202, 54);
             this.ConnectButton.TabIndex = 20;
             this.ConnectButton.Text = "Подкючится";
             this.ConnectButton.UseVisualStyleBackColor = true;
@@ -680,7 +681,7 @@ namespace TesterAppUI
             this.DisableButton.Enabled = false;
             this.DisableButton.Location = new System.Drawing.Point(220, 27);
             this.DisableButton.Name = "DisableButton";
-            this.DisableButton.Size = new System.Drawing.Size(202, 41);
+            this.DisableButton.Size = new System.Drawing.Size(202, 54);
             this.DisableButton.TabIndex = 21;
             this.DisableButton.Text = "Отключиться";
             this.DisableButton.UseVisualStyleBackColor = true;
@@ -693,10 +694,11 @@ namespace TesterAppUI
             // 
             // LaunchButton
             // 
+            this.LaunchButton.Enabled = false;
             this.LaunchButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.LaunchButton.Location = new System.Drawing.Point(428, 478);
+            this.LaunchButton.Location = new System.Drawing.Point(428, 321);
             this.LaunchButton.Name = "LaunchButton";
-            this.LaunchButton.Size = new System.Drawing.Size(300, 29);
+            this.LaunchButton.Size = new System.Drawing.Size(300, 35);
             this.LaunchButton.TabIndex = 21;
             this.LaunchButton.Text = "ЗАПУК ИСПЫТАНИЯ";
             this.LaunchButton.UseVisualStyleBackColor = true;
@@ -707,25 +709,26 @@ namespace TesterAppUI
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(1002, 543);
+            this.ClientSize = new System.Drawing.Size(736, 367);
             this.Controls.Add(this.DisableButton);
             this.Controls.Add(this.ConnectButton);
             this.Controls.Add(this.LaunchButton);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.ParametrsGroupBox);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "JobForm";
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.MainForm_MouseClick);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.ParametrsGroupBox.ResumeLayout(false);
+            this.ParametrsGroupBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PowerNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.VoltageNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CurrentNumericUpDown)).EndInit();
@@ -748,7 +751,7 @@ namespace TesterAppUI
         private System.Windows.Forms.Button StartButton;
         private System.Windows.Forms.Button StopButton;
         private System.Windows.Forms.TextBox StatusBox;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox ParametrsGroupBox;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;

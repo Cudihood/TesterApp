@@ -44,32 +44,13 @@ namespace TesterAppUI
         /// </summary>
         private string[] _controllerParameters=new string[5];
 
-        /// <summary>
-        /// Переменная хранящая время всего тестирования
-        /// </summary>
-        public DateTime _timeTest = new DateTime(0, 0);
-
-        /// <summary>
-        /// Переменная хранящая время активного режима установки
-        /// </summary>
-        public DateTime _timeStart;
-
-        /// <summary>
-        /// Переменная хранящая время установки в выключенном состоянии
-        /// </summary>
-        public DateTime _timeStop;
-
-        /// <summary>
-        /// Переменная для обнеления времени
-        /// </summary>
-        public DateTime _timeNull = new DateTime(0, 0);
-
         private bool _key;
 
-
+        public int _typeInstallation;
 
         public MainForm()
         {
+            Program._mainForm = this;
             InitializeComponent();
         }
 
@@ -87,8 +68,24 @@ namespace TesterAppUI
                 return;
             }
 
+            _typeInstallation = settingConnection._typeInstallation;
             _port = settingConnection.Port;
-            
+            switch (_typeInstallation)
+            {
+                case 0:
+                    CurrentNumericUpDown.Maximum = 30;
+                    PowerNumericUpDown.Maximum = 15;
+                    break;
+                case 1:
+                    CurrentNumericUpDown.Maximum = 50;
+                    PowerNumericUpDown.Maximum = 25;
+                    break;
+                case 2:
+                    CurrentNumericUpDown.Maximum = 60;
+                    PowerNumericUpDown.Maximum = 30;
+                    break;
+            }
+
         }
 
         /// <summary>
@@ -115,11 +112,9 @@ namespace TesterAppUI
             ConnectButton.Enabled = false;
             DisableButton.Enabled = true;
             StartButton.Enabled = true;
-            
-
-
-            ControllerParameters();
-            WorkParameters();
+            timer1.Enabled = true;
+            ParametrsGroupBox.Enabled = true;
+            LaunchButton.Enabled = true;
             ManagementParameters();
         }
 
@@ -154,7 +149,9 @@ namespace TesterAppUI
             StartButton.Enabled = false;
             StopButton.Enabled = false;
             ResetButton.Enabled = false;
-            
+            LaunchButton.Enabled = false;
+            ParametrsGroupBox.Enabled = false;
+
         }
 
         /// <summary>
@@ -282,7 +279,7 @@ namespace TesterAppUI
                         PowerNumericUpDown.Text = string.Empty;
                         a = String.Concat<ushort>(result);
                         e = Convert.ToDouble(a) / 10;
-                        PowerNumericUpDown.Text = String.Concat<ushort>(result);
+                        PowerNumericUpDown.Text = e.ToString();//String.Concat<ushort>(result);
                         break;
                 }
             }
@@ -295,6 +292,11 @@ namespace TesterAppUI
         /// <param name="e"></param>
         private void WriteRegisterButton_Click(object sender, EventArgs e)
         {
+            WriteRegister(CurrentNumericUpDown.Text, PowerNumericUpDown.Text);
+        }
+
+        public void WriteRegister(string current, string power)
+        {
             try
             {
                 ushort[] startAddress = { 0xA420, 0xa421, 0xa422 };
@@ -304,7 +306,7 @@ namespace TesterAppUI
                     switch (i)
                     {
                         case 0:
-                            value = (ushort) (Convert.ToUInt16(CurrentNumericUpDown.Text)*Convert.ToUInt16(10));
+                            value = (ushort)(Convert.ToUInt16(current) * Convert.ToUInt16(10));
                             _masrerRTU.WriteSingleRegister(_slaveAddress, startAddress[i], value);
                             break;
                         case 1:
@@ -314,7 +316,7 @@ namespace TesterAppUI
                             //_masrerRTU.WriteSingleRegister(_slaveAddress, startAddress[i], value);
                             break;
                         case 2:
-                            value = (ushort) (Convert.ToUInt16(PowerNumericUpDown.Text) * Convert.ToUInt16(10));
+                            value = (ushort)(Convert.ToUInt16(power) * Convert.ToUInt16(10));
                             _masrerRTU.WriteSingleRegister(_slaveAddress, startAddress[i], value);
                             break;
                     }
@@ -326,7 +328,6 @@ namespace TesterAppUI
             }
         }
 
-        
         /// <summary>
         /// Запускает установку
         /// </summary>
@@ -349,7 +350,6 @@ namespace TesterAppUI
             {
                 value = Convert.ToUInt16(1);
                 _masrerRTU.WriteSingleRegister(_slaveAddress, startAddress, value);
-                timer1.Enabled = true;
                 StopButton.Enabled = true;
                 ResetButton.Enabled = true;
                 StartButton.Enabled = false;
@@ -358,12 +358,12 @@ namespace TesterAppUI
                 CurrentNumericUpDown.ReadOnly = true;
                 PowerNumericUpDown.ReadOnly = true;
                 VoltageNumericUpDown.ReadOnly = true;
+                LaunchButton.Enabled = false;
             }
             else
             {
                 value = Convert.ToUInt16(0);
                 _masrerRTU.WriteSingleRegister(_slaveAddress, startAddress, value);
-                timer1.Enabled = true;
                 StopButton.Enabled = false;
                 ResetButton.Enabled = false;
                 StartButton.Enabled = true;
@@ -372,6 +372,7 @@ namespace TesterAppUI
                 CurrentNumericUpDown.ReadOnly = false;
                 PowerNumericUpDown.ReadOnly = false;
                 VoltageNumericUpDown.ReadOnly = false;
+                LaunchButton.Enabled = true;
             }
         }
 
@@ -474,6 +475,7 @@ namespace TesterAppUI
             }
             //TimeTest();
             var testing = new TestingForm();
+            testing.Owner = this;
             testing._controllerParameters = _controllerParameters;
             //testing._timeRemeining = _timeTest;
 
@@ -503,6 +505,11 @@ namespace TesterAppUI
         private void PowerNumericUpDown_MouseClick(object sender, MouseEventArgs e)
         {
             PowerNumericUpDown.Select(0, PowerNumericUpDown.Value.ToString().Length);
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 

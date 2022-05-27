@@ -8,6 +8,8 @@ namespace TesterAppUI
 {
     static class Program
     {
+        public static MainForm _mainForm;
+
         /// <summary>
         /// Главная точка входа для приложения.
         /// </summary>
@@ -16,7 +18,7 @@ namespace TesterAppUI
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new TestingForm());
+            Application.Run(new MainForm());
         }
     }
 }

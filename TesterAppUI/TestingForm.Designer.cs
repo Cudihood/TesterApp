@@ -30,19 +30,19 @@ namespace TesterAppUI
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea6 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea7 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series7 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea8 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series8 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea9 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series9 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea10 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series10 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.FrequencyVoltageChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.label1 = new System.Windows.Forms.Label();
-            this.TimeTestTextBox = new System.Windows.Forms.TextBox();
+            this.TimeBeginningTextBox = new System.Windows.Forms.TextBox();
             this.RemainingTimeTextBox = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
@@ -81,10 +81,15 @@ namespace TesterAppUI
             this.label18 = new System.Windows.Forms.Label();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.SettingTestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.SettingGraphicsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.SettingChartsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.StopButton = new System.Windows.Forms.Button();
             this.label19 = new System.Windows.Forms.Label();
+            this.TimeTestTextBox = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label20 = new System.Windows.Forms.Label();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.label21 = new System.Windows.Forms.Label();
+            this.timer2 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.FrequencyVoltageChart)).BeginInit();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PowerOutputChart)).BeginInit();
@@ -103,17 +108,17 @@ namespace TesterAppUI
             // 
             this.FrequencyVoltageChart.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            chartArea1.Name = "ChartArea1";
-            this.FrequencyVoltageChart.ChartAreas.Add(chartArea1);
+            chartArea6.Name = "ChartArea1";
+            this.FrequencyVoltageChart.ChartAreas.Add(chartArea6);
             this.FrequencyVoltageChart.Location = new System.Drawing.Point(6, 6);
             this.FrequencyVoltageChart.Name = "FrequencyVoltageChart";
-            series1.BorderWidth = 2;
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series1.Color = System.Drawing.Color.Red;
-            series1.Name = "Частота ";
-            series1.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.DateTime;
-            this.FrequencyVoltageChart.Series.Add(series1);
+            series6.BorderWidth = 2;
+            series6.ChartArea = "ChartArea1";
+            series6.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series6.Color = System.Drawing.Color.Red;
+            series6.Name = "Частота ";
+            series6.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.DateTime;
+            this.FrequencyVoltageChart.Series.Add(series6);
             this.FrequencyVoltageChart.Size = new System.Drawing.Size(691, 229);
             this.FrequencyVoltageChart.TabIndex = 1;
             this.FrequencyVoltageChart.Text = "Частота напряжения";
@@ -121,18 +126,18 @@ namespace TesterAppUI
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(10, 358);
+            this.label1.Location = new System.Drawing.Point(12, 364);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(116, 13);
             this.label1.TabIndex = 5;
             this.label1.Text = "Время тестирования:";
             // 
-            // TimeTestTextBox
+            // TimeBeginningTextBox
             // 
-            this.TimeTestTextBox.Location = new System.Drawing.Point(74, 387);
-            this.TimeTestTextBox.Name = "TimeTestTextBox";
-            this.TimeTestTextBox.Size = new System.Drawing.Size(56, 20);
-            this.TimeTestTextBox.TabIndex = 6;
+            this.TimeBeginningTextBox.Location = new System.Drawing.Point(74, 387);
+            this.TimeBeginningTextBox.Name = "TimeBeginningTextBox";
+            this.TimeBeginningTextBox.Size = new System.Drawing.Size(56, 20);
+            this.TimeBeginningTextBox.TabIndex = 6;
             // 
             // RemainingTimeTextBox
             // 
@@ -175,7 +180,7 @@ namespace TesterAppUI
             this.groupBox4.Controls.Add(this.FrequencyVoltageTextBox);
             this.groupBox4.Location = new System.Drawing.Point(12, 27);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox4.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox4.Size = new System.Drawing.Size(300, 148);
             this.groupBox4.TabIndex = 11;
             this.groupBox4.TabStop = false;
@@ -205,7 +210,7 @@ namespace TesterAppUI
             // 
             this.label16.AutoSize = true;
             this.label16.Location = new System.Drawing.Point(4, 122);
-            this.label16.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.label16.Margin = new System.Windows.Forms.Padding(3);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(151, 13);
             this.label16.TabIndex = 21;
@@ -235,7 +240,7 @@ namespace TesterAppUI
             // 
             this.label14.AutoSize = true;
             this.label14.Location = new System.Drawing.Point(5, 96);
-            this.label14.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.label14.Margin = new System.Windows.Forms.Padding(3);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(117, 13);
             this.label14.TabIndex = 18;
@@ -295,7 +300,7 @@ namespace TesterAppUI
             // 
             this.label10.AutoSize = true;
             this.label10.Location = new System.Drawing.Point(4, 70);
-            this.label10.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.label10.Margin = new System.Windows.Forms.Padding(3);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(162, 13);
             this.label10.TabIndex = 12;
@@ -305,7 +310,7 @@ namespace TesterAppUI
             // 
             this.label11.AutoSize = true;
             this.label11.Location = new System.Drawing.Point(5, 44);
-            this.label11.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.label11.Margin = new System.Windows.Forms.Padding(3);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(154, 13);
             this.label11.TabIndex = 11;
@@ -315,7 +320,7 @@ namespace TesterAppUI
             // 
             this.label12.AutoSize = true;
             this.label12.Location = new System.Drawing.Point(5, 18);
-            this.label12.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.label12.Margin = new System.Windows.Forms.Padding(3);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(191, 13);
             this.label12.TabIndex = 10;
@@ -335,18 +340,18 @@ namespace TesterAppUI
             // 
             this.PowerOutputChart.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            chartArea2.Name = "ChartArea1";
-            this.PowerOutputChart.ChartAreas.Add(chartArea2);
+            chartArea7.Name = "ChartArea1";
+            this.PowerOutputChart.ChartAreas.Add(chartArea7);
             this.PowerOutputChart.Location = new System.Drawing.Point(6, 946);
             this.PowerOutputChart.Name = "PowerOutputChart";
-            this.PowerOutputChart.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
-            series2.BorderWidth = 2;
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series2.Color = System.Drawing.Color.Red;
-            series2.Name = "Частота ";
-            series2.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.DateTime;
-            this.PowerOutputChart.Series.Add(series2);
+            this.PowerOutputChart.Padding = new System.Windows.Forms.Padding(3);
+            series7.BorderWidth = 2;
+            series7.ChartArea = "ChartArea1";
+            series7.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series7.Color = System.Drawing.Color.Red;
+            series7.Name = "Частота ";
+            series7.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.DateTime;
+            this.PowerOutputChart.Series.Add(series7);
             this.PowerOutputChart.Size = new System.Drawing.Size(691, 229);
             this.PowerOutputChart.TabIndex = 12;
             this.PowerOutputChart.Text = "chart2";
@@ -355,18 +360,18 @@ namespace TesterAppUI
             // 
             this.VoltageEntranceChart.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            chartArea3.Name = "ChartArea1";
-            this.VoltageEntranceChart.ChartAreas.Add(chartArea3);
+            chartArea8.Name = "ChartArea1";
+            this.VoltageEntranceChart.ChartAreas.Add(chartArea8);
             this.VoltageEntranceChart.Location = new System.Drawing.Point(6, 241);
             this.VoltageEntranceChart.Name = "VoltageEntranceChart";
-            this.VoltageEntranceChart.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
-            series3.BorderWidth = 2;
-            series3.ChartArea = "ChartArea1";
-            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series3.Color = System.Drawing.Color.Red;
-            series3.Name = "U на входе";
-            series3.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.DateTime;
-            this.VoltageEntranceChart.Series.Add(series3);
+            this.VoltageEntranceChart.Padding = new System.Windows.Forms.Padding(3);
+            series8.BorderWidth = 2;
+            series8.ChartArea = "ChartArea1";
+            series8.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series8.Color = System.Drawing.Color.Red;
+            series8.Name = "U на входе";
+            series8.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.DateTime;
+            this.VoltageEntranceChart.Series.Add(series8);
             this.VoltageEntranceChart.Size = new System.Drawing.Size(691, 229);
             this.VoltageEntranceChart.TabIndex = 14;
             this.VoltageEntranceChart.Text = "Напряжение на входе";
@@ -375,18 +380,18 @@ namespace TesterAppUI
             // 
             this.VoltageOutputChart.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            chartArea4.Name = "ChartArea1";
-            this.VoltageOutputChart.ChartAreas.Add(chartArea4);
+            chartArea9.Name = "ChartArea1";
+            this.VoltageOutputChart.ChartAreas.Add(chartArea9);
             this.VoltageOutputChart.Location = new System.Drawing.Point(6, 476);
             this.VoltageOutputChart.Name = "VoltageOutputChart";
-            this.VoltageOutputChart.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
-            series4.BorderWidth = 2;
-            series4.ChartArea = "ChartArea1";
-            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series4.Color = System.Drawing.Color.Red;
-            series4.Name = "Частота ";
-            series4.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.DateTime;
-            this.VoltageOutputChart.Series.Add(series4);
+            this.VoltageOutputChart.Padding = new System.Windows.Forms.Padding(3);
+            series9.BorderWidth = 2;
+            series9.ChartArea = "ChartArea1";
+            series9.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series9.Color = System.Drawing.Color.Red;
+            series9.Name = "Частота ";
+            series9.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.DateTime;
+            this.VoltageOutputChart.Series.Add(series9);
             this.VoltageOutputChart.Size = new System.Drawing.Size(691, 229);
             this.VoltageOutputChart.TabIndex = 15;
             this.VoltageOutputChart.Text = "Напряжение на выходе";
@@ -395,18 +400,18 @@ namespace TesterAppUI
             // 
             this.CurrentOutputChart.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            chartArea5.Name = "ChartArea1";
-            this.CurrentOutputChart.ChartAreas.Add(chartArea5);
+            chartArea10.Name = "ChartArea1";
+            this.CurrentOutputChart.ChartAreas.Add(chartArea10);
             this.CurrentOutputChart.Location = new System.Drawing.Point(6, 711);
             this.CurrentOutputChart.Name = "CurrentOutputChart";
-            this.CurrentOutputChart.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
-            series5.BorderWidth = 2;
-            series5.ChartArea = "ChartArea1";
-            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series5.Color = System.Drawing.Color.Red;
-            series5.Name = "Частота ";
-            series5.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.DateTime;
-            this.CurrentOutputChart.Series.Add(series5);
+            this.CurrentOutputChart.Padding = new System.Windows.Forms.Padding(3);
+            series10.BorderWidth = 2;
+            series10.ChartArea = "ChartArea1";
+            series10.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series10.Color = System.Drawing.Color.Red;
+            series10.Name = "Частота ";
+            series10.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.DateTime;
+            this.CurrentOutputChart.Series.Add(series10);
             this.CurrentOutputChart.Size = new System.Drawing.Size(691, 229);
             this.CurrentOutputChart.TabIndex = 13;
             this.CurrentOutputChart.Text = "chart2";
@@ -501,8 +506,9 @@ namespace TesterAppUI
             this.WriteRegisterButton.Name = "WriteRegisterButton";
             this.WriteRegisterButton.Size = new System.Drawing.Size(290, 33);
             this.WriteRegisterButton.TabIndex = 18;
-            this.WriteRegisterButton.Text = "Задать";
+            this.WriteRegisterButton.Text = "Применить";
             this.WriteRegisterButton.UseVisualStyleBackColor = true;
+            this.WriteRegisterButton.Click += new System.EventHandler(this.WriteRegisterButton_Click);
             // 
             // label6
             // 
@@ -569,7 +575,7 @@ namespace TesterAppUI
             this.menuStrip1.BackColor = System.Drawing.SystemColors.HighlightText;
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.SettingTestToolStripMenuItem,
-            this.SettingGraphicsToolStripMenuItem});
+            this.SettingChartsToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1050, 24);
@@ -583,11 +589,12 @@ namespace TesterAppUI
             this.SettingTestToolStripMenuItem.Text = "Настройка испытания";
             this.SettingTestToolStripMenuItem.Click += new System.EventHandler(this.SettingTestToolStripMenuItem_Click);
             // 
-            // SettingGraphicsToolStripMenuItem
+            // SettingChartsToolStripMenuItem
             // 
-            this.SettingGraphicsToolStripMenuItem.Name = "SettingGraphicsToolStripMenuItem";
-            this.SettingGraphicsToolStripMenuItem.Size = new System.Drawing.Size(137, 20);
-            this.SettingGraphicsToolStripMenuItem.Text = "Настройка графиков ";
+            this.SettingChartsToolStripMenuItem.Name = "SettingChartsToolStripMenuItem";
+            this.SettingChartsToolStripMenuItem.Size = new System.Drawing.Size(137, 20);
+            this.SettingChartsToolStripMenuItem.Text = "Настройка графиков ";
+            this.SettingChartsToolStripMenuItem.Click += new System.EventHandler(this.SettingChartsToolStripMenuItem_Click);
             // 
             // StopButton
             // 
@@ -597,6 +604,7 @@ namespace TesterAppUI
             this.StopButton.TabIndex = 25;
             this.StopButton.Text = "Осановить";
             this.StopButton.UseVisualStyleBackColor = true;
+            this.StopButton.Click += new System.EventHandler(this.StopButton_Click);
             // 
             // label19
             // 
@@ -607,12 +615,49 @@ namespace TesterAppUI
             this.label19.TabIndex = 26;
             this.label19.Text = "Прошло:";
             // 
+            // TimeTestTextBox
+            // 
+            this.TimeTestTextBox.Location = new System.Drawing.Point(134, 361);
+            this.TimeTestTextBox.Name = "TimeTestTextBox";
+            this.TimeTestTextBox.Size = new System.Drawing.Size(56, 20);
+            this.TimeTestTextBox.TabIndex = 27;
+            // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(132, 355);
+            this.textBox1.Location = new System.Drawing.Point(267, 387);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(56, 20);
-            this.textBox1.TabIndex = 27;
+            this.textBox1.Size = new System.Drawing.Size(55, 20);
+            this.textBox1.TabIndex = 29;
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(136, 390);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(117, 13);
+            this.label20.TabIndex = 28;
+            this.label20.Text = "Время вкл состояния";
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(267, 413);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(55, 20);
+            this.textBox2.TabIndex = 31;
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(136, 416);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(125, 13);
+            this.label21.TabIndex = 30;
+            this.label21.Text = "Время выкл состояния";
+            // 
+            // timer2
+            // 
+            this.timer2.Interval = 1000;
+            this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
             // 
             // TestingForm
             // 
@@ -621,7 +666,11 @@ namespace TesterAppUI
             this.AutoScrollMargin = new System.Drawing.Size(6, 6);
             this.BackColor = System.Drawing.SystemColors.Menu;
             this.ClientSize = new System.Drawing.Size(1050, 554);
+            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.label21);
             this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.label20);
+            this.Controls.Add(this.TimeTestTextBox);
             this.Controls.Add(this.label19);
             this.Controls.Add(this.StopButton);
             this.Controls.Add(this.groupBox4);
@@ -631,13 +680,12 @@ namespace TesterAppUI
             this.Controls.Add(this.label2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.TimeTestTextBox);
+            this.Controls.Add(this.TimeBeginningTextBox);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "TestingForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Испытательный процесс";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TestingForm_FormClosing);
             this.Load += new System.EventHandler(this.TestingForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.FrequencyVoltageChart)).EndInit();
             this.groupBox4.ResumeLayout(false);
@@ -662,7 +710,7 @@ namespace TesterAppUI
         #endregion
         private System.Windows.Forms.DataVisualization.Charting.Chart FrequencyVoltageChart;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox TimeTestTextBox;
+        private System.Windows.Forms.TextBox TimeBeginningTextBox;
         private System.Windows.Forms.TextBox RemainingTimeTextBox;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Timer timer1;
@@ -701,9 +749,14 @@ namespace TesterAppUI
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem SettingTestToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem SettingGraphicsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem SettingChartsToolStripMenuItem;
         private System.Windows.Forms.Button StopButton;
         private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.TextBox TimeTestTextBox;
         private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Timer timer2;
     }
 }

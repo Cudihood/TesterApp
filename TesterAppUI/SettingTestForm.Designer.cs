@@ -30,8 +30,6 @@ namespace TesterAppUI
         private void InitializeComponent()
         {
             this.ParametersTestGroupBox = new System.Windows.Forms.GroupBox();
-            this.label41 = new System.Windows.Forms.Label();
-            this.TypeInstallationComboBox = new System.Windows.Forms.ComboBox();
             this.TestsGroupBox = new System.Windows.Forms.GroupBox();
             this.NumberPeriodsNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.TimeOffNumericUpDown = new System.Windows.Forms.NumericUpDown();
@@ -59,42 +57,16 @@ namespace TesterAppUI
             // ParametersTestGroupBox
             // 
             this.ParametersTestGroupBox.BackColor = System.Drawing.Color.PaleTurquoise;
-            this.ParametersTestGroupBox.Controls.Add(this.label41);
-            this.ParametersTestGroupBox.Controls.Add(this.TypeInstallationComboBox);
             this.ParametersTestGroupBox.Controls.Add(this.TestsGroupBox);
             this.ParametersTestGroupBox.Controls.Add(this.ThermometerGroupBox);
             this.ParametersTestGroupBox.Controls.Add(this.label27);
             this.ParametersTestGroupBox.Controls.Add(this.TypeTestComboBox);
-            this.ParametersTestGroupBox.Enabled = false;
             this.ParametersTestGroupBox.Location = new System.Drawing.Point(12, 12);
             this.ParametersTestGroupBox.Name = "ParametersTestGroupBox";
-            this.ParametersTestGroupBox.Size = new System.Drawing.Size(314, 224);
+            this.ParametersTestGroupBox.Size = new System.Drawing.Size(314, 195);
             this.ParametersTestGroupBox.TabIndex = 24;
             this.ParametersTestGroupBox.TabStop = false;
             this.ParametersTestGroupBox.Text = "Параметры испытания:";
-            // 
-            // label41
-            // 
-            this.label41.AutoSize = true;
-            this.label41.Location = new System.Drawing.Point(6, 49);
-            this.label41.Margin = new System.Windows.Forms.Padding(3);
-            this.label41.Name = "label41";
-            this.label41.Size = new System.Drawing.Size(84, 13);
-            this.label41.TabIndex = 24;
-            this.label41.Text = "Тип установки:";
-            // 
-            // TypeInstallationComboBox
-            // 
-            this.TypeInstallationComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.TypeInstallationComboBox.FormattingEnabled = true;
-            this.TypeInstallationComboBox.Items.AddRange(new object[] {
-            "IHM-15",
-            "IHM-25",
-            "IHM-30"});
-            this.TypeInstallationComboBox.Location = new System.Drawing.Point(96, 46);
-            this.TypeInstallationComboBox.Name = "TypeInstallationComboBox";
-            this.TypeInstallationComboBox.Size = new System.Drawing.Size(210, 21);
-            this.TypeInstallationComboBox.TabIndex = 23;
             // 
             // TestsGroupBox
             // 
@@ -108,7 +80,7 @@ namespace TesterAppUI
             this.TestsGroupBox.Controls.Add(this.label38);
             this.TestsGroupBox.Controls.Add(this.label40);
             this.TestsGroupBox.Enabled = false;
-            this.TestsGroupBox.Location = new System.Drawing.Point(6, 120);
+            this.TestsGroupBox.Location = new System.Drawing.Point(6, 93);
             this.TestsGroupBox.Name = "TestsGroupBox";
             this.TestsGroupBox.Size = new System.Drawing.Size(300, 96);
             this.TestsGroupBox.TabIndex = 22;
@@ -186,7 +158,7 @@ namespace TesterAppUI
             // 
             this.label36.AutoSize = true;
             this.label36.Location = new System.Drawing.Point(6, 71);
-            this.label36.Margin = new System.Windows.Forms.Padding(3);
+            this.label36.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
             this.label36.Name = "label36";
             this.label36.Size = new System.Drawing.Size(120, 13);
             this.label36.TabIndex = 27;
@@ -196,7 +168,7 @@ namespace TesterAppUI
             // 
             this.label38.AutoSize = true;
             this.label38.Location = new System.Drawing.Point(6, 45);
-            this.label38.Margin = new System.Windows.Forms.Padding(3);
+            this.label38.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
             this.label38.Name = "label38";
             this.label38.Size = new System.Drawing.Size(188, 13);
             this.label38.TabIndex = 24;
@@ -206,7 +178,7 @@ namespace TesterAppUI
             // 
             this.label40.AutoSize = true;
             this.label40.Location = new System.Drawing.Point(6, 19);
-            this.label40.Margin = new System.Windows.Forms.Padding(3);
+            this.label40.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
             this.label40.Name = "label40";
             this.label40.Size = new System.Drawing.Size(180, 13);
             this.label40.TabIndex = 21;
@@ -218,7 +190,7 @@ namespace TesterAppUI
             this.ThermometerGroupBox.Controls.Add(this.ThermometerOnRadioButton);
             this.ThermometerGroupBox.Controls.Add(this.ThermometerOffRadioButton);
             this.ThermometerGroupBox.ForeColor = System.Drawing.Color.Black;
-            this.ThermometerGroupBox.Location = new System.Drawing.Point(6, 73);
+            this.ThermometerGroupBox.Location = new System.Drawing.Point(6, 46);
             this.ThermometerGroupBox.Name = "ThermometerGroupBox";
             this.ThermometerGroupBox.Size = new System.Drawing.Size(300, 41);
             this.ThermometerGroupBox.TabIndex = 14;
@@ -251,7 +223,7 @@ namespace TesterAppUI
             // 
             this.label27.AutoSize = true;
             this.label27.Location = new System.Drawing.Point(6, 22);
-            this.label27.Margin = new System.Windows.Forms.Padding(3);
+            this.label27.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
             this.label27.Name = "label27";
             this.label27.Size = new System.Drawing.Size(67, 13);
             this.label27.TabIndex = 11;
@@ -272,9 +244,9 @@ namespace TesterAppUI
             // 
             // OkButton
             // 
-            this.OkButton.Location = new System.Drawing.Point(92, 249);
+            this.OkButton.Location = new System.Drawing.Point(12, 213);
             this.OkButton.Name = "OkButton";
-            this.OkButton.Size = new System.Drawing.Size(112, 27);
+            this.OkButton.Size = new System.Drawing.Size(152, 38);
             this.OkButton.TabIndex = 25;
             this.OkButton.Text = "Применить";
             this.OkButton.UseVisualStyleBackColor = true;
@@ -282,18 +254,19 @@ namespace TesterAppUI
             // 
             // CancleButton
             // 
-            this.CancleButton.Location = new System.Drawing.Point(214, 249);
+            this.CancleButton.Location = new System.Drawing.Point(174, 213);
             this.CancleButton.Name = "CancleButton";
-            this.CancleButton.Size = new System.Drawing.Size(112, 27);
+            this.CancleButton.Size = new System.Drawing.Size(152, 38);
             this.CancleButton.TabIndex = 26;
             this.CancleButton.Text = "Отмена";
             this.CancleButton.UseVisualStyleBackColor = true;
+            this.CancleButton.Click += new System.EventHandler(this.CancleButton_Click);
             // 
             // SettingTestForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(338, 288);
+            this.ClientSize = new System.Drawing.Size(338, 258);
             this.Controls.Add(this.OkButton);
             this.Controls.Add(this.CancleButton);
             this.Controls.Add(this.ParametersTestGroupBox);
@@ -316,8 +289,6 @@ namespace TesterAppUI
         #endregion
 
         private System.Windows.Forms.GroupBox ParametersTestGroupBox;
-        private System.Windows.Forms.Label label41;
-        private System.Windows.Forms.ComboBox TypeInstallationComboBox;
         private System.Windows.Forms.GroupBox TestsGroupBox;
         private System.Windows.Forms.NumericUpDown NumberPeriodsNumericUpDown;
         private System.Windows.Forms.NumericUpDown TimeOffNumericUpDown;

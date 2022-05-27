@@ -36,6 +36,11 @@ namespace TesterAppUI
         /// Переменная хранящая колличество периодов;
         /// </summary>
         public int _numberPeriodsNumeric = 1;
+        
+        
+
+        public int _typeTest;
+        public int _typeInstallation;
         public SettingTestForm()
         {
             InitializeComponent();
@@ -43,7 +48,9 @@ namespace TesterAppUI
 
         private void SettingTestForm_Load(object sender, EventArgs e)
         {
-
+            _timeStart = _timeNull;
+            _timeStop = _timeNull;
+            _timeTest = _timeNull;
         }
 
         /// <summary>
@@ -51,10 +58,6 @@ namespace TesterAppUI
         /// </summary>
         private void CheckData()
         {
-            if (TypeInstallationComboBox.SelectedIndex == -1)
-            {
-                throw new ArgumentException("Не выбран тип установки");
-            }
             if (TypeTestComboBox.SelectedIndex == -1)
             {
                 throw new ArgumentException("Не выбран тип испытания");
@@ -102,112 +105,26 @@ namespace TesterAppUI
                     double value = (Convert.ToDouble(TimeOffNumericUpDown.Text)
                                     + Convert.ToDouble(TimeOnNumericUpDown.Text)) * Convert.ToDouble(NumberPeriodsNumericUpDown.Text);
                     _timeTest = _timeTest.AddSeconds(value);
+                    _numberPeriodsNumeric = Convert.ToInt32(NumberPeriodsNumericUpDown.Text);
                     break;
             }
         }
 
-        /// <summary>
-        /// Запускает сценарий тестирования
-        /// </summary>
-        private void Testing()
-        {
-            TimerStart.Enabled = true;
-            StartStopController(true);
-
-        }
-
-        /// <summary>
-        /// Запускает таймер отсчета времени активного состояния контроллера
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void TimerStart_Tick(object sender, EventArgs e)
-        {
-            _timeStart = _timeStart.AddSeconds(-1);
-            TypeTimeTestCheked();
-        }
-
-        /// <summary>
-        /// Запускает таймер отчета времни для выключенного состояния контроллера
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void TimerStop_Tick(object sender, EventArgs e)
-        {
-            _timeStop = _timeStop.AddSeconds(-1);
-            TypeTimeTestCheked();
-        }
-
-        private int d = 1;
-        private void TypeTimeTestCheked()
-        {
-            switch (TypeTestComboBox.SelectedIndex)
-            {
-                case 0:
-                    if (_timeStart.Hour == 0 && _timeStart.Minute == 0 && _timeStart.Second == 0)
-                    {
-                        StartStopController(false);
-                        TimerStart.Enabled = false;
-                        TimerStop.Enabled = true;
-                    }
-                    if (_timeStop.Hour == 0 && _timeStop.Minute == 0 && _timeStop.Second == 0)
-                    {
-                        TimerStop.Enabled = false;
-                        _timeTest = _timeNull;
-                    }
-                    break;
-                case 1:
-                    if (_timeStart.Hour == 0 && _timeStart.Minute == 0 && _timeStart.Second == 0)
-                    {
-                        StartStopController(false);
-                        TimerStart.Enabled = false;
-                        TimerStop.Enabled = true;
-
-                    }
-
-                    if (_timeStop.Hour == 0 && _timeStop.Minute == 0 && _timeStop.Second == 0)
-                    {
-                        TimerStop.Enabled = false;
-                        _timeTest = _timeNull;
-
-                        if (d < NumberPeriodsNumericUpDown.Value)
-                        {
-                            TimeTest();
-                            TimerStart.Enabled = true;
-                            StartStopController(true);
-                            d++;
-                        }
-                    }
-
-
-                    break;
-            }
-
-        }
-
-        private void TypeInstallationComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            switch (TypeInstallationComboBox.SelectedIndex)
-            {
-                case 0:
-                    CurrentNumericUpDown.Maximum = 30;
-                    PowerNumericUpDown.Maximum = 15;
-                    break;
-                case 1:
-                    CurrentNumericUpDown.Maximum = 50;
-                    PowerNumericUpDown.Maximum = 25;
-                    break;
-                case 2:
-                    CurrentNumericUpDown.Maximum = 60;
-                    PowerNumericUpDown.Maximum = 30;
-                    break;
-            }
-        }
         private void OkButton_Click(object sender, EventArgs e)
         {
-            CheckData();
-            DialogResult = DialogResult.OK;
-            Close();
+            try
+            {
+                CheckData();
+                TimeTest();
+                DialogResult = DialogResult.OK;
+                Close();
+            }
+            catch (ArgumentException exception)
+            {
+                MessageBox.Show(exception.Message, "Ошибка", MessageBoxButtons.OK);
+                return;
+            }
+            
         }
 
         private void TimeOnNumericUpDown_MouseClick(object sender, MouseEventArgs e)
@@ -230,13 +147,22 @@ namespace TesterAppUI
             switch (TypeTestComboBox.SelectedIndex)
             {
                 case 0:
-                    NumberPeriodsNumericUpDown.Enabled = true;
+                    NumberPeriodsNumericUpDown.Enabled = false;
+                    TestsGroupBox.Enabled = true;
+                    _typeTest = 0;
                     break;
                 case 1:
-                    NumberPeriodsNumericUpDown.Enabled = false;
+                    NumberPeriodsNumericUpDown.Enabled = true;
+                    TestsGroupBox.Enabled = true;
+                    _typeTest = 1;
                     break;
             }
         }
 
+        private void CancleButton_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.Cancel;
+            Close();
+        }
     }
 }
