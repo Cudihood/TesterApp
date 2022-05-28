@@ -32,17 +32,17 @@ namespace TesterAppUI
         /// <summary>
         /// Переменная хранящая колличество регистров для чтения
         /// </summary>
-        private ushort _numberOfPoints = 1;
+        public ushort _numberOfPoints = 1;
 
         /// <summary>
         /// Перенная хранящая адресс датчика температуры
         /// </summary>
-        private byte _slaveAddressThermometer = 10;
+        private byte _slaveAddressThermometer = 2;
 
         /// <summary>
         /// Массив хранящий данные параметра контроллера
         /// </summary>
-        private string[] _controllerParameters=new string[5];
+        private string[] _controllerParameters=new string[7];
 
         private bool _key;
 
@@ -295,6 +295,11 @@ namespace TesterAppUI
             WriteRegister(CurrentNumericUpDown.Text, PowerNumericUpDown.Text);
         }
 
+        /// <summary>
+        /// Фугкция записи данных в регистр
+        /// </summary>
+        /// <param name="current"></param>
+        /// <param name="power"></param>
         public void WriteRegister(string current, string power)
         {
             try
@@ -336,6 +341,7 @@ namespace TesterAppUI
         private void StartButton_Click(object sender, EventArgs e)
         {
             StartStopController(true);
+            LaunchButton.Enabled = false;
         }
 
         /// <summary>
@@ -358,7 +364,7 @@ namespace TesterAppUI
                 CurrentNumericUpDown.ReadOnly = true;
                 PowerNumericUpDown.ReadOnly = true;
                 VoltageNumericUpDown.ReadOnly = true;
-                LaunchButton.Enabled = false;
+                
             }
             else
             {
@@ -372,7 +378,6 @@ namespace TesterAppUI
                 CurrentNumericUpDown.ReadOnly = false;
                 PowerNumericUpDown.ReadOnly = false;
                 VoltageNumericUpDown.ReadOnly = false;
-                LaunchButton.Enabled = true;
             }
         }
 
@@ -442,6 +447,7 @@ namespace TesterAppUI
         {
             _key = false;
             StartStopController(false);
+            LaunchButton.Enabled = false;
         }
 
         /// <summary>
@@ -458,6 +464,7 @@ namespace TesterAppUI
             StopButton.Enabled = false;
             ResetButton.Enabled = false;
             StartButton.Enabled = true;
+            LaunchButton.Enabled = true;
         }
 
         /// <summary>

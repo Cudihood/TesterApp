@@ -33,17 +33,17 @@ namespace TesterAppUI
             this.label1 = new System.Windows.Forms.Label();
             this.OpenButton = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label41 = new System.Windows.Forms.Label();
+            this.TypeInstallationComboBox = new System.Windows.Forms.ComboBox();
             this.DataBitsComboBox = new System.Windows.Forms.ComboBox();
             this.StopBitsСomboBox = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
             this.BaudRateComboBox = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.CloseButton = new System.Windows.Forms.Button();
             this.ParityComboBox = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.label41 = new System.Windows.Forms.Label();
-            this.TypeInstallationComboBox = new System.Windows.Forms.ComboBox();
+            this.CloseButton = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -97,6 +97,29 @@ namespace TesterAppUI
             this.groupBox1.TabIndex = 18;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Настройки порта";
+            // 
+            // label41
+            // 
+            this.label41.AutoSize = true;
+            this.label41.Location = new System.Drawing.Point(5, 162);
+            this.label41.Margin = new System.Windows.Forms.Padding(3);
+            this.label41.Name = "label41";
+            this.label41.Size = new System.Drawing.Size(84, 13);
+            this.label41.TabIndex = 26;
+            this.label41.Text = "Тип установки:";
+            // 
+            // TypeInstallationComboBox
+            // 
+            this.TypeInstallationComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.TypeInstallationComboBox.FormattingEnabled = true;
+            this.TypeInstallationComboBox.Items.AddRange(new object[] {
+            "IHM-15",
+            "IHM-25",
+            "IHM-30"});
+            this.TypeInstallationComboBox.Location = new System.Drawing.Point(147, 154);
+            this.TypeInstallationComboBox.Name = "TypeInstallationComboBox";
+            this.TypeInstallationComboBox.Size = new System.Drawing.Size(92, 21);
+            this.TypeInstallationComboBox.TabIndex = 25;
             // 
             // DataBitsComboBox
             // 
@@ -170,16 +193,6 @@ namespace TesterAppUI
             this.label6.TabIndex = 7;
             this.label6.Text = "Cкорость передачи:";
             // 
-            // CloseButton
-            // 
-            this.CloseButton.Location = new System.Drawing.Point(148, 200);
-            this.CloseButton.Name = "CloseButton";
-            this.CloseButton.Size = new System.Drawing.Size(112, 27);
-            this.CloseButton.TabIndex = 5;
-            this.CloseButton.Text = "Отмена";
-            this.CloseButton.UseVisualStyleBackColor = true;
-            this.CloseButton.Click += new System.EventHandler(this.CloseButton_Click);
-            // 
             // ParityComboBox
             // 
             this.ParityComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -203,28 +216,15 @@ namespace TesterAppUI
             this.label7.TabIndex = 8;
             this.label7.Text = "Контроль четности:";
             // 
-            // label41
+            // CloseButton
             // 
-            this.label41.AutoSize = true;
-            this.label41.Location = new System.Drawing.Point(5, 162);
-            this.label41.Margin = new System.Windows.Forms.Padding(3);
-            this.label41.Name = "label41";
-            this.label41.Size = new System.Drawing.Size(84, 13);
-            this.label41.TabIndex = 26;
-            this.label41.Text = "Тип установки:";
-            // 
-            // TypeInstallationComboBox
-            // 
-            this.TypeInstallationComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.TypeInstallationComboBox.FormattingEnabled = true;
-            this.TypeInstallationComboBox.Items.AddRange(new object[] {
-            "IHM-15",
-            "IHM-25",
-            "IHM-30"});
-            this.TypeInstallationComboBox.Location = new System.Drawing.Point(147, 154);
-            this.TypeInstallationComboBox.Name = "TypeInstallationComboBox";
-            this.TypeInstallationComboBox.Size = new System.Drawing.Size(92, 21);
-            this.TypeInstallationComboBox.TabIndex = 25;
+            this.CloseButton.Location = new System.Drawing.Point(148, 200);
+            this.CloseButton.Name = "CloseButton";
+            this.CloseButton.Size = new System.Drawing.Size(112, 27);
+            this.CloseButton.TabIndex = 5;
+            this.CloseButton.Text = "Отмена";
+            this.CloseButton.UseVisualStyleBackColor = true;
+            this.CloseButton.Click += new System.EventHandler(this.CloseButton_Click);
             // 
             // SettingForm
             // 
