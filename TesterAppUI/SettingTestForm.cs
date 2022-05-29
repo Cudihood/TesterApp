@@ -50,6 +50,7 @@ namespace TesterAppUI
             _timeStart = _timeNull;
             _timeStop = _timeNull;
             _timeTest = _timeNull;
+            TypeTestComboBox.SelectedIndex = 0;
         }
 
         /// <summary>

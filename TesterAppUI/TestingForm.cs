@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.ComTypes;
 using System.Text;
@@ -10,6 +11,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 using Modbus.Device;
+using Microsoft.Office.Interop.Word;
+using Application = Microsoft.Office.Interop.Word.Application;
+
 
 namespace TesterAppUI
 {
@@ -162,6 +166,7 @@ namespace TesterAppUI
                     LaunchButton.Enabled = true;
                     menuStrip1.Enabled = true;
                     StopButton.Enabled = false;
+                    SaveButton.Enabled = true;
                     GetTime();
                 }
                 return;
@@ -491,6 +496,48 @@ namespace TesterAppUI
         {
             ReadRegisterThermometer(_thermometerFlag);
             ControllerParameters();
+        }
+
+        private void SaveButton_Click(object sender, EventArgs e)
+        {
+            string comment = "";
+            var result = MessageBox.Show("Добавить комментарий?", "Уведомление", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                var writeText = new WriteTextForm();
+                var key = writeText.ShowDialog();
+                if (key != DialogResult.OK)
+                {
+                    MessageBox.Show("Коментарий не добавлен", "Внимание", MessageBoxButtons.OK);
+                }
+
+                comment = writeText._textComment;
+            }
+
+            string path="";
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.Filter = "Png Image (.png)|*.png";
+
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                path = sfd.FileName;
+
+                if (!string.IsNullOrEmpty(path))
+                {
+                    FrequencyVoltageChart.SaveImage(path, ChartImageFormat.Png);
+                }
+            }
+            
+            Application app = new Application();
+            Document doc = app.Documents.Add(Visible: true);
+            Range range = doc.Range();
+            range.Text = comment;
+            
+            range.InlineShapes.AddPicture(path,Type.Missing,Type.Missing, range);
+            doc.Save();
+            doc.Close();
+            File.Delete(path);
+            MessageBox.Show("Файл сохранен", "Уведомление", MessageBoxButtons.OK);
         }
     }
 }

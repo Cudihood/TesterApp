@@ -85,6 +85,7 @@ namespace TesterAppUI
             this.DisableButton = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.LaunchButton = new System.Windows.Forms.Button();
+            this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.menuStrip1.SuspendLayout();
             this.ParametrsGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PowerNumericUpDown)).BeginInit();
@@ -704,6 +705,10 @@ namespace TesterAppUI
             this.LaunchButton.UseVisualStyleBackColor = true;
             this.LaunchButton.Click += new System.EventHandler(this.LaunchButton_Click);
             // 
+            // timer2
+            // 
+            this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -805,5 +810,6 @@ namespace TesterAppUI
         private System.Windows.Forms.NumericUpDown VoltageNumericUpDown;
         public System.Windows.Forms.NumericUpDown CurrentNumericUpDown;
         public System.Windows.Forms.NumericUpDown PowerNumericUpDown;
+        private System.Windows.Forms.Timer timer2;
     }
 }

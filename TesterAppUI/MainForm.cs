@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -100,13 +101,19 @@ namespace TesterAppUI
             {
                 _port.Open();
             }
-            catch(NullReferenceException)
+            catch (NullReferenceException)
             {
                 MessageBox.Show("Не указаны настройки порта", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    //("Проверьте настройки подключения", "Ошибка", MessageBoxButtons.OK);
+                //("Проверьте настройки подключения", "Ошибка", MessageBoxButtons.OK);
                 return;
             }
-            
+            catch (IOException exception)
+            {
+                MessageBox.Show(this, exception.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            timer2.Enabled = true;
             _masrerRTU = ModbusSerialMaster.CreateRtu(_port);
 
             ConnectButton.Enabled = false;
@@ -143,6 +150,7 @@ namespace TesterAppUI
                 return;
             }
 
+            timer2.Enabled = false;
             timer1.Enabled = false;
             ConnectButton.Enabled = true;
             DisableButton.Enabled = false;
@@ -160,9 +168,22 @@ namespace TesterAppUI
         private void ControllerParameters()
         {
             ushort[] startAddress= {0xA430, 0xA432, 0xA433, 0xA434, 0xA437};
+            ushort[] result;
             for (int i = 0; i <= 4; i++)
             {
-                ushort[] result = _masrerRTU.ReadHoldingRegisters(_slaveAddress, startAddress[i], _numberOfPoints);
+                if (_port.IsOpen == false)
+                {
+                    return;
+                }
+                try
+                {
+                    result = _masrerRTU.ReadHoldingRegisters(_slaveAddress, startAddress[i], _numberOfPoints);
+                }
+                catch (InvalidOperationException exception)
+                {
+                    timer1.Enabled = false;
+                    return;
+                }
                 string a;
                 double e;
                 switch (i)
@@ -215,9 +236,18 @@ namespace TesterAppUI
             ushort[] startAddress = {0xA440, 0xA441, 0xa442, 0xa443, 0xA444 };
             string a;
             double e;
+            ushort[] result;
             for (int i = 0; i <= 4; i++)
             {
-                ushort[] result = _masrerRTU.ReadHoldingRegisters(_slaveAddress, startAddress[i], _numberOfPoints);
+                try
+                {
+                     result = _masrerRTU.ReadHoldingRegisters(_slaveAddress, startAddress[i], _numberOfPoints);
+                }
+                catch (InvalidOperationException exception)
+                {
+                    timer1.Enabled = false;
+                    return;
+                }
                 switch (i)
                 {
                     case 0:
@@ -259,10 +289,19 @@ namespace TesterAppUI
             ushort[] startAddress = {0xA420, 0xa421, 0xa422};
             string a;
             double e;
+            ushort[] result;
             for (int i = 0; i <= 2; i++)
             {
-                ushort[] result = _masrerRTU.ReadHoldingRegisters(_slaveAddress, startAddress[i], _numberOfPoints);
-
+                try
+                {
+                    result = _masrerRTU.ReadHoldingRegisters(_slaveAddress, startAddress[i], _numberOfPoints);
+                }
+                catch (InvalidOperationException exception)
+                {
+                    
+                    timer1.Enabled = false;
+                    return;
+                }
                 switch (i)
                 {
                     case 0:
@@ -312,7 +351,16 @@ namespace TesterAppUI
                     {
                         case 0:
                             value = (ushort)(Convert.ToUInt16(current) * Convert.ToUInt16(10));
-                            _masrerRTU.WriteSingleRegister(_slaveAddress, startAddress[i], value);
+                            try
+                            {
+                                _masrerRTU.WriteSingleRegister(_slaveAddress, startAddress[i], value);
+                            }
+                            catch (InvalidOperationException exception)
+                            {
+
+                                timer1.Enabled = false;
+                                return;
+                            }
                             break;
                         case 1:
 
@@ -322,7 +370,16 @@ namespace TesterAppUI
                             break;
                         case 2:
                             value = (ushort)(Convert.ToUInt16(power) * Convert.ToUInt16(10));
-                            _masrerRTU.WriteSingleRegister(_slaveAddress, startAddress[i], value);
+                            try
+                            {
+                                _masrerRTU.WriteSingleRegister(_slaveAddress, startAddress[i], value);
+                            }
+                            catch (InvalidOperationException exception)
+                            {
+
+                                timer1.Enabled = false;
+                                return;
+                            }
                             break;
                     }
                 }
@@ -355,7 +412,16 @@ namespace TesterAppUI
             if (variable)
             {
                 value = Convert.ToUInt16(1);
-                _masrerRTU.WriteSingleRegister(_slaveAddress, startAddress, value);
+                try
+                {
+                    _masrerRTU.WriteSingleRegister(_slaveAddress, startAddress, value);
+                }
+                catch (InvalidOperationException exception)
+                {
+
+                    timer1.Enabled = false;
+                    return;
+                }
                 StopButton.Enabled = true;
                 ResetButton.Enabled = true;
                 StartButton.Enabled = false;
@@ -369,7 +435,16 @@ namespace TesterAppUI
             else
             {
                 value = Convert.ToUInt16(0);
-                _masrerRTU.WriteSingleRegister(_slaveAddress, startAddress, value);
+                try
+                {
+                    _masrerRTU.WriteSingleRegister(_slaveAddress, startAddress, value);
+                }
+                catch (InvalidOperationException exception)
+                {
+
+                    timer1.Enabled = false;
+                    return;
+                }
                 StopButton.Enabled = false;
                 ResetButton.Enabled = false;
                 StartButton.Enabled = true;
@@ -389,10 +464,8 @@ namespace TesterAppUI
         /// <param name="e"></param>
         private void timer1_Tick(object sender, EventArgs e)
         {
-            
             ControllerParameters();
             WorkParameters();
-            
             SatusController();
         }
 
@@ -402,8 +475,17 @@ namespace TesterAppUI
         private void SatusController()
         {
             ushort startAddress = 0xA411;
-            ushort[] result = _masrerRTU.ReadHoldingRegisters(_slaveAddress, startAddress, _numberOfPoints);
-            
+            ushort[] result;
+            try
+            {
+                result = _masrerRTU.ReadHoldingRegisters(_slaveAddress, startAddress, _numberOfPoints);
+            }
+            catch (InvalidOperationException exception)
+            {
+
+                timer1.Enabled = false;
+                return;
+            }
             switch (result[0])
             {
                 case 0:
@@ -459,7 +541,16 @@ namespace TesterAppUI
         {
             ushort startAddress = 0xA410;
             ushort value = Convert.ToUInt16(2);
-            _masrerRTU.WriteSingleRegister(_slaveAddress, startAddress, value);
+            try
+            {
+                _masrerRTU.WriteSingleRegister(_slaveAddress, startAddress, value);
+            }
+            catch (InvalidOperationException exception)
+            {
+
+                timer1.Enabled = false;
+                return;
+            }
             timer1.Enabled = false;
             StopButton.Enabled = false;
             ResetButton.Enabled = false;
@@ -517,6 +608,19 @@ namespace TesterAppUI
         private void MainForm_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void timer2_Tick(object sender, EventArgs e)
+        {
+            if (_port.IsOpen == false)
+            {
+                timer1.Enabled = false;
+                timer2.Enabled = false;
+                MessageBox.Show("Потеря соединения", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                ConnectButton.Enabled = true;
+                DisableButton.Enabled = false;
+                return;
+            }
         }
     }
 
