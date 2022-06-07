@@ -38,8 +38,8 @@ namespace TesterAppUI
         public int _numberPeriodsNumeric = 1;
         
         
-
-        public int _typeTest;
+        public string _typeTest;
+        
         public SettingTestForm()
         {
             InitializeComponent();
@@ -114,6 +114,7 @@ namespace TesterAppUI
         {
             try
             {
+                _typeTest = TypeTestComboBox.Text;
                 CheckData();
                 TimeTest();
                 DialogResult = DialogResult.OK;
@@ -149,12 +150,10 @@ namespace TesterAppUI
                 case 0:
                     NumberPeriodsNumericUpDown.Enabled = false;
                     TestsGroupBox.Enabled = true;
-                    _typeTest = 0;
                     break;
                 case 1:
                     NumberPeriodsNumericUpDown.Enabled = true;
                     TestsGroupBox.Enabled = true;
-                    _typeTest = 1;
                     break;
             }
         }

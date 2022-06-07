@@ -18,10 +18,10 @@ namespace TesterAppUI
         /// <summary>
         /// Переменная хранящая данные порта
         /// </summary>
-        private SerialPort _port;
+        public SerialPort _port;
 
         /// <summary>
-        /// Переменная для ввода и вывода данных в регистрв данных
+        /// Переменная для ввода и вывода данных с регистров
         /// </summary>
         public IModbusMaster _masrerRTU;
 
@@ -101,6 +101,11 @@ namespace TesterAppUI
             {
                 _port.Open();
             }
+            catch (UnauthorizedAccessException exception)
+            {
+                MessageBox.Show(this, exception.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             catch (NullReferenceException)
             {
                 MessageBox.Show("Не указаны настройки порта", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -113,9 +118,9 @@ namespace TesterAppUI
                 return;
             }
 
-            timer2.Enabled = true;
             _masrerRTU = ModbusSerialMaster.CreateRtu(_port);
-
+            _masrerRTU.Transport.ReadTimeout = 300;
+            timer2.Enabled = true;
             ConnectButton.Enabled = false;
             DisableButton.Enabled = true;
             StartButton.Enabled = true;
@@ -267,13 +272,13 @@ namespace TesterAppUI
                     case 3:
                         textBox11.Text = string.Empty;
                         a = String.Concat<ushort>(result);
-                        e = Convert.ToDouble(a)/10;
+                        e = Convert.ToDouble(a)/100;
                         textBox11.Text = e.ToString();//String.Concat<ushort>(result);
                         break;
                     case 4:
                         textBox10.Text = string.Empty;
                         a = String.Concat<ushort>(result);
-                        e = Convert.ToDouble(a);
+                        e = Convert.ToDouble(a)/100;
                         textBox10.Text = e.ToString();//String.Concat<ushort>(result);
                         break;
                 }
@@ -298,8 +303,25 @@ namespace TesterAppUI
                 }
                 catch (InvalidOperationException exception)
                 {
-                    
+
                     timer1.Enabled = false;
+                    return;
+                }
+                catch (TimeoutException)
+                {
+                    timer1.Enabled = false;
+                    timer2.Enabled = false;
+                    MessageBox.Show("Время ожидания истекло. Проверьте настройки подключения", "Внимание",
+                        MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    ConnectButton.Enabled = true;
+                    DisableButton.Enabled = false;
+                    
+                    StartButton.Enabled = false;
+                    StopButton.Enabled = false;
+                    ResetButton.Enabled = false;
+                    LaunchButton.Enabled = false;
+                    ParametrsGroupBox.Enabled = false;
+                    _port.Close();
                     return;
                 }
                 switch (i)
@@ -616,9 +638,15 @@ namespace TesterAppUI
             {
                 timer1.Enabled = false;
                 timer2.Enabled = false;
-                MessageBox.Show("Потеря соединения", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 ConnectButton.Enabled = true;
                 DisableButton.Enabled = false;
+                StartButton.Enabled = false;
+                StopButton.Enabled = false;
+                ResetButton.Enabled = false;
+                LaunchButton.Enabled = false;
+                ParametrsGroupBox.Enabled = false;
+                _port.Close();
+                MessageBox.Show("Потеря соединения", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
         }

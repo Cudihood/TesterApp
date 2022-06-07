@@ -172,7 +172,7 @@ namespace TesterAppUI
             // 
             // PowerNumericUpDown
             // 
-            this.PowerNumericUpDown.Location = new System.Drawing.Point(200, 70);
+            this.PowerNumericUpDown.Location = new System.Drawing.Point(206, 69);
             this.PowerNumericUpDown.Name = "PowerNumericUpDown";
             this.PowerNumericUpDown.Size = new System.Drawing.Size(60, 20);
             this.PowerNumericUpDown.TabIndex = 39;
@@ -181,7 +181,7 @@ namespace TesterAppUI
             // 
             // VoltageNumericUpDown
             // 
-            this.VoltageNumericUpDown.Location = new System.Drawing.Point(200, 44);
+            this.VoltageNumericUpDown.Location = new System.Drawing.Point(206, 43);
             this.VoltageNumericUpDown.Maximum = new decimal(new int[] {
             500,
             0,
@@ -195,7 +195,7 @@ namespace TesterAppUI
             // 
             // CurrentNumericUpDown
             // 
-            this.CurrentNumericUpDown.Location = new System.Drawing.Point(200, 18);
+            this.CurrentNumericUpDown.Location = new System.Drawing.Point(206, 17);
             this.CurrentNumericUpDown.Maximum = new decimal(new int[] {
             1440,
             0,
@@ -220,7 +220,7 @@ namespace TesterAppUI
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(265, 72);
+            this.label6.Location = new System.Drawing.Point(271, 72);
             this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(25, 13);
@@ -230,7 +230,7 @@ namespace TesterAppUI
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(265, 46);
+            this.label5.Location = new System.Drawing.Point(271, 46);
             this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(14, 13);
@@ -240,7 +240,7 @@ namespace TesterAppUI
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(265, 20);
+            this.label1.Location = new System.Drawing.Point(271, 20);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(14, 13);
@@ -344,7 +344,7 @@ namespace TesterAppUI
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(259, 122);
+            this.label15.Location = new System.Drawing.Point(271, 122);
             this.label15.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(25, 13);
@@ -353,10 +353,10 @@ namespace TesterAppUI
             // 
             // PowerOutputTextBox
             // 
-            this.PowerOutputTextBox.Location = new System.Drawing.Point(202, 119);
+            this.PowerOutputTextBox.Location = new System.Drawing.Point(208, 119);
             this.PowerOutputTextBox.Name = "PowerOutputTextBox";
             this.PowerOutputTextBox.ReadOnly = true;
-            this.PowerOutputTextBox.Size = new System.Drawing.Size(52, 20);
+            this.PowerOutputTextBox.Size = new System.Drawing.Size(58, 20);
             this.PowerOutputTextBox.TabIndex = 22;
             this.PowerOutputTextBox.Text = "0";
             this.PowerOutputTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -374,7 +374,7 @@ namespace TesterAppUI
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(259, 96);
+            this.label13.Location = new System.Drawing.Point(271, 96);
             this.label13.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(14, 13);
@@ -383,10 +383,10 @@ namespace TesterAppUI
             // 
             // CurrentOutputTextBox
             // 
-            this.CurrentOutputTextBox.Location = new System.Drawing.Point(202, 93);
+            this.CurrentOutputTextBox.Location = new System.Drawing.Point(208, 93);
             this.CurrentOutputTextBox.Name = "CurrentOutputTextBox";
             this.CurrentOutputTextBox.ReadOnly = true;
-            this.CurrentOutputTextBox.Size = new System.Drawing.Size(52, 20);
+            this.CurrentOutputTextBox.Size = new System.Drawing.Size(58, 20);
             this.CurrentOutputTextBox.TabIndex = 19;
             this.CurrentOutputTextBox.Text = "0";
             this.CurrentOutputTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -404,7 +404,7 @@ namespace TesterAppUI
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(259, 70);
+            this.label7.Location = new System.Drawing.Point(271, 70);
             this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(14, 13);
@@ -414,7 +414,7 @@ namespace TesterAppUI
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(259, 44);
+            this.label8.Location = new System.Drawing.Point(271, 44);
             this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(14, 13);
@@ -424,7 +424,7 @@ namespace TesterAppUI
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(259, 18);
+            this.label9.Location = new System.Drawing.Point(271, 18);
             this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(25, 13);
@@ -433,20 +433,20 @@ namespace TesterAppUI
             // 
             // VoltageOutputTextBox
             // 
-            this.VoltageOutputTextBox.Location = new System.Drawing.Point(202, 67);
+            this.VoltageOutputTextBox.Location = new System.Drawing.Point(208, 67);
             this.VoltageOutputTextBox.Name = "VoltageOutputTextBox";
             this.VoltageOutputTextBox.ReadOnly = true;
-            this.VoltageOutputTextBox.Size = new System.Drawing.Size(52, 20);
+            this.VoltageOutputTextBox.Size = new System.Drawing.Size(58, 20);
             this.VoltageOutputTextBox.TabIndex = 14;
             this.VoltageOutputTextBox.Text = "0";
             this.VoltageOutputTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // VoltageEntranceTextBox
             // 
-            this.VoltageEntranceTextBox.Location = new System.Drawing.Point(202, 41);
+            this.VoltageEntranceTextBox.Location = new System.Drawing.Point(208, 41);
             this.VoltageEntranceTextBox.Name = "VoltageEntranceTextBox";
             this.VoltageEntranceTextBox.ReadOnly = true;
-            this.VoltageEntranceTextBox.Size = new System.Drawing.Size(52, 20);
+            this.VoltageEntranceTextBox.Size = new System.Drawing.Size(58, 20);
             this.VoltageEntranceTextBox.TabIndex = 13;
             this.VoltageEntranceTextBox.Text = "0";
             this.VoltageEntranceTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -483,10 +483,10 @@ namespace TesterAppUI
             // 
             // FrequencyVoltageTextBox
             // 
-            this.FrequencyVoltageTextBox.Location = new System.Drawing.Point(202, 15);
+            this.FrequencyVoltageTextBox.Location = new System.Drawing.Point(208, 15);
             this.FrequencyVoltageTextBox.Name = "FrequencyVoltageTextBox";
             this.FrequencyVoltageTextBox.ReadOnly = true;
-            this.FrequencyVoltageTextBox.Size = new System.Drawing.Size(52, 20);
+            this.FrequencyVoltageTextBox.Size = new System.Drawing.Size(58, 20);
             this.FrequencyVoltageTextBox.TabIndex = 9;
             this.FrequencyVoltageTextBox.Text = "0";
             this.FrequencyVoltageTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -673,7 +673,7 @@ namespace TesterAppUI
             this.ConnectButton.Name = "ConnectButton";
             this.ConnectButton.Size = new System.Drawing.Size(207, 54);
             this.ConnectButton.TabIndex = 20;
-            this.ConnectButton.Text = "Подкючится";
+            this.ConnectButton.Text = "Подкючиться";
             this.ConnectButton.UseVisualStyleBackColor = true;
             this.ConnectButton.Click += new System.EventHandler(this.ConnectButton_Click);
             // 
@@ -701,12 +701,13 @@ namespace TesterAppUI
             this.LaunchButton.Name = "LaunchButton";
             this.LaunchButton.Size = new System.Drawing.Size(300, 35);
             this.LaunchButton.TabIndex = 21;
-            this.LaunchButton.Text = "ЗАПУК ИСПЫТАНИЯ";
+            this.LaunchButton.Text = "ЗАПУСК ИСПЫТАНИЯ";
             this.LaunchButton.UseVisualStyleBackColor = true;
             this.LaunchButton.Click += new System.EventHandler(this.LaunchButton_Click);
             // 
             // timer2
             // 
+            this.timer2.Interval = 200;
             this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
             // 
             // MainForm

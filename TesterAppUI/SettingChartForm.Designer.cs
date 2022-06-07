@@ -38,15 +38,15 @@ namespace TesterAppUI
             this.VoltageOutputNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.CurrentNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.PowerNumericUpDown = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown7 = new System.Windows.Forms.NumericUpDown();
+            this.MaxPowerNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.label7 = new System.Windows.Forms.Label();
-            this.numericUpDown8 = new System.Windows.Forms.NumericUpDown();
+            this.MaxCurrentNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.label8 = new System.Windows.Forms.Label();
-            this.numericUpDown9 = new System.Windows.Forms.NumericUpDown();
+            this.MaxVoltageOutputNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.label9 = new System.Windows.Forms.Label();
-            this.numericUpDown10 = new System.Windows.Forms.NumericUpDown();
+            this.MaxVoltageEntranceNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.label10 = new System.Windows.Forms.Label();
-            this.numericUpDown11 = new System.Windows.Forms.NumericUpDown();
+            this.MaxFrequencyNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.label11 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -61,11 +61,11 @@ namespace TesterAppUI
             ((System.ComponentModel.ISupportInitialize)(this.VoltageOutputNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CurrentNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PowerNumericUpDown)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown7)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown8)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown9)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown10)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown11)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MaxPowerNumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MaxCurrentNumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MaxVoltageOutputNumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MaxVoltageEntranceNumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MaxFrequencyNumericUpDown)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -171,12 +171,12 @@ namespace TesterAppUI
             0,
             0});
             // 
-            // numericUpDown7
+            // MaxPowerNumericUpDown
             // 
-            this.numericUpDown7.Location = new System.Drawing.Point(138, 122);
-            this.numericUpDown7.Name = "numericUpDown7";
-            this.numericUpDown7.Size = new System.Drawing.Size(75, 20);
-            this.numericUpDown7.TabIndex = 23;
+            this.MaxPowerNumericUpDown.Location = new System.Drawing.Point(138, 122);
+            this.MaxPowerNumericUpDown.Name = "MaxPowerNumericUpDown";
+            this.MaxPowerNumericUpDown.Size = new System.Drawing.Size(75, 20);
+            this.MaxPowerNumericUpDown.TabIndex = 23;
             // 
             // label7
             // 
@@ -187,12 +187,12 @@ namespace TesterAppUI
             this.label7.TabIndex = 22;
             this.label7.Text = "Мощьность на выходе";
             // 
-            // numericUpDown8
+            // MaxCurrentNumericUpDown
             // 
-            this.numericUpDown8.Location = new System.Drawing.Point(138, 96);
-            this.numericUpDown8.Name = "numericUpDown8";
-            this.numericUpDown8.Size = new System.Drawing.Size(75, 20);
-            this.numericUpDown8.TabIndex = 21;
+            this.MaxCurrentNumericUpDown.Location = new System.Drawing.Point(138, 96);
+            this.MaxCurrentNumericUpDown.Name = "MaxCurrentNumericUpDown";
+            this.MaxCurrentNumericUpDown.Size = new System.Drawing.Size(75, 20);
+            this.MaxCurrentNumericUpDown.TabIndex = 21;
             // 
             // label8
             // 
@@ -203,12 +203,12 @@ namespace TesterAppUI
             this.label8.TabIndex = 20;
             this.label8.Text = "Ток на выходе";
             // 
-            // numericUpDown9
+            // MaxVoltageOutputNumericUpDown
             // 
-            this.numericUpDown9.Location = new System.Drawing.Point(138, 70);
-            this.numericUpDown9.Name = "numericUpDown9";
-            this.numericUpDown9.Size = new System.Drawing.Size(75, 20);
-            this.numericUpDown9.TabIndex = 19;
+            this.MaxVoltageOutputNumericUpDown.Location = new System.Drawing.Point(138, 70);
+            this.MaxVoltageOutputNumericUpDown.Name = "MaxVoltageOutputNumericUpDown";
+            this.MaxVoltageOutputNumericUpDown.Size = new System.Drawing.Size(75, 20);
+            this.MaxVoltageOutputNumericUpDown.TabIndex = 19;
             // 
             // label9
             // 
@@ -219,12 +219,12 @@ namespace TesterAppUI
             this.label9.TabIndex = 18;
             this.label9.Text = "Напряжение на выходе";
             // 
-            // numericUpDown10
+            // MaxVoltageEntranceNumericUpDown
             // 
-            this.numericUpDown10.Location = new System.Drawing.Point(138, 44);
-            this.numericUpDown10.Name = "numericUpDown10";
-            this.numericUpDown10.Size = new System.Drawing.Size(75, 20);
-            this.numericUpDown10.TabIndex = 17;
+            this.MaxVoltageEntranceNumericUpDown.Location = new System.Drawing.Point(138, 44);
+            this.MaxVoltageEntranceNumericUpDown.Name = "MaxVoltageEntranceNumericUpDown";
+            this.MaxVoltageEntranceNumericUpDown.Size = new System.Drawing.Size(75, 20);
+            this.MaxVoltageEntranceNumericUpDown.TabIndex = 17;
             // 
             // label10
             // 
@@ -235,12 +235,12 @@ namespace TesterAppUI
             this.label10.TabIndex = 16;
             this.label10.Text = "Напряжение на вхое";
             // 
-            // numericUpDown11
+            // MaxFrequencyNumericUpDown
             // 
-            this.numericUpDown11.Location = new System.Drawing.Point(138, 18);
-            this.numericUpDown11.Name = "numericUpDown11";
-            this.numericUpDown11.Size = new System.Drawing.Size(75, 20);
-            this.numericUpDown11.TabIndex = 15;
+            this.MaxFrequencyNumericUpDown.Location = new System.Drawing.Point(138, 18);
+            this.MaxFrequencyNumericUpDown.Name = "MaxFrequencyNumericUpDown";
+            this.MaxFrequencyNumericUpDown.Size = new System.Drawing.Size(75, 20);
+            this.MaxFrequencyNumericUpDown.TabIndex = 15;
             // 
             // label11
             // 
@@ -254,15 +254,15 @@ namespace TesterAppUI
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.label10);
-            this.groupBox1.Controls.Add(this.numericUpDown7);
+            this.groupBox1.Controls.Add(this.MaxPowerNumericUpDown);
             this.groupBox1.Controls.Add(this.label11);
             this.groupBox1.Controls.Add(this.label7);
-            this.groupBox1.Controls.Add(this.numericUpDown11);
-            this.groupBox1.Controls.Add(this.numericUpDown8);
-            this.groupBox1.Controls.Add(this.numericUpDown10);
+            this.groupBox1.Controls.Add(this.MaxFrequencyNumericUpDown);
+            this.groupBox1.Controls.Add(this.MaxCurrentNumericUpDown);
+            this.groupBox1.Controls.Add(this.MaxVoltageEntranceNumericUpDown);
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.label9);
-            this.groupBox1.Controls.Add(this.numericUpDown9);
+            this.groupBox1.Controls.Add(this.MaxVoltageOutputNumericUpDown);
             this.groupBox1.Location = new System.Drawing.Point(246, 12);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(226, 159);
@@ -353,11 +353,11 @@ namespace TesterAppUI
             ((System.ComponentModel.ISupportInitialize)(this.VoltageOutputNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CurrentNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PowerNumericUpDown)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown7)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown8)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown9)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown10)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown11)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MaxPowerNumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MaxCurrentNumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MaxVoltageOutputNumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MaxVoltageEntranceNumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MaxFrequencyNumericUpDown)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -378,15 +378,15 @@ namespace TesterAppUI
         private System.Windows.Forms.NumericUpDown VoltageOutputNumericUpDown;
         private System.Windows.Forms.NumericUpDown CurrentNumericUpDown;
         private System.Windows.Forms.NumericUpDown PowerNumericUpDown;
-        private System.Windows.Forms.NumericUpDown numericUpDown7;
+        private System.Windows.Forms.NumericUpDown MaxPowerNumericUpDown;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.NumericUpDown numericUpDown8;
+        private System.Windows.Forms.NumericUpDown MaxCurrentNumericUpDown;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.NumericUpDown numericUpDown9;
+        private System.Windows.Forms.NumericUpDown MaxVoltageOutputNumericUpDown;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.NumericUpDown numericUpDown10;
+        private System.Windows.Forms.NumericUpDown MaxVoltageEntranceNumericUpDown;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.NumericUpDown numericUpDown11;
+        private System.Windows.Forms.NumericUpDown MaxFrequencyNumericUpDown;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;

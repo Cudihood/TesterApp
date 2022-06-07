@@ -13,6 +13,8 @@ namespace TesterAppUI
     public partial class WriteTextForm : Form
     {
         public string _textComment;
+
+        public string _numberInstallation;
         public WriteTextForm()
         {
             InitializeComponent();
@@ -29,6 +31,7 @@ namespace TesterAppUI
         private void button1_Click(object sender, EventArgs e)
         {
             _textComment = TextBox.Text;
+            _numberInstallation = NumberInstallationTextBox.Text;
             DialogResult = DialogResult.OK;
             Close();
         }

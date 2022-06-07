@@ -49,9 +49,10 @@ namespace TesterAppUI
             // 
             // PortsComboBox
             // 
+            this.PortsComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.PortsComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.PortsComboBox.FormattingEnabled = true;
-            this.PortsComboBox.Location = new System.Drawing.Point(147, 19);
+            this.PortsComboBox.Location = new System.Drawing.Point(174, 19);
             this.PortsComboBox.Name = "PortsComboBox";
             this.PortsComboBox.Size = new System.Drawing.Size(92, 21);
             this.PortsComboBox.TabIndex = 0;
@@ -68,7 +69,7 @@ namespace TesterAppUI
             // 
             // OpenButton
             // 
-            this.OpenButton.Location = new System.Drawing.Point(12, 200);
+            this.OpenButton.Location = new System.Drawing.Point(57, 200);
             this.OpenButton.Name = "OpenButton";
             this.OpenButton.Size = new System.Drawing.Size(112, 27);
             this.OpenButton.TabIndex = 4;
@@ -93,7 +94,7 @@ namespace TesterAppUI
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox1.Size = new System.Drawing.Size(247, 182);
+            this.groupBox1.Size = new System.Drawing.Size(275, 182);
             this.groupBox1.TabIndex = 18;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Настройки порта";
@@ -110,37 +111,40 @@ namespace TesterAppUI
             // 
             // TypeInstallationComboBox
             // 
+            this.TypeInstallationComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.TypeInstallationComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.TypeInstallationComboBox.FormattingEnabled = true;
             this.TypeInstallationComboBox.Items.AddRange(new object[] {
             "IHM-15",
             "IHM-25",
             "IHM-30"});
-            this.TypeInstallationComboBox.Location = new System.Drawing.Point(147, 154);
+            this.TypeInstallationComboBox.Location = new System.Drawing.Point(174, 154);
             this.TypeInstallationComboBox.Name = "TypeInstallationComboBox";
             this.TypeInstallationComboBox.Size = new System.Drawing.Size(92, 21);
             this.TypeInstallationComboBox.TabIndex = 25;
             // 
             // DataBitsComboBox
             // 
+            this.DataBitsComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.DataBitsComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.DataBitsComboBox.FormattingEnabled = true;
             this.DataBitsComboBox.Items.AddRange(new object[] {
             "7",
             "8"});
-            this.DataBitsComboBox.Location = new System.Drawing.Point(147, 73);
+            this.DataBitsComboBox.Location = new System.Drawing.Point(174, 73);
             this.DataBitsComboBox.Name = "DataBitsComboBox";
             this.DataBitsComboBox.Size = new System.Drawing.Size(92, 21);
             this.DataBitsComboBox.TabIndex = 15;
             // 
             // StopBitsСomboBox
             // 
+            this.StopBitsСomboBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.StopBitsСomboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.StopBitsСomboBox.FormattingEnabled = true;
             this.StopBitsСomboBox.Items.AddRange(new object[] {
             "1",
             "2"});
-            this.StopBitsСomboBox.Location = new System.Drawing.Point(147, 127);
+            this.StopBitsСomboBox.Location = new System.Drawing.Point(174, 127);
             this.StopBitsСomboBox.Name = "StopBitsСomboBox";
             this.StopBitsСomboBox.Size = new System.Drawing.Size(92, 21);
             this.StopBitsСomboBox.TabIndex = 13;
@@ -157,6 +161,7 @@ namespace TesterAppUI
             // 
             // BaudRateComboBox
             // 
+            this.BaudRateComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.BaudRateComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.BaudRateComboBox.FormattingEnabled = true;
             this.BaudRateComboBox.Items.AddRange(new object[] {
@@ -168,7 +173,7 @@ namespace TesterAppUI
             "38400",
             "57600",
             "115200"});
-            this.BaudRateComboBox.Location = new System.Drawing.Point(147, 46);
+            this.BaudRateComboBox.Location = new System.Drawing.Point(174, 46);
             this.BaudRateComboBox.Name = "BaudRateComboBox";
             this.BaudRateComboBox.Size = new System.Drawing.Size(92, 21);
             this.BaudRateComboBox.TabIndex = 11;
@@ -195,13 +200,14 @@ namespace TesterAppUI
             // 
             // ParityComboBox
             // 
+            this.ParityComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ParityComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ParityComboBox.FormattingEnabled = true;
             this.ParityComboBox.Items.AddRange(new object[] {
             "0-None Parity",
             "1-Odd Parity",
             "2-Even Parity"});
-            this.ParityComboBox.Location = new System.Drawing.Point(147, 100);
+            this.ParityComboBox.Location = new System.Drawing.Point(174, 100);
             this.ParityComboBox.Name = "ParityComboBox";
             this.ParityComboBox.Size = new System.Drawing.Size(92, 21);
             this.ParityComboBox.TabIndex = 10;
@@ -218,7 +224,7 @@ namespace TesterAppUI
             // 
             // CloseButton
             // 
-            this.CloseButton.Location = new System.Drawing.Point(148, 200);
+            this.CloseButton.Location = new System.Drawing.Point(175, 200);
             this.CloseButton.Name = "CloseButton";
             this.CloseButton.Size = new System.Drawing.Size(112, 27);
             this.CloseButton.TabIndex = 5;
@@ -230,7 +236,7 @@ namespace TesterAppUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(272, 239);
+            this.ClientSize = new System.Drawing.Size(299, 239);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.CloseButton);
             this.Controls.Add(this.OpenButton);

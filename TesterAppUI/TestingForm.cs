@@ -41,6 +41,10 @@ namespace TesterAppUI
         /// </summary>
         private DateTime _timeStart;
 
+        private DateTime _timeBeginningTest;
+
+        private DateTime _timeFinalTest;
+
         /// <summary>
         /// Переменная хранящая время установки в выключенном состоянии
         /// </summary>
@@ -114,6 +118,10 @@ namespace TesterAppUI
         public double _intervalThermometer1;
 
         public double _intervalThermometer2;
+
+        private int _oneTick = 0;
+
+        private string _typeTest;
         private void TestingForm_Load(object sender, EventArgs e)
         {
             timer2.Enabled = true;
@@ -130,20 +138,19 @@ namespace TesterAppUI
         /// <param name="e"></param>
         private void timer1_Tick(object sender, EventArgs e)
         {
-            ChartParameters();
-
-            _timeBeginning = _timeBeginning.AddSeconds(1);
+            if (_oneTick != 0)
+            {
+                _timeBeginning = _timeBeginning.AddSeconds(1);
+                _timeRemeining = _timeRemeining.AddSeconds(-1);
+            }
             TimeBeginningTextBox.Text = _timeBeginning.ToString("mm:ss");
-
-
-            _timeRemeining = _timeRemeining.AddSeconds(-1);
             RemainingTimeTextBox.Text = _timeRemeining.ToString("mm:ss");
-
+            ChartParameters();
             if (_timeStart.Hour == 0 && _timeStart.Minute == 0 && _timeStart.Second == 0)
             {
 
                 Program._mainForm.StartStopController(false);
-                _timeStop = _timeStop.AddSeconds(-1);
+
                 if (_timeStop.Hour == 0 && _timeStop.Minute == 0 && _timeStop.Second == 0)
                 {
                     _timeStart = _settingTest._timeStart;
@@ -156,8 +163,16 @@ namespace TesterAppUI
                     }
                 }
 
+                if (_oneTick != 1)
+                {
+                    _timeStop = _timeStop.AddSeconds(-1);
+                }
+
+                _oneTick = 2;
+
                 if (_timeRemeining.Hour == 0 && _timeRemeining.Minute == 0 && _timeRemeining.Second == 0)
                 {
+                    _timeFinalTest=DateTime.Now;
                     timer1.Enabled = false;
                     ChartParameters();
                     MessageBox.Show("Испытание завершенно", "Внимание", MessageBoxButtons.OK);
@@ -168,10 +183,15 @@ namespace TesterAppUI
                     StopButton.Enabled = false;
                     SaveButton.Enabled = true;
                     GetTime();
+                    _oneTick = 0;
                 }
                 return;
             }
-            _timeStart = _timeStart.AddSeconds(-1);
+            if (_oneTick != 0)
+            {
+                _timeStart = _timeStart.AddSeconds(-1);
+            }
+            _oneTick = 1;
         }
 
         /// <summary>
@@ -342,20 +362,24 @@ namespace TesterAppUI
             _timeTest = _settingTest._timeTest;
             _timeRemeining = _timeTest;
             _numberPeriodsNumeric = _settingTest._numberPeriodsNumeric;
-
+            _typeTest = _settingTest._typeTest;
             GetTime();
             ChartSetting();
+            timer2.Enabled = true;
+            LaunchButton.Enabled = true;
         }
 
         private void LaunchButton_Click(object sender, EventArgs e)
         {
+            timer2.Enabled = true;
             if (_timeTest.Hour == 0 && _timeTest.Minute == 0 && _timeTest.Second == 0)
             {
-                MessageBox.Show("Не заданын настройки испытания", "Ошибка", MessageBoxButtons.OK);
+                MessageBox.Show("Не заданы настройки испытания", "Ошибка", MessageBoxButtons.OK);
                 return;
             }
             ClearCharts();
             Program._mainForm.StartStopController(true);
+            _timeBeginningTest = DateTime.Now;
             timer1.Enabled = true;
             LaunchButton.Enabled = false;
             StopButton.Enabled = true;
@@ -372,6 +396,7 @@ namespace TesterAppUI
             _timeBeginning = _timeNull;
             _timeRemeining = _timeTest; 
             GetTime();
+            _oneTick = 0;
         }
 
         private void WriteRegisterButton_Click(object sender, EventArgs e)
@@ -381,41 +406,6 @@ namespace TesterAppUI
             Program._mainForm.PowerNumericUpDown.Value = PowerNumericUpDown.Value;
         }
 
-
-        /*
-        private void timer2_Tick(object sender, EventArgs e)
-        {
-            Program._mainForm.StartStopController(false);
-            _timeStop = _timeStop.AddSeconds(-1);
-            if (_timeStop.Hour == 0 && _timeStop.Minute == 0 && _timeStop.Second == 0)
-            {
-                _timeStart = _settingTest._timeStart;
-                _timeStop = _settingTest._timeStop;
-                if (count != _numberPeriodsNumeric)
-                {
-                    timer2.Enabled = false;
-                    Program._mainForm.StartStopController(true);
-                    timer1.Enabled = true;
-                    count++;
-                }
-
-            }
-
-            if (_timeRemeining.Hour == 0 && _timeRemeining.Minute == 0 && _timeRemeining.Second == 0)
-            {
-                timer1.Enabled = false;
-                timer2.Enabled = false;
-                MessageBox.Show("Испытание завершенно", "Внимание", MessageBoxButtons.OKCancel);
-                _timeRemeining = _timeTest;
-                _timeBeginning = _timeNull;
-                LaunchButton.Enabled = true;
-                menuStrip1.Enabled = true;
-                StopButton.Enabled = false;
-                GetTime();
-
-            }
-        }
-        */
         private void GetTime()
         {
             TimeTestTextBox.Text = _timeTest.ToString("mm:ss");
@@ -461,12 +451,12 @@ namespace TesterAppUI
             {
                 try
                 {
-                    ushort[] startAddress = { 0x100B, 0x100C };
+                    ushort[] startAddress = {0x100B, 0x100C};
                     string a;
                     double e;
                     for (int i = 0; i <= 1; i++)
                     {
-                        ushort[] result = Program._mainForm._masrerRTU.ReadHoldingRegisters(_slaveAddressThermometer, 
+                        ushort[] result = Program._mainForm._masrerRTU.ReadHoldingRegisters(_slaveAddressThermometer,
                             startAddress[i], _numberOfPoints);
 
                         switch (i)
@@ -480,9 +470,18 @@ namespace TesterAppUI
                         }
                     }
                 }
+                catch (TimeoutException)
+                {
+                    timer2.Enabled = false;
+                    MessageBox.Show("Время ожидания истекло. Проверьте подключение датчиков температуры", "Внимание", 
+                        MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    LaunchButton.Enabled = false;
+                    return;
+                }
                 catch (Exception ex)
                 {
                     MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
                 }
             }
             else
@@ -496,48 +495,147 @@ namespace TesterAppUI
         {
             ReadRegisterThermometer(_thermometerFlag);
             ControllerParameters();
+            if (Program._mainForm._port.IsOpen == false)
+            {
+                timer2.Enabled = false;
+                this.Close();
+            }
+        }
+
+        public static string DefaultFileName
+        {
+            get
+            {
+                var appDataFolder = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+                var defaultFileName = appDataFolder + $@"\TesterApp\";
+                return defaultFileName;
+            }
         }
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
+            var _defaultFileName = DefaultFileName;
             string comment = "";
-            var result = MessageBox.Show("Добавить комментарий?", "Уведомление", MessageBoxButtons.YesNo);
-            if (result == DialogResult.Yes)
+            string numberInstallation = "";
+            string thermometer = "Не использовались";
+            if (_thermometerFlag)
             {
-                var writeText = new WriteTextForm();
-                var key = writeText.ShowDialog();
-                if (key != DialogResult.OK)
-                {
-                    MessageBox.Show("Коментарий не добавлен", "Внимание", MessageBoxButtons.OK);
-                }
-
+                thermometer = "Использовались";
+            }
+            var writeText = new WriteTextForm(); 
+            var key = writeText.ShowDialog();
+            if (key != DialogResult.OK)
+            {
+                MessageBox.Show("Коментарий не добавлен", "Внимание", MessageBoxButtons.OK);
+            }
+            else
+            {
                 comment = writeText._textComment;
+                numberInstallation = writeText._numberInstallation;
             }
 
-            string path="";
-            SaveFileDialog sfd = new SaveFileDialog();
-            sfd.Filter = "Png Image (.png)|*.png";
 
-            if (sfd.ShowDialog() == DialogResult.OK)
+            if (!File.Exists(_defaultFileName))
             {
-                path = sfd.FileName;
-
-                if (!string.IsNullOrEmpty(path))
-                {
-                    FrequencyVoltageChart.SaveImage(path, ChartImageFormat.Png);
-                }
+                Directory.CreateDirectory(_defaultFileName);
             }
-            
             Application app = new Application();
             Document doc = app.Documents.Add(Visible: true);
-            Range range = doc.Range();
-            range.Text = comment;
             
-            range.InlineShapes.AddPicture(path,Type.Missing,Type.Missing, range);
-            doc.Save();
-            doc.Close();
-            File.Delete(path);
-            MessageBox.Show("Файл сохранен", "Уведомление", MessageBoxButtons.OK);
+            Paragraph titleParagraph = doc.Paragraphs.Add();
+            Range titleRange = titleParagraph.Range;
+            titleRange.Text = "Отчет по испытанию";
+            titleRange.InsertParagraphAfter();
+            titleRange.Font.Bold = 1;
+            titleRange.Font.Size = 18;
+            titleRange.ParagraphFormat.Alignment = WdParagraphAlignment.wdAlignParagraphCenter;
+
+            Paragraph textParagraph = doc.Paragraphs.Add();
+            Range textRange = textParagraph.Range;
+            textRange.Text = $"\nКомментарий к испытанию: {comment}\n" +
+                             $"\nТип испытания: {_typeTest}\n" + 
+                              $"Начало испытания: {_timeBeginningTest.ToString("G")}\n" +
+                              $"Окончание испытания: {_timeFinalTest.ToString("G")}\n" +
+                              $"Длительность процесса: {_timeTest.ToString("T")}\n" +
+                              $"Время во включенном состоянии: {_timeStart.ToString("T")}\n" +
+                              $"Время во выключенном состоянии: {_timeStop.ToString("T")}\n" +
+                              $"Количество периодов: {_numberPeriodsNumeric}\n" +
+                              $"Датчики температуры: {thermometer}\n" +
+                              $"Серийный номер установки: {numberInstallation}\n\n";
+            var path = _defaultFileName;
+            for (int i = 0; i < 7; i++)
+            {
+                switch (i)
+                {
+                    case 0:
+                        path += "Частота.png";
+                        FrequencyVoltageChart.SaveImage(path, ChartImageFormat.Png);
+                        doc.Bookmarks.get_Item("\\endofdoc").Range.InlineShapes.AddPicture(path);
+                        File.Delete(path);
+                        break;
+                    case 1:
+                        path += "НапряжениеНаВх.png";
+                        VoltageEntranceChart.SaveImage(path, ChartImageFormat.Png);
+                        doc.Bookmarks.get_Item("\\endofdoc").Range.InlineShapes.AddPicture(path);
+                        File.Delete(path);
+                        break;
+                    case 2:
+                        path += "НапряжениеНаВых.png";
+                        VoltageOutputChart.SaveImage(path, ChartImageFormat.Png);
+                        doc.Bookmarks.get_Item("\\endofdoc").Range.InlineShapes.AddPicture(path);
+                        File.Delete(path);
+                        break;
+                    case 3:
+                        path += "Ток.png";
+                        CurrentOutputChart.SaveImage(path, ChartImageFormat.Png);
+                        doc.Bookmarks.get_Item("\\endofdoc").Range.InlineShapes.AddPicture(path);
+                        File.Delete(path);
+                        break;
+                    case 4:
+                        path += "Мощность.png";
+                        PowerOutputChart.SaveImage(path, ChartImageFormat.Png);
+                        doc.Bookmarks.get_Item("\\endofdoc").Range.InlineShapes.AddPicture(path);
+                        File.Delete(path);
+                        break;
+                    case 5:
+                        if (!_thermometerFlag)
+                        {
+                            break;
+                        }
+                        path += "Температура1.png";
+                        ThermometerСhart1.SaveImage(path, ChartImageFormat.Png);
+                        doc.Bookmarks.get_Item("\\endofdoc").Range.InlineShapes.AddPicture(path);
+                        File.Delete(path);
+                        break;
+                    case 6:
+                        if (!_thermometerFlag)
+                        {
+                            break;
+                        }
+                        path += "Температура2.png";
+                        ThermometerСhart2.SaveImage(path, ChartImageFormat.Png);
+                        doc.Bookmarks.get_Item("\\endofdoc").Range.InlineShapes.AddPicture(path);
+                        File.Delete(path);
+                        break;
+                }
+                
+            }
+            //Clipboard.SetImage(FrequencyVoltageChart);
+            try
+            {
+                doc.Save();
+                doc.Close();
+                app.Quit();
+                MessageBox.Show("Файл сохранен", "Уведомление", MessageBoxButtons.OK);
+                return;
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message);
+                app.Quit();
+                return;
+            }
+            
         }
     }
 }
