@@ -39,7 +39,7 @@ namespace TesterAppUI
         
         
         public string _typeTest;
-        
+
         public SettingTestForm()
         {
             InitializeComponent();

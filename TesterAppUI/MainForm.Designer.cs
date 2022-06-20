@@ -30,6 +30,7 @@ namespace TesterAppUI
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.SettingnСonnectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.StartButton = new System.Windows.Forms.Button();
@@ -86,6 +87,21 @@ namespace TesterAppUI
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.LaunchButton = new System.Windows.Forms.Button();
             this.timer2 = new System.Windows.Forms.Timer(this.components);
+            this.ThermometerGroupBox = new System.Windows.Forms.GroupBox();
+            this.Sensor2CheckBox = new System.Windows.Forms.CheckBox();
+            this.Sensor1СheckBox = new System.Windows.Forms.CheckBox();
+            this.label31 = new System.Windows.Forms.Label();
+            this.Thermometer2TextBox = new System.Windows.Forms.TextBox();
+            this.label32 = new System.Windows.Forms.Label();
+            this.label29 = new System.Windows.Forms.Label();
+            this.Thermometer1TextBox = new System.Windows.Forms.TextBox();
+            this.label30 = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.ConnectedGroupBox = new System.Windows.Forms.GroupBox();
+            this.ThermometeСheckBox = new System.Windows.Forms.CheckBox();
+            this.ControllerСheckBox = new System.Windows.Forms.CheckBox();
+            this.HelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.AboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.ParametrsGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PowerNumericUpDown)).BeginInit();
@@ -95,6 +111,9 @@ namespace TesterAppUI
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox5.SuspendLayout();
+            this.ThermometerGroupBox.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            this.ConnectedGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -102,7 +121,8 @@ namespace TesterAppUI
             this.menuStrip1.BackColor = System.Drawing.Color.AliceBlue;
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(32, 32);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.SettingnСonnectionToolStripMenuItem});
+            this.SettingnСonnectionToolStripMenuItem,
+            this.HelpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(3, 1, 0, 1);
@@ -145,8 +165,10 @@ namespace TesterAppUI
             this.StatusBox.Multiline = true;
             this.StatusBox.Name = "StatusBox";
             this.StatusBox.ReadOnly = true;
-            this.StatusBox.Size = new System.Drawing.Size(197, 73);
+            this.StatusBox.Size = new System.Drawing.Size(195, 73);
             this.StatusBox.TabIndex = 5;
+            this.StatusBox.TabStop = false;
+            this.StatusBox.TextChanged += new System.EventHandler(this.StatusBox_TextChanged);
             // 
             // ParametrsGroupBox
             // 
@@ -162,7 +184,7 @@ namespace TesterAppUI
             this.ParametrsGroupBox.Controls.Add(this.label3);
             this.ParametrsGroupBox.Controls.Add(this.label2);
             this.ParametrsGroupBox.Enabled = false;
-            this.ParametrsGroupBox.Location = new System.Drawing.Point(438, 181);
+            this.ParametrsGroupBox.Location = new System.Drawing.Point(436, 259);
             this.ParametrsGroupBox.Name = "ParametrsGroupBox";
             this.ParametrsGroupBox.Padding = new System.Windows.Forms.Padding(2);
             this.ParametrsGroupBox.Size = new System.Drawing.Size(300, 134);
@@ -284,7 +306,7 @@ namespace TesterAppUI
             this.groupBox2.Location = new System.Drawing.Point(209, 18);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox2.Size = new System.Drawing.Size(206, 94);
+            this.groupBox2.Size = new System.Drawing.Size(204, 94);
             this.groupBox2.TabIndex = 8;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Статус контроллера:";
@@ -296,13 +318,13 @@ namespace TesterAppUI
             this.groupBox3.Controls.Add(this.StartButton);
             this.groupBox3.Controls.Add(this.StopButton);
             this.groupBox3.Controls.Add(this.groupBox2);
-            this.groupBox3.Location = new System.Drawing.Point(12, 87);
+            this.groupBox3.Location = new System.Drawing.Point(12, 166);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox3.Size = new System.Drawing.Size(420, 117);
+            this.groupBox3.Size = new System.Drawing.Size(418, 117);
             this.groupBox3.TabIndex = 9;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Управление контроллером:";
+            this.groupBox3.Text = "Управление установкой";
             // 
             // ResetButton
             // 
@@ -333,7 +355,7 @@ namespace TesterAppUI
             this.groupBox4.Controls.Add(this.label11);
             this.groupBox4.Controls.Add(this.label12);
             this.groupBox4.Controls.Add(this.FrequencyVoltageTextBox);
-            this.groupBox4.Location = new System.Drawing.Point(438, 27);
+            this.groupBox4.Location = new System.Drawing.Point(436, 105);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox4.Size = new System.Drawing.Size(300, 148);
@@ -509,7 +531,7 @@ namespace TesterAppUI
             this.groupBox5.Controls.Add(this.label24);
             this.groupBox5.Controls.Add(this.label25);
             this.groupBox5.Controls.Add(this.textBox14);
-            this.groupBox5.Location = new System.Drawing.Point(14, 210);
+            this.groupBox5.Location = new System.Drawing.Point(12, 289);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox5.Size = new System.Drawing.Size(418, 146);
@@ -671,7 +693,7 @@ namespace TesterAppUI
             // 
             this.ConnectButton.Location = new System.Drawing.Point(12, 27);
             this.ConnectButton.Name = "ConnectButton";
-            this.ConnectButton.Size = new System.Drawing.Size(207, 54);
+            this.ConnectButton.Size = new System.Drawing.Size(236, 61);
             this.ConnectButton.TabIndex = 20;
             this.ConnectButton.Text = "Подкючиться";
             this.ConnectButton.UseVisualStyleBackColor = true;
@@ -680,9 +702,9 @@ namespace TesterAppUI
             // DisableButton
             // 
             this.DisableButton.Enabled = false;
-            this.DisableButton.Location = new System.Drawing.Point(225, 27);
+            this.DisableButton.Location = new System.Drawing.Point(12, 97);
             this.DisableButton.Name = "DisableButton";
-            this.DisableButton.Size = new System.Drawing.Size(207, 54);
+            this.DisableButton.Size = new System.Drawing.Size(236, 63);
             this.DisableButton.TabIndex = 21;
             this.DisableButton.Text = "Отключиться";
             this.DisableButton.UseVisualStyleBackColor = true;
@@ -697,7 +719,7 @@ namespace TesterAppUI
             // 
             this.LaunchButton.Enabled = false;
             this.LaunchButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.LaunchButton.Location = new System.Drawing.Point(438, 321);
+            this.LaunchButton.Location = new System.Drawing.Point(436, 399);
             this.LaunchButton.Name = "LaunchButton";
             this.LaunchButton.Size = new System.Drawing.Size(300, 35);
             this.LaunchButton.TabIndex = 21;
@@ -707,15 +729,177 @@ namespace TesterAppUI
             // 
             // timer2
             // 
-            this.timer2.Interval = 200;
+            this.timer2.Interval = 500;
             this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
+            // 
+            // ThermometerGroupBox
+            // 
+            this.ThermometerGroupBox.BackColor = System.Drawing.Color.LightSeaGreen;
+            this.ThermometerGroupBox.Controls.Add(this.Sensor2CheckBox);
+            this.ThermometerGroupBox.Controls.Add(this.Sensor1СheckBox);
+            this.ThermometerGroupBox.Enabled = false;
+            this.ThermometerGroupBox.ForeColor = System.Drawing.Color.Black;
+            this.ThermometerGroupBox.Location = new System.Drawing.Point(6, 66);
+            this.ThermometerGroupBox.Name = "ThermometerGroupBox";
+            this.ThermometerGroupBox.Size = new System.Drawing.Size(159, 62);
+            this.ThermometerGroupBox.TabIndex = 22;
+            this.ThermometerGroupBox.TabStop = false;
+            this.ThermometerGroupBox.Text = "Датчики температуры";
+            // 
+            // Sensor2CheckBox
+            // 
+            this.Sensor2CheckBox.AutoSize = true;
+            this.Sensor2CheckBox.Location = new System.Drawing.Point(6, 42);
+            this.Sensor2CheckBox.Name = "Sensor2CheckBox";
+            this.Sensor2CheckBox.Size = new System.Drawing.Size(142, 17);
+            this.Sensor2CheckBox.TabIndex = 17;
+            this.Sensor2CheckBox.Text = "Датчик температуры 2";
+            this.Sensor2CheckBox.UseVisualStyleBackColor = true;
+            // 
+            // Sensor1СheckBox
+            // 
+            this.Sensor1СheckBox.AutoSize = true;
+            this.Sensor1СheckBox.Location = new System.Drawing.Point(6, 19);
+            this.Sensor1СheckBox.Name = "Sensor1СheckBox";
+            this.Sensor1СheckBox.Size = new System.Drawing.Size(142, 17);
+            this.Sensor1СheckBox.TabIndex = 16;
+            this.Sensor1СheckBox.Text = "Датчик температуры 1";
+            this.Sensor1СheckBox.UseVisualStyleBackColor = true;
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.Location = new System.Drawing.Point(271, 45);
+            this.label31.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(18, 13);
+            this.label31.TabIndex = 35;
+            this.label31.Text = "°С";
+            // 
+            // Thermometer2TextBox
+            // 
+            this.Thermometer2TextBox.Location = new System.Drawing.Point(208, 42);
+            this.Thermometer2TextBox.Name = "Thermometer2TextBox";
+            this.Thermometer2TextBox.ReadOnly = true;
+            this.Thermometer2TextBox.Size = new System.Drawing.Size(58, 20);
+            this.Thermometer2TextBox.TabIndex = 34;
+            this.Thermometer2TextBox.Text = "0";
+            this.Thermometer2TextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // label32
+            // 
+            this.label32.AutoSize = true;
+            this.label32.Location = new System.Drawing.Point(6, 45);
+            this.label32.Margin = new System.Windows.Forms.Padding(3);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(126, 13);
+            this.label32.TabIndex = 33;
+            this.label32.Text = "Датчик температуры 2:";
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Location = new System.Drawing.Point(271, 19);
+            this.label29.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(18, 13);
+            this.label29.TabIndex = 32;
+            this.label29.Text = "°С";
+            // 
+            // Thermometer1TextBox
+            // 
+            this.Thermometer1TextBox.Location = new System.Drawing.Point(208, 16);
+            this.Thermometer1TextBox.Name = "Thermometer1TextBox";
+            this.Thermometer1TextBox.ReadOnly = true;
+            this.Thermometer1TextBox.Size = new System.Drawing.Size(58, 20);
+            this.Thermometer1TextBox.TabIndex = 31;
+            this.Thermometer1TextBox.Text = "0";
+            this.Thermometer1TextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Location = new System.Drawing.Point(6, 19);
+            this.label30.Margin = new System.Windows.Forms.Padding(3);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(126, 13);
+            this.label30.TabIndex = 30;
+            this.label30.Text = "Датчик температуры 1:";
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.BackColor = System.Drawing.Color.MediumTurquoise;
+            this.groupBox1.Controls.Add(this.Thermometer1TextBox);
+            this.groupBox1.Controls.Add(this.label31);
+            this.groupBox1.Controls.Add(this.label30);
+            this.groupBox1.Controls.Add(this.Thermometer2TextBox);
+            this.groupBox1.Controls.Add(this.label29);
+            this.groupBox1.Controls.Add(this.label32);
+            this.groupBox1.Location = new System.Drawing.Point(436, 27);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(300, 72);
+            this.groupBox1.TabIndex = 36;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Температура";
+            // 
+            // ConnectedGroupBox
+            // 
+            this.ConnectedGroupBox.BackColor = System.Drawing.Color.PaleTurquoise;
+            this.ConnectedGroupBox.Controls.Add(this.ThermometeСheckBox);
+            this.ConnectedGroupBox.Controls.Add(this.ControllerСheckBox);
+            this.ConnectedGroupBox.Controls.Add(this.ThermometerGroupBox);
+            this.ConnectedGroupBox.Location = new System.Drawing.Point(254, 27);
+            this.ConnectedGroupBox.Name = "ConnectedGroupBox";
+            this.ConnectedGroupBox.Size = new System.Drawing.Size(176, 132);
+            this.ConnectedGroupBox.TabIndex = 37;
+            this.ConnectedGroupBox.TabStop = false;
+            this.ConnectedGroupBox.Text = "Подключенные устройства";
+            // 
+            // ThermometeСheckBox
+            // 
+            this.ThermometeСheckBox.AutoSize = true;
+            this.ThermometeСheckBox.Location = new System.Drawing.Point(6, 43);
+            this.ThermometeСheckBox.Name = "ThermometeСheckBox";
+            this.ThermometeСheckBox.Size = new System.Drawing.Size(133, 17);
+            this.ThermometeСheckBox.TabIndex = 24;
+            this.ThermometeСheckBox.Text = "Датчик температуры";
+            this.ThermometeСheckBox.UseVisualStyleBackColor = true;
+            this.ThermometeСheckBox.CheckedChanged += new System.EventHandler(this.ThermometeСheckBox_CheckedChanged);
+            // 
+            // ControllerСheckBox
+            // 
+            this.ControllerСheckBox.AutoSize = true;
+            this.ControllerСheckBox.Location = new System.Drawing.Point(7, 20);
+            this.ControllerСheckBox.Name = "ControllerСheckBox";
+            this.ControllerСheckBox.Size = new System.Drawing.Size(81, 17);
+            this.ControllerСheckBox.TabIndex = 23;
+            this.ControllerСheckBox.Text = "Установка";
+            this.ControllerСheckBox.UseVisualStyleBackColor = true;
+            this.ControllerСheckBox.CheckedChanged += new System.EventHandler(this.ControllerСheckBox_CheckedChanged);
+            // 
+            // HelpToolStripMenuItem
+            // 
+            this.HelpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.AboutToolStripMenuItem});
+            this.HelpToolStripMenuItem.Name = "HelpToolStripMenuItem";
+            this.HelpToolStripMenuItem.Size = new System.Drawing.Size(68, 22);
+            this.HelpToolStripMenuItem.Text = "Помощь";
+            // 
+            // AboutToolStripMenuItem
+            // 
+            this.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem";
+            this.AboutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.AboutToolStripMenuItem.Text = "О программе";
+            this.AboutToolStripMenuItem.Click += new System.EventHandler(this.AboutToolStripMenuItem_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(750, 369);
+            this.ClientSize = new System.Drawing.Size(750, 442);
+            this.Controls.Add(this.ConnectedGroupBox);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.DisableButton);
             this.Controls.Add(this.ConnectButton);
             this.Controls.Add(this.LaunchButton);
@@ -725,14 +909,14 @@ namespace TesterAppUI
             this.Controls.Add(this.ParametrsGroupBox);
             this.Controls.Add(this.menuStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(766, 408);
             this.MinimumSize = new System.Drawing.Size(766, 408);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "JobForm";
+            this.Text = "Панель управления";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.MainForm_MouseClick);
             this.menuStrip1.ResumeLayout(false);
@@ -749,6 +933,12 @@ namespace TesterAppUI
             this.groupBox4.PerformLayout();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
+            this.ThermometerGroupBox.ResumeLayout(false);
+            this.ThermometerGroupBox.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.ConnectedGroupBox.ResumeLayout(false);
+            this.ConnectedGroupBox.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -807,10 +997,25 @@ namespace TesterAppUI
         private System.Windows.Forms.Button DisableButton;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Button ResetButton;
-        private System.Windows.Forms.Button LaunchButton;
         private System.Windows.Forms.NumericUpDown VoltageNumericUpDown;
         public System.Windows.Forms.NumericUpDown CurrentNumericUpDown;
         public System.Windows.Forms.NumericUpDown PowerNumericUpDown;
         private System.Windows.Forms.Timer timer2;
+        public System.Windows.Forms.Button LaunchButton;
+        private System.Windows.Forms.GroupBox ThermometerGroupBox;
+        public System.Windows.Forms.CheckBox Sensor2CheckBox;
+        public System.Windows.Forms.CheckBox Sensor1СheckBox;
+        private System.Windows.Forms.Label label31;
+        private System.Windows.Forms.TextBox Thermometer2TextBox;
+        private System.Windows.Forms.Label label32;
+        private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.TextBox Thermometer1TextBox;
+        private System.Windows.Forms.Label label30;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox ConnectedGroupBox;
+        private System.Windows.Forms.CheckBox ThermometeСheckBox;
+        private System.Windows.Forms.CheckBox ControllerСheckBox;
+        private System.Windows.Forms.ToolStripMenuItem HelpToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem AboutToolStripMenuItem;
     }
 }

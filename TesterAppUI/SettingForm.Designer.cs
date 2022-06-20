@@ -29,10 +29,13 @@ namespace TesterAppUI
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SettingForm));
             this.PortsComboBox = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.OpenButton = new System.Windows.Forms.Button();
+            this.OkButton = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.SlaveAddressNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.label41 = new System.Windows.Forms.Label();
             this.TypeInstallationComboBox = new System.Windows.Forms.ComboBox();
             this.DataBitsComboBox = new System.Windows.Forms.ComboBox();
@@ -45,6 +48,7 @@ namespace TesterAppUI
             this.label7 = new System.Windows.Forms.Label();
             this.CloseButton = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.SlaveAddressNumericUpDown)).BeginInit();
             this.SuspendLayout();
             // 
             // PortsComboBox
@@ -67,18 +71,20 @@ namespace TesterAppUI
             this.label1.TabIndex = 1;
             this.label1.Text = "Порт:";
             // 
-            // OpenButton
+            // OkButton
             // 
-            this.OpenButton.Location = new System.Drawing.Point(57, 200);
-            this.OpenButton.Name = "OpenButton";
-            this.OpenButton.Size = new System.Drawing.Size(112, 27);
-            this.OpenButton.TabIndex = 4;
-            this.OpenButton.Text = "Применить";
-            this.OpenButton.UseVisualStyleBackColor = true;
-            this.OpenButton.Click += new System.EventHandler(this.OpenButton_Click);
+            this.OkButton.Location = new System.Drawing.Point(57, 229);
+            this.OkButton.Name = "OkButton";
+            this.OkButton.Size = new System.Drawing.Size(112, 27);
+            this.OkButton.TabIndex = 4;
+            this.OkButton.Text = "Применить";
+            this.OkButton.UseVisualStyleBackColor = true;
+            this.OkButton.Click += new System.EventHandler(this.OkButton_Click);
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.SlaveAddressNumericUpDown);
             this.groupBox1.Controls.Add(this.label41);
             this.groupBox1.Controls.Add(this.TypeInstallationComboBox);
             this.groupBox1.Controls.Add(this.DataBitsComboBox);
@@ -94,15 +100,37 @@ namespace TesterAppUI
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox1.Size = new System.Drawing.Size(275, 182);
+            this.groupBox1.Size = new System.Drawing.Size(275, 211);
             this.groupBox1.TabIndex = 18;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Настройки порта";
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(5, 183);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(101, 13);
+            this.label2.TabIndex = 28;
+            this.label2.Text = "Адрес устройства:";
+            // 
+            // SlaveAddressNumericUpDown
+            // 
+            this.SlaveAddressNumericUpDown.Location = new System.Drawing.Point(174, 181);
+            this.SlaveAddressNumericUpDown.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.SlaveAddressNumericUpDown.Name = "SlaveAddressNumericUpDown";
+            this.SlaveAddressNumericUpDown.Size = new System.Drawing.Size(92, 20);
+            this.SlaveAddressNumericUpDown.TabIndex = 27;
+            this.SlaveAddressNumericUpDown.ValueChanged += new System.EventHandler(this.SlaveAddressNumericUpDown_ValueChanged);
+            // 
             // label41
             // 
             this.label41.AutoSize = true;
-            this.label41.Location = new System.Drawing.Point(5, 162);
+            this.label41.Location = new System.Drawing.Point(5, 157);
             this.label41.Margin = new System.Windows.Forms.Padding(3);
             this.label41.Name = "label41";
             this.label41.Size = new System.Drawing.Size(84, 13);
@@ -224,7 +252,7 @@ namespace TesterAppUI
             // 
             // CloseButton
             // 
-            this.CloseButton.Location = new System.Drawing.Point(175, 200);
+            this.CloseButton.Location = new System.Drawing.Point(175, 229);
             this.CloseButton.Name = "CloseButton";
             this.CloseButton.Size = new System.Drawing.Size(112, 27);
             this.CloseButton.TabIndex = 5;
@@ -236,17 +264,23 @@ namespace TesterAppUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(299, 239);
+            this.ClientSize = new System.Drawing.Size(299, 263);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.CloseButton);
-            this.Controls.Add(this.OpenButton);
+            this.Controls.Add(this.OkButton);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(2);
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(315, 302);
+            this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(315, 302);
             this.Name = "SettingForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Настройка подклюения";
             this.Load += new System.EventHandler(this.TesterAppForm_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.SlaveAddressNumericUpDown)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -255,7 +289,7 @@ namespace TesterAppUI
 
         private System.Windows.Forms.ComboBox PortsComboBox;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button OpenButton;
+        private System.Windows.Forms.Button OkButton;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
@@ -268,6 +302,8 @@ namespace TesterAppUI
         private System.Windows.Forms.Button CloseButton;
         private System.Windows.Forms.Label label41;
         private System.Windows.Forms.ComboBox TypeInstallationComboBox;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.NumericUpDown SlaveAddressNumericUpDown;
     }
 }
 

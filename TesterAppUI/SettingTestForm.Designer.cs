@@ -29,6 +29,7 @@ namespace TesterAppUI
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SettingTestForm));
             this.ParametersTestGroupBox = new System.Windows.Forms.GroupBox();
             this.TestsGroupBox = new System.Windows.Forms.GroupBox();
             this.NumberPeriodsNumericUpDown = new System.Windows.Forms.NumericUpDown();
@@ -39,9 +40,6 @@ namespace TesterAppUI
             this.label36 = new System.Windows.Forms.Label();
             this.label38 = new System.Windows.Forms.Label();
             this.label40 = new System.Windows.Forms.Label();
-            this.ThermometerGroupBox = new System.Windows.Forms.GroupBox();
-            this.ThermometerOnRadioButton = new System.Windows.Forms.RadioButton();
-            this.ThermometerOffRadioButton = new System.Windows.Forms.RadioButton();
             this.label27 = new System.Windows.Forms.Label();
             this.TypeTestComboBox = new System.Windows.Forms.ComboBox();
             this.OkButton = new System.Windows.Forms.Button();
@@ -51,19 +49,17 @@ namespace TesterAppUI
             ((System.ComponentModel.ISupportInitialize)(this.NumberPeriodsNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TimeOffNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TimeOnNumericUpDown)).BeginInit();
-            this.ThermometerGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // ParametersTestGroupBox
             // 
             this.ParametersTestGroupBox.BackColor = System.Drawing.Color.PaleTurquoise;
             this.ParametersTestGroupBox.Controls.Add(this.TestsGroupBox);
-            this.ParametersTestGroupBox.Controls.Add(this.ThermometerGroupBox);
             this.ParametersTestGroupBox.Controls.Add(this.label27);
             this.ParametersTestGroupBox.Controls.Add(this.TypeTestComboBox);
             this.ParametersTestGroupBox.Location = new System.Drawing.Point(12, 12);
             this.ParametersTestGroupBox.Name = "ParametersTestGroupBox";
-            this.ParametersTestGroupBox.Size = new System.Drawing.Size(314, 195);
+            this.ParametersTestGroupBox.Size = new System.Drawing.Size(314, 152);
             this.ParametersTestGroupBox.TabIndex = 24;
             this.ParametersTestGroupBox.TabStop = false;
             this.ParametersTestGroupBox.Text = "Параметры испытания:";
@@ -80,7 +76,7 @@ namespace TesterAppUI
             this.TestsGroupBox.Controls.Add(this.label38);
             this.TestsGroupBox.Controls.Add(this.label40);
             this.TestsGroupBox.Enabled = false;
-            this.TestsGroupBox.Location = new System.Drawing.Point(6, 93);
+            this.TestsGroupBox.Location = new System.Drawing.Point(6, 46);
             this.TestsGroupBox.Name = "TestsGroupBox";
             this.TestsGroupBox.Size = new System.Drawing.Size(300, 96);
             this.TestsGroupBox.TabIndex = 22;
@@ -118,6 +114,11 @@ namespace TesterAppUI
             this.TimeOffNumericUpDown.Size = new System.Drawing.Size(60, 20);
             this.TimeOffNumericUpDown.TabIndex = 35;
             this.TimeOffNumericUpDown.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.TimeOffNumericUpDown.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.TimeOffNumericUpDown.MouseClick += new System.Windows.Forms.MouseEventHandler(this.TimeOffNumericUpDown_MouseClick);
             // 
             // TimeOnNumericUpDown
@@ -132,6 +133,11 @@ namespace TesterAppUI
             this.TimeOnNumericUpDown.Size = new System.Drawing.Size(60, 20);
             this.TimeOnNumericUpDown.TabIndex = 34;
             this.TimeOnNumericUpDown.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.TimeOnNumericUpDown.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.TimeOnNumericUpDown.MouseClick += new System.Windows.Forms.MouseEventHandler(this.TimeOnNumericUpDown_MouseClick);
             // 
             // label28
@@ -184,41 +190,6 @@ namespace TesterAppUI
             this.label40.TabIndex = 21;
             this.label40.Text = "Время во включенном состоянии:";
             // 
-            // ThermometerGroupBox
-            // 
-            this.ThermometerGroupBox.BackColor = System.Drawing.Color.LightSeaGreen;
-            this.ThermometerGroupBox.Controls.Add(this.ThermometerOnRadioButton);
-            this.ThermometerGroupBox.Controls.Add(this.ThermometerOffRadioButton);
-            this.ThermometerGroupBox.ForeColor = System.Drawing.Color.Black;
-            this.ThermometerGroupBox.Location = new System.Drawing.Point(6, 46);
-            this.ThermometerGroupBox.Name = "ThermometerGroupBox";
-            this.ThermometerGroupBox.Size = new System.Drawing.Size(300, 41);
-            this.ThermometerGroupBox.TabIndex = 14;
-            this.ThermometerGroupBox.TabStop = false;
-            this.ThermometerGroupBox.Text = "Датчики температуры";
-            // 
-            // ThermometerOnRadioButton
-            // 
-            this.ThermometerOnRadioButton.AutoSize = true;
-            this.ThermometerOnRadioButton.Location = new System.Drawing.Point(6, 18);
-            this.ThermometerOnRadioButton.Name = "ThermometerOnRadioButton";
-            this.ThermometerOnRadioButton.Size = new System.Drawing.Size(79, 17);
-            this.ThermometerOnRadioButton.TabIndex = 12;
-            this.ThermometerOnRadioButton.Text = "ВКЛЮЧЕН";
-            this.ThermometerOnRadioButton.UseVisualStyleBackColor = true;
-            // 
-            // ThermometerOffRadioButton
-            // 
-            this.ThermometerOffRadioButton.AutoSize = true;
-            this.ThermometerOffRadioButton.Checked = true;
-            this.ThermometerOffRadioButton.Location = new System.Drawing.Point(91, 18);
-            this.ThermometerOffRadioButton.Name = "ThermometerOffRadioButton";
-            this.ThermometerOffRadioButton.Size = new System.Drawing.Size(89, 17);
-            this.ThermometerOffRadioButton.TabIndex = 13;
-            this.ThermometerOffRadioButton.TabStop = true;
-            this.ThermometerOffRadioButton.Text = "ВЫКЛЮЧЕН";
-            this.ThermometerOffRadioButton.UseVisualStyleBackColor = true;
-            // 
             // label27
             // 
             this.label27.AutoSize = true;
@@ -244,7 +215,7 @@ namespace TesterAppUI
             // 
             // OkButton
             // 
-            this.OkButton.Location = new System.Drawing.Point(12, 213);
+            this.OkButton.Location = new System.Drawing.Point(12, 170);
             this.OkButton.Name = "OkButton";
             this.OkButton.Size = new System.Drawing.Size(152, 38);
             this.OkButton.TabIndex = 25;
@@ -254,7 +225,7 @@ namespace TesterAppUI
             // 
             // CancleButton
             // 
-            this.CancleButton.Location = new System.Drawing.Point(174, 213);
+            this.CancleButton.Location = new System.Drawing.Point(174, 170);
             this.CancleButton.Name = "CancleButton";
             this.CancleButton.Size = new System.Drawing.Size(152, 38);
             this.CancleButton.TabIndex = 26;
@@ -266,12 +237,16 @@ namespace TesterAppUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(338, 258);
+            this.ClientSize = new System.Drawing.Size(338, 217);
             this.Controls.Add(this.OkButton);
             this.Controls.Add(this.CancleButton);
             this.Controls.Add(this.ParametersTestGroupBox);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "SettingTestForm";
-            this.Text = "SettingTestForm";
+            this.Text = "Настройка испытания";
             this.Load += new System.EventHandler(this.SettingTestForm_Load);
             this.ParametersTestGroupBox.ResumeLayout(false);
             this.ParametersTestGroupBox.PerformLayout();
@@ -280,8 +255,6 @@ namespace TesterAppUI
             ((System.ComponentModel.ISupportInitialize)(this.NumberPeriodsNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TimeOffNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TimeOnNumericUpDown)).EndInit();
-            this.ThermometerGroupBox.ResumeLayout(false);
-            this.ThermometerGroupBox.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -298,12 +271,9 @@ namespace TesterAppUI
         private System.Windows.Forms.Label label36;
         private System.Windows.Forms.Label label38;
         private System.Windows.Forms.Label label40;
-        private System.Windows.Forms.GroupBox ThermometerGroupBox;
         private System.Windows.Forms.Label label27;
         private System.Windows.Forms.ComboBox TypeTestComboBox;
         private System.Windows.Forms.Button OkButton;
         private System.Windows.Forms.Button CancleButton;
-        public System.Windows.Forms.RadioButton ThermometerOnRadioButton;
-        public System.Windows.Forms.RadioButton ThermometerOffRadioButton;
     }
 }

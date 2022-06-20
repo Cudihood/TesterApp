@@ -17,33 +17,10 @@ namespace TesterAppUI
         /// </summary>
         public double _intervalX;
 
-        public double _intervalFrequency;
+        public double[] _interval;
 
-        public double _intervalVoltageEntrance;
+        public double[] _maxValue;
 
-        public double _intervalVoltageOutput;
-
-        public double _intervalCurrent;
-
-        public double _intervalPower;
-
-        public double _intervalThermometer1;
-
-        public double _intervalThermometer2;
-
-        public double _maxFrequency;
-
-        public double _maxVoltageEntrance;
-
-        public double _maxVoltageOutput;
-
-        public double _maxCurrent;
-
-        public double _maxPower;
-
-        public double _maxThermometer1;
-
-        public double _maxThermometer2;
 
         public SettingChartForm()
         {
@@ -53,16 +30,21 @@ namespace TesterAppUI
         private void OkButton_Click(object sender, EventArgs e)
         {
             _intervalX = (double) IntervalXNumericUpDown.Value;
-            _intervalFrequency = (double) FrequencyNumericUpDown.Value;
-            _intervalVoltageEntrance = (double) VoltageEntranceNumericUpDown.Value;
-            _intervalVoltageOutput = (double) VoltageOutputNumericUpDown.Value;
-            _intervalCurrent = (double) CurrentNumericUpDown.Value;
-            _intervalPower = (double) PowerNumericUpDown.Value;
-            _maxFrequency = (double)MaxFrequencyNumericUpDown.Value;
-            _maxVoltageEntrance = (double)MaxVoltageEntranceNumericUpDown.Value;
-            _maxVoltageOutput = (double)MaxVoltageOutputNumericUpDown.Value;
-            _maxCurrent = (double)MaxCurrentNumericUpDown.Value;
-            _maxPower = (double)MaxPowerNumericUpDown.Value;
+            _interval[0] = (double) FrequencyNumericUpDown.Value;
+            _interval[1] = (double) VoltageEntranceNumericUpDown.Value;
+            _interval[2] = (double) VoltageOutputNumericUpDown.Value;
+            _interval[3] = (double) CurrentNumericUpDown.Value;
+            _interval[4] = (double) PowerNumericUpDown.Value;
+            _interval[5] = (double) Thermometer1NumericUpDown.Value;
+            _interval[6] = (double) Thermometer2NumericUpDown.Value;
+
+            _maxValue[0] = (double)MaxFrequencyNumericUpDown.Value;
+            _maxValue[1] = (double)MaxVoltageEntranceNumericUpDown.Value;
+            _maxValue[2] = (double)MaxVoltageOutputNumericUpDown.Value;
+            _maxValue[3] = (double)MaxCurrentNumericUpDown.Value;
+            _maxValue[4] = (double)MaxPowerNumericUpDown.Value;
+            _maxValue[5] = (double)MaxThermometer1NumericUpDown.Value;
+            _maxValue[6] = (double)MaxThermometer2NumericUpDown.Value;
             DialogResult = DialogResult.OK;
             Close();
         }

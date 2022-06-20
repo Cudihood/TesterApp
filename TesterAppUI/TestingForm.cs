@@ -13,6 +13,7 @@ using System.Windows.Forms.DataVisualization.Charting;
 using Modbus.Device;
 using Microsoft.Office.Interop.Word;
 using Application = Microsoft.Office.Interop.Word.Application;
+using Task = System.Threading.Tasks.Task;
 
 
 namespace TesterAppUI
@@ -58,7 +59,7 @@ namespace TesterAppUI
         /// <summary>
         /// Массив хранящий данные параметра контроллера
         /// </summary>
-        public string[] _controllerParameters;
+        public double[] _controllerParameters;
 
         /// <summary>
         /// Перенная хранящая адресс датчика температуры
@@ -105,23 +106,15 @@ namespace TesterAppUI
         /// </summary>
         public double _intervalX = 1;
 
-        public double _intervalFrequency = 20;
+        public double[] _intervalY = {20, 100, 50, 20, 10, 100, 100};
 
-        public double _intervalVoltageEntrance = 100;
-
-        public double _intervalVoltageOutput = 50;
-
-        public double _intervalCurrent= 20;
-
-        public double _intervalPower= 10;
-
-        public double _intervalThermometer1;
-
-        public double _intervalThermometer2;
+        public double[] _maxValueY = {60, 700, 200, 70, 20, 100, 100};
 
         private int _oneTick = 0;
 
         private string _typeTest;
+
+        private IModbusMaster _masterRTU;
         private void TestingForm_Load(object sender, EventArgs e)
         {
             timer2.Enabled = true;
@@ -129,6 +122,7 @@ namespace TesterAppUI
             StopButton.Enabled = false;
             CurrentNumericUpDown.Value = Program._mainForm.CurrentNumericUpDown.Value;
             PowerNumericUpDown.Value = Program._mainForm.PowerNumericUpDown.Value;
+            _masterRTU = Program._mainForm._masterRTU;
         }
 
         /// <summary>
@@ -136,7 +130,7 @@ namespace TesterAppUI
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void timer1_Tick(object sender, EventArgs e)
+        private async void timer1_Tick(object sender, EventArgs e)
         {
             if (_oneTick != 0)
             {
@@ -149,7 +143,7 @@ namespace TesterAppUI
             if (_timeStart.Hour == 0 && _timeStart.Minute == 0 && _timeStart.Second == 0)
             {
 
-                Program._mainForm.StartStopController(false);
+                await Program._mainForm.StartStopController(false);
 
                 if (_timeStop.Hour == 0 && _timeStop.Minute == 0 && _timeStop.Second == 0)
                 {
@@ -157,16 +151,14 @@ namespace TesterAppUI
                     _timeStop = _settingTest._timeStop;
                     if (count != _numberPeriodsNumeric)
                     {
-                        Program._mainForm.StartStopController(true);
+                        await Program._mainForm.StartStopController(true);
                         timer1.Enabled = true;
                         count++;
                     }
                 }
 
-                if (_oneTick != 1)
-                {
-                    _timeStop = _timeStop.AddSeconds(-1);
-                }
+                _timeStop = _timeStop.AddSeconds(-1);
+                
 
                 _oneTick = 2;
 
@@ -176,6 +168,8 @@ namespace TesterAppUI
                     timer1.Enabled = false;
                     ChartParameters();
                     MessageBox.Show("Испытание завершенно", "Внимание", MessageBoxButtons.OK);
+                    _timeStart = _settingTest._timeStart;
+                    _timeStop = _settingTest._timeStop;
                     _timeRemeining = _timeTest;
                     _timeBeginning = _timeNull;
                     LaunchButton.Enabled = true;
@@ -187,10 +181,7 @@ namespace TesterAppUI
                 }
                 return;
             }
-            if (_oneTick != 0)
-            {
-                _timeStart = _timeStart.AddSeconds(-1);
-            }
+            _timeStart = _timeStart.AddSeconds(-1);
             _oneTick = 1;
         }
 
@@ -206,31 +197,31 @@ namespace TesterAppUI
                 {
                     case 0:
                         FrequencyVoltageTextBox.Text = string.Empty;
-                        FrequencyVoltageTextBox.Text = _controllerParameters[i];
+                        FrequencyVoltageTextBox.Text = _controllerParameters[i].ToString();
                         break;
                     case 1:
                         VoltageEntranceTextBox.Text = string.Empty;
-                        VoltageEntranceTextBox.Text = _controllerParameters[i];
+                        VoltageEntranceTextBox.Text = _controllerParameters[i].ToString();
                         break;
                     case 2:
                         VoltageOutputTextBox.Text = string.Empty;
-                        VoltageOutputTextBox.Text = _controllerParameters[i];
+                        VoltageOutputTextBox.Text = _controllerParameters[i].ToString();
                         break;
                     case 3:
                         CurrentOutputTextBox.Text = string.Empty;
-                        CurrentOutputTextBox.Text = _controllerParameters[i];
+                        CurrentOutputTextBox.Text = _controllerParameters[i].ToString();
                         break;
                     case 4:
                         PowerOutputTextBox.Text = string.Empty;
-                        PowerOutputTextBox.Text = _controllerParameters[i];
+                        PowerOutputTextBox.Text = _controllerParameters[i].ToString();
                         break;
                     case 5:
                         Thermometer1TextBox.Text = string.Empty;
-                        Thermometer1TextBox.Text = _controllerParameters[i];
+                        Thermometer1TextBox.Text = _controllerParameters[i].ToString();
                         break;
                     case 6:
                         Thermometer2TextBox.Text = string.Empty;
-                        Thermometer2TextBox.Text = _controllerParameters[i];
+                        Thermometer2TextBox.Text = _controllerParameters[i].ToString();
                         break;
                 }
             }
@@ -241,9 +232,9 @@ namespace TesterAppUI
         /// </summary>
         private void ChartSetting()
         {
-            FrequencyVoltageChart.ChartAreas[0].AxisY.Maximum = 60;
+            FrequencyVoltageChart.ChartAreas[0].AxisY.Maximum = _maxValueY[0];
             FrequencyVoltageChart.ChartAreas[0].AxisY.Minimum = 0;
-            FrequencyVoltageChart.ChartAreas[0].AxisY.Interval = _intervalFrequency;
+            FrequencyVoltageChart.ChartAreas[0].AxisY.Interval = _intervalY[0];
             FrequencyVoltageChart.ChartAreas[0].AxisY.LabelStyle.Format ="0";
             FrequencyVoltageChart.ChartAreas[0].AxisX.LabelStyle.Format = "mm:ss";
             FrequencyVoltageChart.Series[0].XValueType = ChartValueType.DateTime;
@@ -252,9 +243,9 @@ namespace TesterAppUI
             FrequencyVoltageChart.ChartAreas[0].AxisX.IntervalType = DateTimeIntervalType.Seconds;
             FrequencyVoltageChart.ChartAreas[0].AxisX.Interval = _intervalX;
 
-            VoltageEntranceChart.ChartAreas[0].AxisY.Maximum = 600;
+            VoltageEntranceChart.ChartAreas[0].AxisY.Maximum = _maxValueY[1];
             VoltageEntranceChart.ChartAreas[0].AxisY.Minimum = 0;
-            VoltageEntranceChart.ChartAreas[0].AxisY.Interval = _intervalVoltageEntrance;
+            VoltageEntranceChart.ChartAreas[0].AxisY.Interval = _intervalY[1];
             VoltageEntranceChart.ChartAreas[0].AxisX.LabelStyle.Format = "mm:ss";
             VoltageEntranceChart.Series[0].XValueType = ChartValueType.DateTime;
             VoltageEntranceChart.ChartAreas[0].AxisX.Minimum = _timeNull.ToOADate();
@@ -262,9 +253,9 @@ namespace TesterAppUI
             VoltageEntranceChart.ChartAreas[0].AxisX.IntervalType = DateTimeIntervalType.Seconds;
             VoltageEntranceChart.ChartAreas[0].AxisX.Interval = _intervalX;
 
-            VoltageOutputChart.ChartAreas[0].AxisY.Maximum = 200;
+            VoltageOutputChart.ChartAreas[0].AxisY.Maximum = _maxValueY[2];
             VoltageOutputChart.ChartAreas[0].AxisY.Minimum = 0;
-            VoltageOutputChart.ChartAreas[0].AxisY.Interval = _intervalVoltageOutput;
+            VoltageOutputChart.ChartAreas[0].AxisY.Interval = _intervalY[2];
             VoltageOutputChart.ChartAreas[0].AxisX.LabelStyle.Format = "mm:ss";
             VoltageOutputChart.Series[0].XValueType = ChartValueType.DateTime;
             VoltageOutputChart.ChartAreas[0].AxisX.Minimum = _timeNull.ToOADate();
@@ -272,9 +263,9 @@ namespace TesterAppUI
             VoltageOutputChart.ChartAreas[0].AxisX.IntervalType = DateTimeIntervalType.Seconds;
             VoltageOutputChart.ChartAreas[0].AxisX.Interval = _intervalX;
 
-            CurrentOutputChart.ChartAreas[0].AxisY.Maximum = 70;
+            CurrentOutputChart.ChartAreas[0].AxisY.Maximum = _maxValueY[3];
             CurrentOutputChart.ChartAreas[0].AxisY.Minimum = 0;
-            CurrentOutputChart.ChartAreas[0].AxisY.Interval = _intervalCurrent;
+            CurrentOutputChart.ChartAreas[0].AxisY.Interval = _intervalY[3];
             CurrentOutputChart.ChartAreas[0].AxisX.LabelStyle.Format = "mm:ss";
             CurrentOutputChart.Series[0].XValueType = ChartValueType.DateTime;
             CurrentOutputChart.ChartAreas[0].AxisX.Minimum = _timeNull.ToOADate();
@@ -282,9 +273,9 @@ namespace TesterAppUI
             CurrentOutputChart.ChartAreas[0].AxisX.IntervalType = DateTimeIntervalType.Seconds;
             CurrentOutputChart.ChartAreas[0].AxisX.Interval = _intervalX;
 
-            PowerOutputChart.ChartAreas[0].AxisY.Maximum = 20;
+            PowerOutputChart.ChartAreas[0].AxisY.Maximum = _maxValueY[4];
             PowerOutputChart.ChartAreas[0].AxisY.Minimum = 0;
-            PowerOutputChart.ChartAreas[0].AxisY.Interval = _intervalPower;
+            PowerOutputChart.ChartAreas[0].AxisY.Interval = _intervalY[4];
             PowerOutputChart.ChartAreas[0].AxisX.LabelStyle.Format = "mm:ss";
             PowerOutputChart.Series[0].XValueType = ChartValueType.DateTime;
             PowerOutputChart.ChartAreas[0].AxisX.Minimum = _timeNull.ToOADate();
@@ -292,8 +283,9 @@ namespace TesterAppUI
             PowerOutputChart.ChartAreas[0].AxisX.IntervalType = DateTimeIntervalType.Seconds;
             PowerOutputChart.ChartAreas[0].AxisX.Interval = _intervalX;
 
-            ThermometerСhart1.ChartAreas[0].AxisY.Maximum = 1000;
+            ThermometerСhart1.ChartAreas[0].AxisY.Maximum = _maxValueY[5];
             ThermometerСhart1.ChartAreas[0].AxisY.Minimum = 0;
+            ThermometerСhart1.ChartAreas[0].AxisY.Interval = _intervalY[5];
             ThermometerСhart1.ChartAreas[0].AxisX.LabelStyle.Format = "mm:ss";
             ThermometerСhart1.Series[0].XValueType = ChartValueType.DateTime;
             ThermometerСhart1.ChartAreas[0].AxisX.Minimum = _timeNull.ToOADate();
@@ -301,8 +293,9 @@ namespace TesterAppUI
             ThermometerСhart1.ChartAreas[0].AxisX.IntervalType = DateTimeIntervalType.Seconds;
             ThermometerСhart1.ChartAreas[0].AxisX.Interval = _intervalX;
 
-            ThermometerСhart2.ChartAreas[0].AxisY.Maximum = 1000;
+            ThermometerСhart2.ChartAreas[0].AxisY.Maximum = _maxValueY[6];
             ThermometerСhart2.ChartAreas[0].AxisY.Minimum = 0;
+            ThermometerСhart2.ChartAreas[0].AxisY.Interval = _intervalY[6];
             ThermometerСhart2.ChartAreas[0].AxisX.LabelStyle.Format = "mm:ss";
             ThermometerСhart2.Series[0].XValueType = ChartValueType.DateTime;
             ThermometerСhart2.ChartAreas[0].AxisX.Minimum = _timeNull.ToOADate();
@@ -352,10 +345,7 @@ namespace TesterAppUI
                     break;
             }
 
-            if (_settingTest.ThermometerOnRadioButton.Checked)
-            {
-                _thermometerFlag = true;
-            }
+            
 
             _timeStart = _settingTest._timeStart;
             _timeStop = _settingTest._timeStop;
@@ -435,65 +425,59 @@ namespace TesterAppUI
             }
 
             _intervalX = _settingChart._intervalX;
-            _intervalFrequency = _settingChart._intervalFrequency;
-            _intervalVoltageEntrance = _settingChart._intervalVoltageEntrance;
-            _intervalVoltageOutput = _settingChart._intervalVoltageOutput;
-            _intervalCurrent = _settingChart._intervalCurrent;
-            _intervalPower = _settingChart._intervalPower;
-            _intervalThermometer1 = _settingChart._intervalThermometer1;
-            _intervalThermometer2 = _settingChart._intervalThermometer2;
+            _intervalY = _settingChart._interval;
+            _maxValueY = _settingChart._maxValue;
             ChartSetting();
         }
 
-        public void ReadRegisterThermometer(bool flag)
+        /*public async Task ReadRegisterThermometerAsync(bool flag)
         {
+            timer2.Stop();
+            double[] controllerParameters = { 0, 0 };
             if (flag)
             {
                 try
                 {
-                    ushort[] startAddress = {0x100B, 0x100C};
-                    string a;
-                    double e;
-                    for (int i = 0; i <= 1; i++)
+                    await Task.Run(() =>
                     {
-                        ushort[] result = Program._mainForm._masrerRTU.ReadHoldingRegisters(_slaveAddressThermometer,
-                            startAddress[i], _numberOfPoints);
-
-                        switch (i)
-                        {
-                            case 0:
-                                _controllerParameters[5] = String.Concat<ushort>(result);
-                                break;
-                            case 1:
-                                _controllerParameters[6] = String.Concat<ushort>(result);
-                                break;
-                        }
-                    }
+                        controllerParameters = ReadRegisterThermometer();
+                    });
+                    _controllerParameters[5] = controllerParameters[0];
+                    _controllerParameters[6] = controllerParameters[1];
+                    timer2.Start();
                 }
                 catch (TimeoutException)
                 {
                     timer2.Enabled = false;
-                    MessageBox.Show("Время ожидания истекло. Проверьте подключение датчиков температуры", "Внимание", 
+                    timer2.Stop();
+                    LaunchButton.Enabled = true;
+                    MessageBox.Show("Время ожидания истекло. Проверьте подключение датчиков температуры",
+                        "Внимание",
                         MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    LaunchButton.Enabled = false;
+                    _thermometerFlag = false;
                     return;
                 }
                 catch (Exception ex)
                 {
+                    timer2.Enabled = false;
+                    timer2.Stop();
                     MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
             }
             else
             {
-                _controllerParameters[5] = "0";
-                _controllerParameters[6] = "0";
+                _controllerParameters[5] = controllerParameters[0];
+                _controllerParameters[6] = controllerParameters[1];
+                timer2.Start();
             }
         }
+        */
+
+        
 
         private void timer2_Tick(object sender, EventArgs e)
         {
-            ReadRegisterThermometer(_thermometerFlag);
             ControllerParameters();
             if (Program._mainForm._port.IsOpen == false)
             {
@@ -636,6 +620,11 @@ namespace TesterAppUI
                 return;
             }
             
+        }
+
+        private void TestingForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Program._mainForm.LaunchButton.Enabled = true;
         }
     }
 }

@@ -21,12 +21,15 @@ namespace TesterAppUI
         private SerialPort _port;
 
         public int _typeInstallation;
+
+        public byte _slaveAddress;
+
         public SettingForm()
         {
             InitializeComponent();
             _port = new SerialPort();
         }
-
+        
         private void TesterAppForm_Load(object sender, EventArgs e)
         {
             //чтение портов доступных в системе
@@ -49,6 +52,7 @@ namespace TesterAppUI
             ParityComboBox.SelectedIndex = 0;
             StopBitsСomboBox.SelectedIndex = 0;
             TypeInstallationComboBox.SelectedIndex = 2;
+            SlaveAddressNumericUpDown.Value = 10;
         }
 
         /// <summary>
@@ -68,12 +72,35 @@ namespace TesterAppUI
             }
         }
         
+
         /// <summary>
-        /// Открывет порт
+        /// Отмена настроик
+        /// </summary>
+        /// <param name="sender"></paОтмена настроик// <param name="e"></param>
+        private void CloseButton_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.Cancel;
+            Close();
+        }
+
+        private void SlaveAddressNumericUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            if (SlaveAddressNumericUpDown.Value > 255)
+            {
+                SlaveAddressNumericUpDown.BackColor=Color.LightPink;
+            }
+            else
+            {
+                SlaveAddressNumericUpDown.BackColor = Color.White;
+            }
+        }
+
+        /// <summary>
+        /// Задает настрокий порта
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OpenButton_Click(object sender, EventArgs e)
+        private void OkButton_Click(object sender, EventArgs e)
         {
             try
             {
@@ -97,15 +124,15 @@ namespace TesterAppUI
                 {
                     _port.StopBits = StopBits.One;
                 }
-                else if(StopBitsСomboBox.Text == "1")
+                else if (StopBitsСomboBox.Text == "1")
                 {
                     _port.StopBits = StopBits.Two;
                 }
 
+                _slaveAddress = Convert.ToByte(SlaveAddressNumericUpDown.Value);
                 _typeInstallation = TypeInstallationComboBox.SelectedIndex;
                 DialogResult = DialogResult.OK;
                 Close();
-
             }
             catch (ArgumentException exception)
             {
@@ -122,17 +149,6 @@ namespace TesterAppUI
                 MessageBox.Show(this, ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-
-        }
-
-        /// <summary>
-        /// Отмена настроик
-        /// </summary>
-        /// <param name="sender"></paОтмена настроик// <param name="e"></param>
-        private void CloseButton_Click(object sender, EventArgs e)
-        {
-            DialogResult = DialogResult.Cancel;
-            Close();
         }
 
         /*

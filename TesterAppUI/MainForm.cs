@@ -23,12 +23,12 @@ namespace TesterAppUI
         /// <summary>
         /// Переменная для ввода и вывода данных с регистров
         /// </summary>
-        public IModbusMaster _masrerRTU;
+        public IModbusMaster _masterRTU;
 
         /// <summary>
         /// Переменная хранящая адрес устройства 
         /// </summary>
-        private byte _slaveAddress = 10;
+        public byte _slaveAddress = 10;
 
         /// <summary>
         /// Переменная хранящая колличество регистров для чтения
@@ -43,9 +43,11 @@ namespace TesterAppUI
         /// <summary>
         /// Массив хранящий данные параметра контроллера
         /// </summary>
-        private string[] _controllerParameters=new string[7];
+        private double[] _controllerParameters=new Double[7];
 
-        private bool _key;
+        private bool _thermometerFlag;
+
+        private bool _controllerFlag;
 
         public int _typeInstallation;
 
@@ -70,6 +72,7 @@ namespace TesterAppUI
             }
 
             _typeInstallation = settingConnection._typeInstallation;
+            _slaveAddress = settingConnection._slaveAddress;
             _port = settingConnection.Port;
             switch (_typeInstallation)
             {
@@ -96,7 +99,11 @@ namespace TesterAppUI
         /// <param name="e"></param>
         private void ConnectButton_Click(object sender, EventArgs e)
         {
-            _key = true;
+            if (!ControllerСheckBox.Checked && !ThermometeСheckBox.Checked)
+            {
+                MessageBox.Show("Не указаны подключённые устройства", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             try
             {
                 _port.Open();
@@ -108,7 +115,7 @@ namespace TesterAppUI
             }
             catch (NullReferenceException)
             {
-                MessageBox.Show("Не указаны настройки порта", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Не указаны настройки подключения", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 //("Проверьте настройки подключения", "Ошибка", MessageBoxButtons.OK);
                 return;
             }
@@ -118,16 +125,23 @@ namespace TesterAppUI
                 return;
             }
 
-            _masrerRTU = ModbusSerialMaster.CreateRtu(_port);
-            _masrerRTU.Transport.ReadTimeout = 300;
+            _masterRTU = ModbusSerialMaster.CreateRtu(_port);
+            _masterRTU.Transport.ReadTimeout = 500;
+           
             timer2.Enabled = true;
             ConnectButton.Enabled = false;
             DisableButton.Enabled = true;
-            StartButton.Enabled = true;
+            if (_controllerFlag)
+            {
+                StartButton.Enabled = true;
+            }
             timer1.Enabled = true;
             ParametrsGroupBox.Enabled = true;
             LaunchButton.Enabled = true;
-            ManagementParameters();
+            ConnectedGroupBox.Enabled = false;
+            ManagementParameters(_controllerFlag);
+            WorkParameters(_controllerFlag);
+           
         }
 
         /// <summary>
@@ -137,7 +151,6 @@ namespace TesterAppUI
         /// <param name="e"></param>
         private void DisableButton_Click(object sender, EventArgs e)
         {
-            _key = false;
             try
             {
                 StartStopController(false);
@@ -164,185 +177,273 @@ namespace TesterAppUI
             ResetButton.Enabled = false;
             LaunchButton.Enabled = false;
             ParametrsGroupBox.Enabled = false;
-
+            ConnectedGroupBox.Enabled = true;
         }
 
         /// <summary>
         /// Вывоит значения параметров контроллера
         /// </summary>
-        private void ControllerParameters()
+        private async Task ControllerParametersAsync(bool flag1, bool flag2)
         {
-            ushort[] startAddress= {0xA430, 0xA432, 0xA433, 0xA434, 0xA437};
-            ushort[] result;
-            for (int i = 0; i <= 4; i++)
+            if (flag1||flag2)
             {
-                if (_port.IsOpen == false)
-                {
-                    return;
-                }
+                timer1.Stop();
                 try
                 {
-                    result = _masrerRTU.ReadHoldingRegisters(_slaveAddress, startAddress[i], _numberOfPoints);
+                    await Task.Run(() => { ControllerParameters(flag1, flag2); });
                 }
-                catch (InvalidOperationException exception)
+                catch (InvalidOperationException)
                 {
-                    timer1.Enabled = false;
                     return;
                 }
-                string a;
-                double e;
+                catch (Exception e)
+                {
+                    MessageBox.Show(e.Message,"Ошибка");
+                    return;
+                }
+                ShowTextBox();
+                timer1.Start();
+            }
+        }
+        
+        private void ControllerParameters(bool flag1,bool flag2)
+        {
+            if (_port.IsOpen == false)
+            {
+                return;
+            }
+            ushort[] result;
+            if (flag2)
+            {
+                ushort[] startAddress1 = { 0x0001, 0x0002 };
+                ushort[] buffer = { 0, 0 };
+                if (Sensor1СheckBox.Checked == true &&
+                    Sensor2CheckBox.Checked == true)
+                {
+
+                    for (int i = 0; i <= 1; i++)
+                    {
+                        result = _masterRTU.ReadHoldingRegisters(_slaveAddressThermometer,
+                            startAddress1[i], _numberOfPoints);
+                        buffer[i] = result[0];
+
+                    }
+                    _controllerParameters[5] = Convert.ToDouble(buffer[0]) / 10;
+                    _controllerParameters[6] = Convert.ToDouble(buffer[1]) / 10;
+                }
+                else if (Sensor1СheckBox.Checked == true &&
+                         Sensor2CheckBox.Checked == false)
+                {
+                    result = _masterRTU.ReadHoldingRegisters(_slaveAddressThermometer,
+                        startAddress1[0], _numberOfPoints);
+                    buffer[0] = result[0];
+
+                    _controllerParameters[5] = Convert.ToDouble(buffer[0]) / 10;
+                    _controllerParameters[6] = 0;
+                }
+                else if (Sensor1СheckBox.Checked == false &&
+                         Sensor2CheckBox.Checked == true)
+                {
+
+                    result = _masterRTU.ReadHoldingRegisters(_slaveAddressThermometer,
+                        startAddress1[1], _numberOfPoints);
+                    buffer[1] = result[0];
+                    _controllerParameters[5] = 0;
+                    _controllerParameters[6] = Convert.ToDouble(buffer[1]) / 10;
+                }
+            }
+            if (!flag1)
+            {
+                return;
+            }
+            ushort[] startAddress = {0xA430, 0xA432, 0xA433, 0xA434, 0xA437};
+            string a;
+            double e;
+            _masterRTU.Transport.ReadTimeout = 1000;
+            for (int i = 0; i <= 4; i++)
+            {
+                result = _masterRTU.ReadHoldingRegisters(_slaveAddress, startAddress[i], _numberOfPoints);
                 switch (i)
                 {
                     case 0:
-                        FrequencyVoltageTextBox.Text = string.Empty;
                         a = String.Concat<ushort>(result);
-                        e = Convert.ToDouble(a)/100;
-                        //FrequencyVoltageTextBox.Text = String.Concat<ushort>(result);
-                        FrequencyVoltageTextBox.Text = e.ToString();
-                        _controllerParameters[i] = FrequencyVoltageTextBox.Text;
+                        e = Convert.ToDouble(a) / 100;
+                        _controllerParameters[i] = e;
                         break;
                     case 1:
-                        VoltageEntranceTextBox.Text = string.Empty;
-                        //a = String.Concat<ushort>(result);
-                        //e = Convert.ToDouble(a);
-                        VoltageEntranceTextBox.Text = String.Concat<ushort>(result);
-                        _controllerParameters[i] = VoltageEntranceTextBox.Text;
-                        break;
-                    case 2:
-                        VoltageOutputTextBox.Text = string.Empty;
                         a = String.Concat<ushort>(result);
                         e = Convert.ToDouble(a);
-                        VoltageOutputTextBox.Text = String.Concat<ushort>(result);
-                        _controllerParameters[i] = VoltageOutputTextBox.Text;
+                        _controllerParameters[i] = e;
+                        break;
+                    case 2:
+                        a = String.Concat<ushort>(result);
+                        e = Convert.ToDouble(a);
+                        _controllerParameters[i] = e;
                         break;
                     case 3:
-                        CurrentOutputTextBox.Text = string.Empty;
-                        a = string.Concat(result);
-                        e = Convert.ToDouble(a)/10;
-                        CurrentOutputTextBox.Text = e.ToString();//String.Concat<ushort>(result);
-                        _controllerParameters[i] = CurrentOutputTextBox.Text;
+                        a = string.Concat<ushort>(result);
+                        e = Convert.ToDouble(a) / 10;
+                        _controllerParameters[i] = e;
                         break;
                     case 4:
-                        PowerOutputTextBox.Text = string.Empty;
                         a = String.Concat<ushort>(result);
-                        e = Convert.ToDouble(a)/10;
-                        PowerOutputTextBox.Text = e.ToString();//String.Concat<ushort>(result);
-                        _controllerParameters[i] = PowerOutputTextBox.Text;
+                        e = Convert.ToDouble(a) / 10;
+                        _controllerParameters[i] = e;
                         break;
                 }
             }
+        }
+
+        private void ShowTextBox()
+        {
+            FrequencyVoltageTextBox.Text = _controllerParameters[0].ToString();
+            VoltageEntranceTextBox.Text = _controllerParameters[1].ToString();
+            VoltageOutputTextBox.Text = _controllerParameters[2].ToString();
+            CurrentOutputTextBox.Text = _controllerParameters[3].ToString();
+            PowerOutputTextBox.Text = _controllerParameters[4].ToString();
+            Thermometer1TextBox.Text = _controllerParameters[5].ToString();
+            Thermometer2TextBox.Text = _controllerParameters[6].ToString();
         }
 
         /// <summary>
         /// Выводит параметры граничных условий работы ПЧ на экран
         /// </summary>
-        private void WorkParameters()
+        private async Task WorkParameters(bool flag)
         {
-            ushort[] startAddress = {0xA440, 0xA441, 0xa442, 0xa443, 0xA444 };
-            string a;
-            double e;
-            ushort[] result;
-            for (int i = 0; i <= 4; i++)
+            if (flag)
             {
+                ushort[] startAddress = {0xA440, 0xA441, 0xa442, 0xa443, 0xA444};
+                string a;
+                double e;
+                ushort[] result;
+                string[] text = new string[5];
                 try
                 {
-                     result = _masrerRTU.ReadHoldingRegisters(_slaveAddress, startAddress[i], _numberOfPoints);
+                    await Task.Run(() =>
+                    {
+                        for (int i = 0; i <= 4; i++)
+                        {
+
+                            result = _masterRTU.ReadHoldingRegisters(_slaveAddress, startAddress[i], _numberOfPoints);
+
+                            switch (i)
+                            {
+                                case 0:
+                                    text[i] = String.Concat<ushort>(result);
+                                    break;
+                                case 1:
+                                    text[i] = String.Concat<ushort>(result);
+                                    break;
+                                case 2:
+                                    a = String.Concat<ushort>(result);
+                                    e = Convert.ToDouble(a) / 10;
+                                    text[i] = e.ToString(); //String.Concat<ushort>(result);
+                                    break;
+                                case 3:
+                                    a = String.Concat<ushort>(result);
+                                    e = Convert.ToDouble(a) / 100;
+                                    text[i] = e.ToString(); //String.Concat<ushort>(result);
+                                    break;
+                                case 4:
+                                    a = String.Concat<ushort>(result);
+                                    e = Convert.ToDouble(a) / 100;
+                                    text[i] = e.ToString(); //String.Concat<ushort>(result);
+                                    break;
+                            }
+                        }
+                    });
                 }
-                catch (InvalidOperationException exception)
+                catch (InvalidOperationException)
                 {
-                    timer1.Enabled = false;
+                    timer1.Stop();
                     return;
                 }
-                switch (i)
-                {
-                    case 0:
-                        textBox14.Text = string.Empty;
-                        textBox14.Text = String.Concat<ushort>(result);
-                        break;
-                    case 1:
-                        textBox13.Text = string.Empty;
-                        textBox13.Text = String.Concat<ushort>(result);
-                        break;
-                    case 2:
-                        textBox12.Text = string.Empty;
-                        a = String.Concat<ushort>(result);
-                        e = Convert.ToDouble(a)/10;
-                        textBox12.Text = e.ToString();//String.Concat<ushort>(result);
-                        break;
-                    case 3:
-                        textBox11.Text = string.Empty;
-                        a = String.Concat<ushort>(result);
-                        e = Convert.ToDouble(a)/100;
-                        textBox11.Text = e.ToString();//String.Concat<ushort>(result);
-                        break;
-                    case 4:
-                        textBox10.Text = string.Empty;
-                        a = String.Concat<ushort>(result);
-                        e = Convert.ToDouble(a)/100;
-                        textBox10.Text = e.ToString();//String.Concat<ushort>(result);
-                        break;
-                }
+                textBox14.Text = text[0];
+                textBox13.Text = text[1];
+                textBox12.Text = text[2];
+                textBox11.Text = text[3];
+                textBox10.Text = text[4];
+                return;
             }
-
+            textBox14.Text = "0";
+            textBox13.Text = "0";
+            textBox12.Text = "0";
+            textBox11.Text = "0";
+            textBox10.Text = "0";
         }
 
         /// <summary>
         /// Вывод данных управления параметров на экран
         /// </summary>
-        private void ManagementParameters()
+        private async void ManagementParameters(bool flag)
         {
-            ushort[] startAddress = {0xA420, 0xa421, 0xa422};
-            string a;
-            double e;
-            ushort[] result;
-            for (int i = 0; i <= 2; i++)
+            if (flag)
             {
-                try
+                ushort[] startAddress = {0xA420, 0xa421, 0xa422};
+                string a;
+                double e;
+                ushort[] result;
+                await Task.Run(() =>
                 {
-                    result = _masrerRTU.ReadHoldingRegisters(_slaveAddress, startAddress[i], _numberOfPoints);
-                }
-                catch (InvalidOperationException exception)
-                {
+                    Invoke((MethodInvoker) delegate
+                    {
+                        for (int i = 0; i <= 2; i++)
+                        {
+                            try
+                            {
+                                result = _masterRTU.ReadHoldingRegisters(_slaveAddress, startAddress[i],
+                                    _numberOfPoints);
+                            }
+                            catch (InvalidOperationException)
+                            {
 
-                    timer1.Enabled = false;
-                    return;
-                }
-                catch (TimeoutException)
-                {
-                    timer1.Enabled = false;
-                    timer2.Enabled = false;
-                    MessageBox.Show("Время ожидания истекло. Проверьте настройки подключения", "Внимание",
-                        MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    ConnectButton.Enabled = true;
-                    DisableButton.Enabled = false;
-                    
-                    StartButton.Enabled = false;
-                    StopButton.Enabled = false;
-                    ResetButton.Enabled = false;
-                    LaunchButton.Enabled = false;
-                    ParametrsGroupBox.Enabled = false;
-                    _port.Close();
-                    return;
-                }
-                switch (i)
-                {
-                    case 0:
-                        CurrentNumericUpDown.Text = string.Empty;
-                        a = String.Concat<ushort>(result);
-                        e = Convert.ToDouble(a) / 10;
-                        CurrentNumericUpDown.Text = e.ToString();// String.Concat<ushort>(result);
-                        break;
-                    case 1:
-                        VoltageNumericUpDown.Text = string.Empty;
-                        VoltageNumericUpDown.Text = String.Concat<ushort>(result);
-                        break;
-                    case 2:
-                        PowerNumericUpDown.Text = string.Empty;
-                        a = String.Concat<ushort>(result);
-                        e = Convert.ToDouble(a) / 10;
-                        PowerNumericUpDown.Text = e.ToString();//String.Concat<ushort>(result);
-                        break;
-                }
+                                timer1.Enabled = false;
+
+
+                                return;
+                            }
+                            catch (TimeoutException)
+                            {
+
+                                timer1.Enabled = false;
+                                timer2.Enabled = false;
+                                ConnectButton.Enabled = true;
+                                DisableButton.Enabled = false;
+                                StartButton.Enabled = false;
+                                StopButton.Enabled = false;
+                                ResetButton.Enabled = false;
+                                LaunchButton.Enabled = false;
+                                ParametrsGroupBox.Enabled = false;
+                                _port.Close();
+
+
+                                MessageBox.Show("Время ожидания истекло. Проверьте настройки подключения", "Внимание",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                                return;
+                            }
+
+                            switch (i)
+                            {
+                                case 0:
+                                    CurrentNumericUpDown.Text = string.Empty;
+                                    a = String.Concat<ushort>(result);
+                                    e = Convert.ToDouble(a) / 10;
+                                    CurrentNumericUpDown.Text = e.ToString(); // String.Concat<ushort>(result);
+                                    break;
+                                case 1:
+                                    VoltageNumericUpDown.Text = string.Empty;
+                                    VoltageNumericUpDown.Text = String.Concat<ushort>(result);
+                                    break;
+                                case 2:
+                                    PowerNumericUpDown.Text = string.Empty;
+                                    a = String.Concat<ushort>(result);
+                                    e = Convert.ToDouble(a) / 10;
+                                    PowerNumericUpDown.Text = e.ToString(); //String.Concat<ushort>(result);
+                                    break;
+                            }
+                        }
+                    });
+                });
             }
         }
 
@@ -351,60 +452,68 @@ namespace TesterAppUI
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void WriteRegisterButton_Click(object sender, EventArgs e)
+        private async void WriteRegisterButton_Click(object sender, EventArgs e)
         {
-            WriteRegister(CurrentNumericUpDown.Text, PowerNumericUpDown.Text);
+           await WriteRegister(CurrentNumericUpDown.Text, PowerNumericUpDown.Text);
         }
 
         /// <summary>
-        /// Фугкция записи данных в регистр
+        /// Функция записи данных в регистр
         /// </summary>
         /// <param name="current"></param>
         /// <param name="power"></param>
-        public void WriteRegister(string current, string power)
+        public async Task WriteRegister(string current, string power)
         {
             try
             {
                 ushort[] startAddress = { 0xA420, 0xa421, 0xa422 };
                 ushort value;
-                for (int i = 0; i <= 2; i++)
+                await Task.Run(() =>
                 {
-                    switch (i)
+                    Invoke((MethodInvoker)delegate
                     {
-                        case 0:
-                            value = (ushort)(Convert.ToUInt16(current) * Convert.ToUInt16(10));
-                            try
+                        for (int i = 0; i <= 2; i++)
+                        {
+                            switch (i)
                             {
-                                _masrerRTU.WriteSingleRegister(_slaveAddress, startAddress[i], value);
-                            }
-                            catch (InvalidOperationException exception)
-                            {
+                                case 0:
+                                    value = (ushort)(Convert.ToUInt16(current) * Convert.ToUInt16(10));
+                                    try
+                                    {
+                                        _masterRTU.WriteSingleRegister(_slaveAddress, startAddress[i], value);
+                                    }
+                                    catch (InvalidOperationException)
+                                    {
 
-                                timer1.Enabled = false;
-                                return;
-                            }
-                            break;
-                        case 1:
+                                        timer1.Enabled = false;
+                                        return;
+                                    }
 
-                            //value = Convert.ToUInt16(VoltageNumericUpDown.Text);
-                            ///значения в регистр а421 не записывается!!!!!
-                            //_masrerRTU.WriteSingleRegister(_slaveAddress, startAddress[i], value);
-                            break;
-                        case 2:
-                            value = (ushort)(Convert.ToUInt16(power) * Convert.ToUInt16(10));
-                            try
-                            {
-                                _masrerRTU.WriteSingleRegister(_slaveAddress, startAddress[i], value);
-                            }
-                            catch (InvalidOperationException exception)
-                            {
+                                    break;
+                                case 1:
 
-                                timer1.Enabled = false;
-                                return;
+                                    //value = Convert.ToUInt16(VoltageNumericUpDown.Text);
+                                    ///значения в регистр а421 не записывается!!!!!
+                                    //_masterRTU.WriteSingleRegister(_slaveAddress, startAddress[i], value);
+                                    break;
+                                case 2:
+                                    value = (ushort)(Convert.ToUInt16(power) * Convert.ToUInt16(10));
+                                    try
+                                    {
+                                        _masterRTU.WriteSingleRegister(_slaveAddress, startAddress[i], value);
+                                    }
+                                    catch (InvalidOperationException)
+                                    {
+
+                                        timer1.Enabled = false;
+                                        return;
+                                    }
+
+                                    break;
                             }
-                            break;
-                    }
-                }
+                        }
+                    });
+                });
             }
             catch (Exception ex)
             {
@@ -417,17 +526,16 @@ namespace TesterAppUI
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void StartButton_Click(object sender, EventArgs e)
+        private async void StartButton_Click(object sender, EventArgs e)
         {
-            StartStopController(true);
-            LaunchButton.Enabled = false;
+           await StartStopController(true);
         }
 
         /// <summary>
         /// Включает/Выключает установку
         /// </summary>
         /// <param name="variable"></param>
-        public void StartStopController(bool variable)
+        public async Task StartStopController(bool variable)
         {
             ushort startAddress = 0xA410;
             ushort value;
@@ -436,98 +544,113 @@ namespace TesterAppUI
                 value = Convert.ToUInt16(1);
                 try
                 {
-                    _masrerRTU.WriteSingleRegister(_slaveAddress, startAddress, value);
-                }
-                catch (InvalidOperationException exception)
-                {
+                    await Task.Run(() =>
+                    {
+                        _masterRTU.WriteSingleRegister(_slaveAddress, startAddress, value);
+                    });
 
+                }
+                catch (InvalidOperationException)
+                {
                     timer1.Enabled = false;
                     return;
                 }
+
                 StopButton.Enabled = true;
-                ResetButton.Enabled = true;
                 StartButton.Enabled = false;
                 WriteRegisterButton.Enabled = false;
-                
                 CurrentNumericUpDown.ReadOnly = true;
                 PowerNumericUpDown.ReadOnly = true;
                 VoltageNumericUpDown.ReadOnly = true;
-                
+                SatusControllerAsync(_thermometerFlag);
             }
             else
             {
                 value = Convert.ToUInt16(0);
                 try
                 {
-                    _masrerRTU.WriteSingleRegister(_slaveAddress, startAddress, value);
+                    await Task.Run(() =>
+                    {
+                        _masterRTU.WriteSingleRegister(_slaveAddress, startAddress, value);
+                    });
                 }
-                catch (InvalidOperationException exception)
+                catch (InvalidOperationException)
                 {
-
                     timer1.Enabled = false;
                     return;
                 }
+
                 StopButton.Enabled = false;
                 ResetButton.Enabled = false;
                 StartButton.Enabled = true;
                 WriteRegisterButton.Enabled = true;
-                
                 CurrentNumericUpDown.ReadOnly = false;
                 PowerNumericUpDown.ReadOnly = false;
                 VoltageNumericUpDown.ReadOnly = false;
+                SatusControllerAsync(_controllerFlag);
             }
         }
 
-        
         /// <summary>
         /// Запускает таймер 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void timer1_Tick(object sender, EventArgs e)
+        private async void timer1_Tick(object sender, EventArgs e)
         {
-            ControllerParameters();
-            WorkParameters();
-            SatusController();
+            await ControllerParametersAsync(_controllerFlag, _thermometerFlag);
+            await SatusControllerAsync(_controllerFlag);
         }
 
         /// <summary>
         /// Выводит состояние контроллера
         /// </summary>
-        private void SatusController()
+        private async Task SatusControllerAsync(bool flag)
+        {
+            if (flag)
+            {
+                timer1.Stop();
+                string text = "";
+                try
+                {
+                    await Task.Run(() => { text = SatusController(); });
+                }
+                catch (InvalidOperationException)
+                {
+                    return;
+                }
+
+                StatusBox.Text = text;
+                timer1.Start();
+            }
+        }
+
+        private string SatusController()
         {
             ushort startAddress = 0xA411;
             ushort[] result;
-            try
-            {
-                result = _masrerRTU.ReadHoldingRegisters(_slaveAddress, startAddress, _numberOfPoints);
-            }
-            catch (InvalidOperationException exception)
-            {
-
-                timer1.Enabled = false;
-                return;
-            }
+            string text = "";
+            result = _masterRTU.ReadHoldingRegisters(_slaveAddress, startAddress, _numberOfPoints);
             switch (result[0])
             {
                 case 0:
-                    StatusBox.Text = "Установка выключена";
+                    text = "Установка выключена";
                     break;
                 case 1:
-                    StatusBox.Text = "Установка включена";
+                    text = "Установка включена";
                     break;
                 case 2:
-                    StatusBox.Text = "Авария";
                     ushort startAddress1 = 0xA412;
-                    ushort[] result1 = _masrerRTU.ReadHoldingRegisters(_slaveAddress, startAddress1, _numberOfPoints);
-                    StatusBox.Text = StatusBox.Text + " " + String.Concat<ushort>(result1);
+                    ushort[] result1 =
+                        _masterRTU.ReadHoldingRegisters(_slaveAddress, startAddress1, _numberOfPoints);
 
                     ushort startAddress2 = 0xA413;
-                    ushort[] result2 = _masrerRTU.ReadHoldingRegisters(_slaveAddress, startAddress2, _numberOfPoints);
-                    StatusBox.Text = StatusBox.Text + " " + String.Concat<ushort>(result2);
+                    ushort[] result2 =
+                        _masterRTU.ReadHoldingRegisters(_slaveAddress, startAddress2, _numberOfPoints);
+                    text = $"Авария \n {String.Concat(result1)} \n {String.Concat(result2)}";
                     break;
             }
-            
+            return text;
         }
 
         /// <summary>
@@ -540,18 +663,14 @@ namespace TesterAppUI
             this.ActiveControl = null;
         }
 
-        
-
         /// <summary>
         /// Выключает установку
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void StopButton_Click(object sender, EventArgs e)
+        private async void StopButton_Click(object sender, EventArgs e)
         {
-            _key = false;
-            StartStopController(false);
-            LaunchButton.Enabled = false;
+            await StartStopController(false);
         }
 
         /// <summary>
@@ -559,25 +678,29 @@ namespace TesterAppUI
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void ResetButton_Click(object sender, EventArgs e)
+        private async void ResetButton_Click(object sender, EventArgs e)
         {
             ushort startAddress = 0xA410;
             ushort value = Convert.ToUInt16(2);
             try
             {
-                _masrerRTU.WriteSingleRegister(_slaveAddress, startAddress, value);
+                await Task.Run(() => { _masterRTU.WriteSingleRegister(_slaveAddress, startAddress, value); });
             }
-            catch (InvalidOperationException exception)
+            catch (InvalidOperationException)
             {
-
                 timer1.Enabled = false;
                 return;
             }
+
             timer1.Enabled = false;
-            StopButton.Enabled = false;
-            ResetButton.Enabled = false;
-            StartButton.Enabled = true;
-            LaunchButton.Enabled = true;
+            if (!StatusBox.Text.Contains("Авария"))
+            {
+                ResetButton.Enabled = false;
+                StopButton.Enabled = false;
+                StartButton.Enabled = true;
+                LaunchButton.Enabled = true;
+            }
+            SatusControllerAsync(_controllerFlag);
         }
 
         /// <summary>
@@ -599,17 +722,14 @@ namespace TesterAppUI
             testing._controllerParameters = _controllerParameters;
             //testing._timeRemeining = _timeTest;
 
-            if (Application.OpenForms.OfType<TestingForm>().Count() == 0) 
+            if (Application.OpenForms.OfType<TestingForm>().Count() == 0)
             {
+                LaunchButton.Enabled = false;
                 testing.Show();
-
             }
             //Testing();
 
         }
-
-        
-
 
         private void CurrentNumericUpDown_MouseClick(object sender, MouseEventArgs e)
         {
@@ -620,7 +740,6 @@ namespace TesterAppUI
         {
             VoltageNumericUpDown.Select(0, VoltageNumericUpDown.Value.ToString().Length);
         }
-
 
         private void PowerNumericUpDown_MouseClick(object sender, MouseEventArgs e)
         {
@@ -650,7 +769,50 @@ namespace TesterAppUI
                 return;
             }
         }
-    }
 
+        private void StatusBox_TextChanged(object sender, EventArgs e)
+        {
+            if (StatusBox.Text.Contains("Авария"))
+            {
+                StartButton.Enabled = false;
+                StopButton.Enabled = false;
+                ResetButton.Enabled = true;
+            }
+
+            StatusBox.SelectionLength = 0;
+        }
+
+        private void ThermometeСheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (ThermometeСheckBox.Checked)
+            {
+                ThermometerGroupBox.Enabled = true;
+                _thermometerFlag = true;
+            }
+            else
+            {
+                ThermometerGroupBox.Enabled = false;
+                _thermometerFlag = false;
+            }
+        }
+
+        private void ControllerСheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (ControllerСheckBox.Checked)
+            {
+                _controllerFlag = true;
+            }
+            else
+            {
+                _controllerFlag = false;
+            }
+        }
+
+        private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AboutForm aboutForm = new AboutForm();
+            aboutForm.Show();
+        }
+    }
 
 }
