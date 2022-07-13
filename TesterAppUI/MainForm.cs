@@ -45,12 +45,15 @@ namespace TesterAppUI
         /// </summary>
         private double[] _controllerParameters=new Double[7];
 
-        private bool _thermometerFlag;
+        public bool _thermometerFlag;
 
         private bool _controllerFlag;
 
         public int _typeInstallation;
 
+        private SettingForm _settingForm = new SettingForm();
+
+        public bool _accidentChecked = false;
         public MainForm()
         {
             Program._mainForm = this;
@@ -64,16 +67,15 @@ namespace TesterAppUI
         /// <param name="e"></param>
         private void SettingСonnectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SettingForm settingConnection = new SettingForm();
-            var result = settingConnection.ShowDialog();
+            var result = _settingForm.ShowDialog();
             if (result != DialogResult.OK)
             {
                 return;
             }
 
-            _typeInstallation = settingConnection._typeInstallation;
-            _slaveAddress = settingConnection._slaveAddress;
-            _port = settingConnection.Port;
+            _typeInstallation = _settingForm._typeInstallation;
+            _slaveAddress = _settingForm._slaveAddress;
+            _port = _settingForm.Port;
             switch (_typeInstallation)
             {
                 case 0:
@@ -87,6 +89,11 @@ namespace TesterAppUI
                 case 2:
                     CurrentNumericUpDown.Maximum = 60;
                     PowerNumericUpDown.Maximum = 30;
+                    break;
+                case 3:
+                    CurrentNumericUpDown.Maximum = 120;
+                    VoltageNumericUpDown.Maximum = 500;
+                    PowerNumericUpDown.Maximum = 1110;
                     break;
             }
 
@@ -126,7 +133,7 @@ namespace TesterAppUI
             }
 
             _masterRTU = ModbusSerialMaster.CreateRtu(_port);
-            _masterRTU.Transport.ReadTimeout = 500;
+            _masterRTU.Transport.ReadTimeout = 200;
            
             timer2.Enabled = true;
             ConnectButton.Enabled = false;
@@ -135,13 +142,15 @@ namespace TesterAppUI
             {
                 StartButton.Enabled = true;
             }
-            timer1.Enabled = true;
             ParametrsGroupBox.Enabled = true;
             LaunchButton.Enabled = true;
+            ResetButton.Enabled = false;
             ConnectedGroupBox.Enabled = false;
+            _masterRTU.WriteSingleRegister(_slaveAddress, 0xA410, 2);
+            timer1.Enabled = true;
             ManagementParameters(_controllerFlag);
             WorkParameters(_controllerFlag);
-           
+            
         }
 
         /// <summary>
@@ -194,11 +203,23 @@ namespace TesterAppUI
                 }
                 catch (InvalidOperationException)
                 {
+                    ConnectedGroupBox.Enabled = true;
                     return;
                 }
                 catch (Exception e)
                 {
+                    timer1.Enabled = false;
+                    timer2.Enabled = false;
+                    ConnectButton.Enabled = true;
+                    DisableButton.Enabled = false;
+                    StartButton.Enabled = false;
+                    StopButton.Enabled = false;
+                    ResetButton.Enabled = false;
+                    LaunchButton.Enabled = false;
+                    ParametrsGroupBox.Enabled = false;
+                    ConnectedGroupBox.Enabled = true;
                     MessageBox.Show(e.Message,"Ошибка");
+                    _port.Close();
                     return;
                 }
                 ShowTextBox();
@@ -208,6 +229,7 @@ namespace TesterAppUI
         
         private void ControllerParameters(bool flag1,bool flag2)
         {
+            
             if (_port.IsOpen == false)
             {
                 return;
@@ -228,8 +250,9 @@ namespace TesterAppUI
                         buffer[i] = result[0];
 
                     }
-                    _controllerParameters[5] = Convert.ToDouble(buffer[0]) / 10;
-                    _controllerParameters[6] = Convert.ToDouble(buffer[1]) / 10;
+                    _controllerParameters[5] = checkBox1.Checked ? Convert.ToDouble(buffer[0]) / 10 : Convert.ToDouble(buffer[0]);
+                    _controllerParameters[6] = checkBox1.Checked ? Convert.ToDouble(buffer[1]) / 10 : Convert.ToDouble(buffer[1]);
+                    
                 }
                 else if (Sensor1СheckBox.Checked == true &&
                          Sensor2CheckBox.Checked == false)
@@ -238,7 +261,7 @@ namespace TesterAppUI
                         startAddress1[0], _numberOfPoints);
                     buffer[0] = result[0];
 
-                    _controllerParameters[5] = Convert.ToDouble(buffer[0]) / 10;
+                    _controllerParameters[5] = checkBox1.Checked ? Convert.ToDouble(buffer[0]) / 10 : Convert.ToDouble(buffer[0]);
                     _controllerParameters[6] = 0;
                 }
                 else if (Sensor1СheckBox.Checked == false &&
@@ -249,7 +272,7 @@ namespace TesterAppUI
                         startAddress1[1], _numberOfPoints);
                     buffer[1] = result[0];
                     _controllerParameters[5] = 0;
-                    _controllerParameters[6] = Convert.ToDouble(buffer[1]) / 10;
+                    _controllerParameters[6] = checkBox1.Checked ? Convert.ToDouble(buffer[1]) / 10 : Convert.ToDouble(buffer[1]);
                 }
             }
             if (!flag1)
@@ -259,7 +282,6 @@ namespace TesterAppUI
             ushort[] startAddress = {0xA430, 0xA432, 0xA433, 0xA434, 0xA437};
             string a;
             double e;
-            _masterRTU.Transport.ReadTimeout = 1000;
             for (int i = 0; i <= 4; i++)
             {
                 result = _masterRTU.ReadHoldingRegisters(_slaveAddress, startAddress[i], _numberOfPoints);
@@ -356,6 +378,7 @@ namespace TesterAppUI
                 catch (InvalidOperationException)
                 {
                     timer1.Stop();
+                    ConnectedGroupBox.Enabled = true;
                     return;
                 }
                 textBox14.Text = text[0];
@@ -398,7 +421,7 @@ namespace TesterAppUI
                             {
 
                                 timer1.Enabled = false;
-
+                                ConnectedGroupBox.Enabled = true;
 
                                 return;
                             }
@@ -415,8 +438,7 @@ namespace TesterAppUI
                                 LaunchButton.Enabled = false;
                                 ParametrsGroupBox.Enabled = false;
                                 _port.Close();
-
-
+                                ConnectedGroupBox.Enabled = true;
                                 MessageBox.Show("Время ожидания истекло. Проверьте настройки подключения", "Внимание",
                                     MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                                 return;
@@ -454,7 +476,7 @@ namespace TesterAppUI
         /// <param name="e"></param>
         private async void WriteRegisterButton_Click(object sender, EventArgs e)
         {
-           await WriteRegister(CurrentNumericUpDown.Text, PowerNumericUpDown.Text);
+           await WriteRegister(CurrentNumericUpDown.Text, VoltageNumericUpDown.Text, PowerNumericUpDown.Text);
         }
 
         /// <summary>
@@ -462,7 +484,7 @@ namespace TesterAppUI
         /// </summary>
         /// <param name="current"></param>
         /// <param name="power"></param>
-        public async Task WriteRegister(string current, string power)
+        public async Task WriteRegister(string current, string voltage, string power)
         {
             try
             {
@@ -484,17 +506,25 @@ namespace TesterAppUI
                                     }
                                     catch (InvalidOperationException)
                                     {
-
                                         timer1.Enabled = false;
+                                        ConnectedGroupBox.Enabled = true;
                                         return;
                                     }
 
                                     break;
                                 case 1:
 
-                                    //value = Convert.ToUInt16(VoltageNumericUpDown.Text);
-                                    ///значения в регистр а421 не записывается!!!!!
-                                    //_masterRTU.WriteSingleRegister(_slaveAddress, startAddress[i], value);
+                                    value = Convert.ToUInt16(voltage);
+                                    try
+                                    {
+                                        _masterRTU.WriteSingleRegister(_slaveAddress, startAddress[i], value);
+                                    }
+                                    catch (InvalidOperationException)
+                                    {
+                                        timer1.Enabled = false;
+                                        ConnectedGroupBox.Enabled = true;
+                                        return;
+                                    }
                                     break;
                                 case 2:
                                     value = (ushort)(Convert.ToUInt16(power) * Convert.ToUInt16(10));
@@ -504,8 +534,8 @@ namespace TesterAppUI
                                     }
                                     catch (InvalidOperationException)
                                     {
-
                                         timer1.Enabled = false;
+                                        ConnectedGroupBox.Enabled = true;
                                         return;
                                     }
 
@@ -527,8 +557,10 @@ namespace TesterAppUI
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private async void StartButton_Click(object sender, EventArgs e)
-        {
-           await StartStopController(true);
+        { 
+            timer1.Stop();
+            await StartStopController(true);
+            timer1.Start();
         }
 
         /// <summary>
@@ -553,6 +585,7 @@ namespace TesterAppUI
                 catch (InvalidOperationException)
                 {
                     timer1.Enabled = false;
+                    ConnectedGroupBox.Enabled = true;
                     return;
                 }
 
@@ -577,11 +610,11 @@ namespace TesterAppUI
                 catch (InvalidOperationException)
                 {
                     timer1.Enabled = false;
+                    ConnectedGroupBox.Enabled = true;
                     return;
                 }
 
                 StopButton.Enabled = false;
-                ResetButton.Enabled = false;
                 StartButton.Enabled = true;
                 WriteRegisterButton.Enabled = true;
                 CurrentNumericUpDown.ReadOnly = false;
@@ -613,10 +646,12 @@ namespace TesterAppUI
                 string text = "";
                 try
                 {
-                    await Task.Run(() => { text = SatusController(); });
+                    await Task.Run(() => { text = StatusController(); });
                 }
                 catch (InvalidOperationException)
                 {
+                    timer1.Enabled = false;
+                    ConnectedGroupBox.Enabled = true;
                     return;
                 }
 
@@ -625,7 +660,7 @@ namespace TesterAppUI
             }
         }
 
-        private string SatusController()
+        public string StatusController()
         {
             ushort startAddress = 0xA411;
             ushort[] result;
@@ -647,7 +682,10 @@ namespace TesterAppUI
                     ushort startAddress2 = 0xA413;
                     ushort[] result2 =
                         _masterRTU.ReadHoldingRegisters(_slaveAddress, startAddress2, _numberOfPoints);
-                    text = $"Авария \n {String.Concat(result1)} \n {String.Concat(result2)}";
+                    text = $"Авария!" +
+                           $"\r\nРегистры аварий:" +
+                           $"\r\n0xA412: {Convert.ToString(result1[0], 2)}" +
+                           $"\r\n0xA413: {Convert.ToString(result2[0], 2)}";
                     break;
             }
             return text;
@@ -670,7 +708,9 @@ namespace TesterAppUI
         /// <param name="e"></param>
         private async void StopButton_Click(object sender, EventArgs e)
         {
+            timer1.Stop();
             await StartStopController(false);
+            timer1.Start();
         }
 
         /// <summary>
@@ -692,15 +732,17 @@ namespace TesterAppUI
                 return;
             }
 
-            timer1.Enabled = false;
+            timer1.Enabled = true;
+            await SatusControllerAsync(_controllerFlag);
             if (!StatusBox.Text.Contains("Авария"))
             {
                 ResetButton.Enabled = false;
                 StopButton.Enabled = false;
                 StartButton.Enabled = true;
                 LaunchButton.Enabled = true;
+                WriteRegisterButton.Enabled = true;
+                _accidentChecked = false;
             }
-            SatusControllerAsync(_controllerFlag);
         }
 
         /// <summary>
@@ -764,6 +806,7 @@ namespace TesterAppUI
                 ResetButton.Enabled = false;
                 LaunchButton.Enabled = false;
                 ParametrsGroupBox.Enabled = false;
+                ConnectedGroupBox.Enabled = true;
                 _port.Close();
                 MessageBox.Show("Потеря соединения", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
@@ -777,6 +820,7 @@ namespace TesterAppUI
                 StartButton.Enabled = false;
                 StopButton.Enabled = false;
                 ResetButton.Enabled = true;
+                _accidentChecked = true;
             }
 
             StatusBox.SelectionLength = 0;

@@ -17,9 +17,9 @@ namespace TesterAppUI
         /// </summary>
         public double _intervalX;
 
-        public double[] _interval;
+        public double[] _interval = new double[7];
 
-        public double[] _maxValue;
+        public double[] _maxValue = new double[7];
 
 
         public SettingChartForm()

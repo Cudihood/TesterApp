@@ -33,6 +33,8 @@ namespace TesterAppUI
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.SettingnСonnectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.HelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.AboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.StartButton = new System.Windows.Forms.Button();
             this.StopButton = new System.Windows.Forms.Button();
             this.StatusBox = new System.Windows.Forms.TextBox();
@@ -100,8 +102,8 @@ namespace TesterAppUI
             this.ConnectedGroupBox = new System.Windows.Forms.GroupBox();
             this.ThermometeСheckBox = new System.Windows.Forms.CheckBox();
             this.ControllerСheckBox = new System.Windows.Forms.CheckBox();
-            this.HelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.AboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.menuStrip1.SuspendLayout();
             this.ParametrsGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PowerNumericUpDown)).BeginInit();
@@ -136,6 +138,21 @@ namespace TesterAppUI
             this.SettingnСonnectionToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
             this.SettingnСonnectionToolStripMenuItem.Text = "Настройки подключения";
             this.SettingnСonnectionToolStripMenuItem.Click += new System.EventHandler(this.SettingСonnectionToolStripMenuItem_Click);
+            // 
+            // HelpToolStripMenuItem
+            // 
+            this.HelpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.AboutToolStripMenuItem});
+            this.HelpToolStripMenuItem.Name = "HelpToolStripMenuItem";
+            this.HelpToolStripMenuItem.Size = new System.Drawing.Size(68, 22);
+            this.HelpToolStripMenuItem.Text = "Помощь";
+            // 
+            // AboutToolStripMenuItem
+            // 
+            this.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem";
+            this.AboutToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+            this.AboutToolStripMenuItem.Text = "О программе";
+            this.AboutToolStripMenuItem.Click += new System.EventHandler(this.AboutToolStripMenuItem_Click);
             // 
             // StartButton
             // 
@@ -693,7 +710,7 @@ namespace TesterAppUI
             // 
             this.ConnectButton.Location = new System.Drawing.Point(12, 27);
             this.ConnectButton.Name = "ConnectButton";
-            this.ConnectButton.Size = new System.Drawing.Size(236, 61);
+            this.ConnectButton.Size = new System.Drawing.Size(170, 64);
             this.ConnectButton.TabIndex = 20;
             this.ConnectButton.Text = "Подкючиться";
             this.ConnectButton.UseVisualStyleBackColor = true;
@@ -704,7 +721,7 @@ namespace TesterAppUI
             this.DisableButton.Enabled = false;
             this.DisableButton.Location = new System.Drawing.Point(12, 97);
             this.DisableButton.Name = "DisableButton";
-            this.DisableButton.Size = new System.Drawing.Size(236, 63);
+            this.DisableButton.Size = new System.Drawing.Size(170, 63);
             this.DisableButton.TabIndex = 21;
             this.DisableButton.Text = "Отключиться";
             this.DisableButton.UseVisualStyleBackColor = true;
@@ -735,13 +752,15 @@ namespace TesterAppUI
             // ThermometerGroupBox
             // 
             this.ThermometerGroupBox.BackColor = System.Drawing.Color.LightSeaGreen;
+            this.ThermometerGroupBox.Controls.Add(this.checkBox2);
+            this.ThermometerGroupBox.Controls.Add(this.checkBox1);
             this.ThermometerGroupBox.Controls.Add(this.Sensor2CheckBox);
             this.ThermometerGroupBox.Controls.Add(this.Sensor1СheckBox);
             this.ThermometerGroupBox.Enabled = false;
             this.ThermometerGroupBox.ForeColor = System.Drawing.Color.Black;
             this.ThermometerGroupBox.Location = new System.Drawing.Point(6, 66);
             this.ThermometerGroupBox.Name = "ThermometerGroupBox";
-            this.ThermometerGroupBox.Size = new System.Drawing.Size(159, 62);
+            this.ThermometerGroupBox.Size = new System.Drawing.Size(231, 62);
             this.ThermometerGroupBox.TabIndex = 22;
             this.ThermometerGroupBox.TabStop = false;
             this.ThermometerGroupBox.Text = "Датчики температуры";
@@ -848,9 +867,9 @@ namespace TesterAppUI
             this.ConnectedGroupBox.Controls.Add(this.ThermometeСheckBox);
             this.ConnectedGroupBox.Controls.Add(this.ControllerСheckBox);
             this.ConnectedGroupBox.Controls.Add(this.ThermometerGroupBox);
-            this.ConnectedGroupBox.Location = new System.Drawing.Point(254, 27);
+            this.ConnectedGroupBox.Location = new System.Drawing.Point(188, 27);
             this.ConnectedGroupBox.Name = "ConnectedGroupBox";
-            this.ConnectedGroupBox.Size = new System.Drawing.Size(176, 132);
+            this.ConnectedGroupBox.Size = new System.Drawing.Size(242, 132);
             this.ConnectedGroupBox.TabIndex = 37;
             this.ConnectedGroupBox.TabStop = false;
             this.ConnectedGroupBox.Text = "Подключенные устройства";
@@ -877,20 +896,25 @@ namespace TesterAppUI
             this.ControllerСheckBox.UseVisualStyleBackColor = true;
             this.ControllerСheckBox.CheckedChanged += new System.EventHandler(this.ControllerСheckBox_CheckedChanged);
             // 
-            // HelpToolStripMenuItem
+            // checkBox1
             // 
-            this.HelpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.AboutToolStripMenuItem});
-            this.HelpToolStripMenuItem.Name = "HelpToolStripMenuItem";
-            this.HelpToolStripMenuItem.Size = new System.Drawing.Size(68, 22);
-            this.HelpToolStripMenuItem.Text = "Помощь";
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(149, 19);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(76, 17);
+            this.checkBox1.TabIndex = 18;
+            this.checkBox1.Text = "с запятой";
+            this.checkBox1.UseVisualStyleBackColor = true;
             // 
-            // AboutToolStripMenuItem
+            // checkBox2
             // 
-            this.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem";
-            this.AboutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.AboutToolStripMenuItem.Text = "О программе";
-            this.AboutToolStripMenuItem.Click += new System.EventHandler(this.AboutToolStripMenuItem_Click);
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.Location = new System.Drawing.Point(149, 42);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(76, 17);
+            this.checkBox2.TabIndex = 19;
+            this.checkBox2.Text = "с запятой";
+            this.checkBox2.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
@@ -997,7 +1021,6 @@ namespace TesterAppUI
         private System.Windows.Forms.Button DisableButton;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Button ResetButton;
-        private System.Windows.Forms.NumericUpDown VoltageNumericUpDown;
         public System.Windows.Forms.NumericUpDown CurrentNumericUpDown;
         public System.Windows.Forms.NumericUpDown PowerNumericUpDown;
         private System.Windows.Forms.Timer timer2;
@@ -1017,5 +1040,8 @@ namespace TesterAppUI
         private System.Windows.Forms.CheckBox ControllerСheckBox;
         private System.Windows.Forms.ToolStripMenuItem HelpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem AboutToolStripMenuItem;
+        private System.Windows.Forms.CheckBox checkBox2;
+        private System.Windows.Forms.CheckBox checkBox1;
+        public System.Windows.Forms.NumericUpDown VoltageNumericUpDown;
     }
 }

@@ -86,6 +86,11 @@ namespace TesterAppUI
             // NumberPeriodsNumericUpDown
             // 
             this.NumberPeriodsNumericUpDown.Location = new System.Drawing.Point(200, 69);
+            this.NumberPeriodsNumericUpDown.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
             this.NumberPeriodsNumericUpDown.Minimum = new decimal(new int[] {
             1,
             0,
@@ -106,7 +111,7 @@ namespace TesterAppUI
             // 
             this.TimeOffNumericUpDown.Location = new System.Drawing.Point(200, 43);
             this.TimeOffNumericUpDown.Maximum = new decimal(new int[] {
-            1440,
+            86400,
             0,
             0,
             0});
@@ -125,7 +130,7 @@ namespace TesterAppUI
             // 
             this.TimeOnNumericUpDown.Location = new System.Drawing.Point(200, 17);
             this.TimeOnNumericUpDown.Maximum = new decimal(new int[] {
-            1440,
+            86400,
             0,
             0,
             0});
@@ -176,9 +181,9 @@ namespace TesterAppUI
             this.label38.Location = new System.Drawing.Point(6, 45);
             this.label38.Margin = new System.Windows.Forms.Padding(3);
             this.label38.Name = "label38";
-            this.label38.Size = new System.Drawing.Size(188, 13);
+            this.label38.Size = new System.Drawing.Size(182, 13);
             this.label38.TabIndex = 24;
-            this.label38.Text = "Время во выключенном состоянии:";
+            this.label38.Text = "Время в выключенном состоянии:";
             // 
             // label40
             // 

@@ -145,7 +145,8 @@ namespace TesterAppUI
             this.TypeInstallationComboBox.Items.AddRange(new object[] {
             "IHM-15",
             "IHM-25",
-            "IHM-30"});
+            "IHM-30",
+            "IHM-60"});
             this.TypeInstallationComboBox.Location = new System.Drawing.Point(174, 154);
             this.TypeInstallationComboBox.Name = "TypeInstallationComboBox";
             this.TypeInstallationComboBox.Size = new System.Drawing.Size(92, 21);
@@ -268,6 +269,7 @@ namespace TesterAppUI
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.CloseButton);
             this.Controls.Add(this.OkButton);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;

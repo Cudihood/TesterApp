@@ -231,9 +231,9 @@ namespace TesterAppUI
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(6, 124);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(121, 13);
+            this.label7.Size = new System.Drawing.Size(115, 13);
             this.label7.TabIndex = 22;
-            this.label7.Text = "Мощьность на выходе";
+            this.label7.Text = "Мощность на выходе";
             // 
             // MaxCurrentNumericUpDown
             // 
@@ -478,9 +478,9 @@ namespace TesterAppUI
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(6, 125);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(121, 13);
+            this.label4.Size = new System.Drawing.Size(115, 13);
             this.label4.TabIndex = 27;
-            this.label4.Text = "Мощьность на выходе";
+            this.label4.Text = "Мощность на выходе";
             // 
             // label5
             // 
@@ -545,8 +545,9 @@ namespace TesterAppUI
             this.Controls.Add(this.label1);
             this.Controls.Add(this.ChanclButton);
             this.Controls.Add(this.OkButton);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "SettingChartForm";
             this.Text = "Настройка графиков";
             ((System.ComponentModel.ISupportInitialize)(this.IntervalXNumericUpDown)).EndInit();

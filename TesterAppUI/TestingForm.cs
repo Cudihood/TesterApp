@@ -84,7 +84,7 @@ namespace TesterAppUI
         /// <summary>
         /// Переменная класса SettingTestForm
         /// </summary>
-        private readonly SettingTestForm _settingTest = new SettingTestForm();
+        private SettingTestForm _settingTest = new SettingTestForm();
 
         /// <summary>
         /// Переменная класса SettingChartForm
@@ -122,7 +122,9 @@ namespace TesterAppUI
             StopButton.Enabled = false;
             CurrentNumericUpDown.Value = Program._mainForm.CurrentNumericUpDown.Value;
             PowerNumericUpDown.Value = Program._mainForm.PowerNumericUpDown.Value;
+            VoltageNumericUpDown.Value = Program._mainForm.VoltageNumericUpDown.Value;
             _masterRTU = Program._mainForm._masterRTU;
+            _thermometerFlag = Program._mainForm._thermometerFlag;
         }
 
         /// <summary>
@@ -132,6 +134,25 @@ namespace TesterAppUI
         /// <param name="e"></param>
         private async void timer1_Tick(object sender, EventArgs e)
         {
+            if (Program._mainForm._accidentChecked)
+            {
+                timer1.Enabled = false;
+                LaunchButton.Enabled = true;
+                StopButton.Enabled = false;
+                menuStrip1.Enabled = true;
+                _timeBeginning = _timeNull;
+                _timeRemeining = _timeTest;
+                GetTime();
+                _oneTick = 0;
+                count = 1;
+                var result = MessageBox.Show(Program._mainForm.StatusController() + "\r\nДля сброса аварии нажмите OK", "Внимание!", MessageBoxButtons.OKCancel,
+                    MessageBoxIcon.Warning);
+                if (result == DialogResult.OK)
+                {
+                    Program._mainForm._masterRTU.WriteSingleRegister(Program._mainForm._slaveAddress, 0xA410, 2);
+                }
+                return;
+            }
             if (_oneTick != 0)
             {
                 _timeBeginning = _timeBeginning.AddSeconds(1);
@@ -142,9 +163,7 @@ namespace TesterAppUI
             ChartParameters();
             if (_timeStart.Hour == 0 && _timeStart.Minute == 0 && _timeStart.Second == 0)
             {
-
                 await Program._mainForm.StartStopController(false);
-
                 if (_timeStop.Hour == 0 && _timeStop.Minute == 0 && _timeStop.Second == 0)
                 {
                     _timeStart = _settingTest._timeStart;
@@ -152,22 +171,17 @@ namespace TesterAppUI
                     if (count != _numberPeriodsNumeric)
                     {
                         await Program._mainForm.StartStopController(true);
-                        timer1.Enabled = true;
+                        _timeStart = _timeStart.AddSeconds(-1);
                         count++;
+                        return;
                     }
                 }
-
-                _timeStop = _timeStop.AddSeconds(-1);
-                
-
-                _oneTick = 2;
-
                 if (_timeRemeining.Hour == 0 && _timeRemeining.Minute == 0 && _timeRemeining.Second == 0)
                 {
-                    _timeFinalTest=DateTime.Now;
+                    _timeFinalTest = DateTime.Now;
                     timer1.Enabled = false;
                     ChartParameters();
-                    MessageBox.Show("Испытание завершенно", "Внимание", MessageBoxButtons.OK);
+                    MessageBox.Show("Испытание завершено", "Внимание", MessageBoxButtons.OK);
                     _timeStart = _settingTest._timeStart;
                     _timeStop = _settingTest._timeStop;
                     _timeRemeining = _timeTest;
@@ -178,7 +192,10 @@ namespace TesterAppUI
                     SaveButton.Enabled = true;
                     GetTime();
                     _oneTick = 0;
+                    count = 1;
+                    return;
                 }
+                _timeStop = _timeStop.AddSeconds(-1);
                 return;
             }
             _timeStart = _timeStart.AddSeconds(-1);
@@ -368,12 +385,19 @@ namespace TesterAppUI
                 return;
             }
             ClearCharts();
-            Program._mainForm.StartStopController(true);
             _timeBeginningTest = DateTime.Now;
-            timer1.Enabled = true;
+            _timeStart = _settingTest._timeStart;
+            _timeStop = _settingTest._timeStop;
+            _timeTest = _settingTest._timeTest;
+            _timeRemeining = _timeTest;
+            _numberPeriodsNumeric = _settingTest._numberPeriodsNumeric;
+            _typeTest = _settingTest._typeTest;
+            GetTime();
             LaunchButton.Enabled = false;
             StopButton.Enabled = true;
             menuStrip1.Enabled = false;
+            Program._mainForm.StartStopController(true);
+            timer1.Enabled = true;
         }
 
         private void StopButton_Click(object sender, EventArgs e)
@@ -387,13 +411,15 @@ namespace TesterAppUI
             _timeRemeining = _timeTest; 
             GetTime();
             _oneTick = 0;
+            count = 1;
         }
 
         private void WriteRegisterButton_Click(object sender, EventArgs e)
         {
-            Program._mainForm.WriteRegister(CurrentNumericUpDown.Text, PowerNumericUpDown.Text);
+            Program._mainForm.WriteRegister(CurrentNumericUpDown.Text,VoltageNumericUpDown.Text, PowerNumericUpDown.Text);
             Program._mainForm.CurrentNumericUpDown.Value = CurrentNumericUpDown.Value;
             Program._mainForm.PowerNumericUpDown.Value = PowerNumericUpDown.Value;
+            Program._mainForm.VoltageNumericUpDown.Value = VoltageNumericUpDown.Value;
         }
 
         private void GetTime()
@@ -401,8 +427,8 @@ namespace TesterAppUI
             TimeTestTextBox.Text = _timeTest.ToString("mm:ss");
             TimeBeginningTextBox.Text = _timeBeginning.ToString("mm:ss");
             RemainingTimeTextBox.Text = _timeRemeining.ToString("mm:ss");
-            textBox1.Text = _timeStart.ToString("mm:ss");
-            textBox2.Text = _timeStop.ToString("mm:ss");
+            textBox1.Text = _settingTest._timeStart.ToString("mm:ss");
+            textBox2.Text = _settingTest._timeStop.ToString("mm:ss");
         }
 
         private void ClearCharts()
@@ -542,7 +568,7 @@ namespace TesterAppUI
                               $"Окончание испытания: {_timeFinalTest.ToString("G")}\n" +
                               $"Длительность процесса: {_timeTest.ToString("T")}\n" +
                               $"Время во включенном состоянии: {_timeStart.ToString("T")}\n" +
-                              $"Время во выключенном состоянии: {_timeStop.ToString("T")}\n" +
+                              $"Время в выключенном состоянии: {_timeStop.ToString("T")}\n" +
                               $"Количество периодов: {_numberPeriodsNumeric}\n" +
                               $"Датчики температуры: {thermometer}\n" +
                               $"Серийный номер установки: {numberInstallation}\n\n";
@@ -582,7 +608,7 @@ namespace TesterAppUI
                         File.Delete(path);
                         break;
                     case 5:
-                        if (!_thermometerFlag)
+                        if (!Program._mainForm.Sensor1СheckBox.Checked)
                         {
                             break;
                         }
@@ -592,7 +618,7 @@ namespace TesterAppUI
                         File.Delete(path);
                         break;
                     case 6:
-                        if (!_thermometerFlag)
+                        if (!Program._mainForm.Sensor2CheckBox.Checked)
                         {
                             break;
                         }
